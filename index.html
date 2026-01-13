@@ -190,7 +190,7 @@
                 </nav>
 
                 <!-- Mobile Menu Details (omitted for brevity, can be same logic) -->
-                <button id="mobileMenuBtn" class="md:hidden text-white">
+                <button id="mobileMenuBtn" class="md:hidden text-white" aria-label="Mở menu chính">
                     <i data-lucide="menu" class="w-7 h-7"></i>
                 </button>
             </div>
@@ -480,13 +480,13 @@
     </a>
 
     <!-- ========== MODAL (SAME LOGIC) ========== -->
-    <div id="docModal" class="fixed inset-0 z-[100] hidden">
+    <div id="docModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="absolute inset-4 md:inset-20 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-float"
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" class="hover:bg-white/20 p-2 rounded-lg"><i data-lucide="x"></i></button>
+                <button id="closeModalBtn" onclick="closeModal()" class="hover:bg-white/20 p-2 rounded-lg" aria-label="Đóng cửa sổ"><i data-lucide="x"></i></button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
             <div class="p-6 bg-gray-50 flex justify-end gap-3">
@@ -598,7 +598,10 @@
             }
         };
 
+        let lastFocusedElement;
+
         function openModal(id) {
+            lastFocusedElement = document.activeElement;
             const data = docData[id];
             if (!data) return;
             document.getElementById('modalTitle').innerText = data.title;
@@ -608,12 +611,23 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Focus management
+            setTimeout(() => {
+                const closeBtn = document.getElementById('closeModalBtn');
+                if (closeBtn) closeBtn.focus();
+            }, 100);
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            // Return focus
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
 
         // Close modal on escape key
