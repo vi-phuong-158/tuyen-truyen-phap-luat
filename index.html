@@ -380,16 +380,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-1/2">
-                    <div
-                        class="inline-flex items-center gap-2 px-4 py-2 bg-cand-gold/20 rounded-full text-cand-gold-dark text-sm font-bold mb-6">
-                        <i data-lucide="sparkles" class="w-4 h-4"></i>
-                        TRÍ TUỆ NHÂN TẠO 4.0
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="icon.png" class="w-16 h-16 object-contain drop-shadow-md">
+                        <h3 class="text-4xl md:text-5xl font-bold text-cand-red-dark font-playfair leading-tight">
+                            Trợ Lý Ảo Pháp Luật
+                        </h3>
                     </div>
-                    <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-playfair leading-tight">
-                        Trợ Lý Ảo <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-cand-red to-cand-red-dark">Pháp
-                            Luật</span>
-                    </h3>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed">
                         Hệ thống giải đáp tự động thông minh, giúp bạn tra cứu nhanh chóng các quy định về xuất nhập
                         cảnh. Chính xác - Nhanh chóng - Tiện lợi.
@@ -465,8 +461,21 @@
 
     <!-- ========== FLOATING BUTTON ========== -->
     <a href="https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484" target="_blank"
-        class="fixed bottom-8 right-8 z-50 w-16 h-16 bg-cand-gold text-cand-red-dark rounded-full shadow-glow flex items-center justify-center hover:scale-110 transition-transform duration-300 animate-bounce">
-        <img src="icon.png" class="w-12 h-12 object-contain" alt="Chat">
+        class="fixed bottom-0 right-4 z-50 flex items-end group">
+
+        <!-- Speech Bubble -->
+        <div
+            class="mb-36 mr-2 bg-white border-2 border-cand-gold text-gray-800 px-4 py-3 rounded-2xl rounded-br-none shadow-xl max-w-[200px] relative animate-float">
+            <p class="text-sm font-bold">Xin chào ! Tôi là Trợ lý AI, bạn có cần tôi giúp gì không?</p>
+            <div
+                class="absolute -right-2 bottom-0 w-0 h-0 border-l-[10px] border-l-transparent border-t-[10px] border-t-cand-gold border-r-[10px] border-r-transparent transform -skew-x-12">
+            </div>
+        </div>
+
+        <!-- Character -->
+        <img src="icon.png"
+            class="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+            alt="Chat">
     </a>
 
     <!-- ========== MODAL (SAME LOGIC) ========== -->
