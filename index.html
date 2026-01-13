@@ -380,9 +380,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-1/2">
-                    <div class="flex items-center gap-4 mb-6">
-                        <img src="icon.png" class="w-16 h-16 object-contain drop-shadow-md">
-                        <h3 class="text-4xl md:text-5xl font-bold text-cand-red-dark font-playfair leading-tight">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="icon.png" class="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-md">
+                        <h3
+                            class="text-2xl sm:text-3xl md:text-5xl font-bold text-cand-red-dark font-playfair leading-tight whitespace-nowrap">
                             Trợ Lý Ảo Pháp Luật
                         </h3>
                     </div>
@@ -464,11 +465,11 @@
         class="fixed bottom-0 right-4 z-50 flex items-end group">
 
         <!-- Speech Bubble -->
-        <div
-            class="mb-36 mr-2 bg-white border-2 border-cand-gold text-gray-800 px-4 py-3 rounded-2xl rounded-br-none shadow-xl max-w-[200px] relative animate-float">
-            <p class="text-sm font-bold">Xin chào ! Tôi là Trợ lý AI, bạn có cần tôi giúp gì không?</p>
+        <div id="aiBubble"
+            class="mb-28 mr-2 bg-white border-2 border-cand-gold text-gray-800 px-3 py-2 rounded-xl rounded-br-none shadow-lg max-w-[160px] relative transition-all duration-500 opacity-100 transform translate-y-0">
+            <p class="text-xs font-bold leading-tight">Xin chào ! Tôi là Trợ lý AI, bạn có cần giúp gì không?</p>
             <div
-                class="absolute -right-2 bottom-0 w-0 h-0 border-l-[10px] border-l-transparent border-t-[10px] border-t-cand-gold border-r-[10px] border-r-transparent transform -skew-x-12">
+                class="absolute -right-2 bottom-0 w-0 h-0 border-l-[8px] border-l-transparent border-t-[8px] border-t-cand-gold border-r-[8px] border-r-transparent transform -skew-x-12">
             </div>
         </div>
 
@@ -630,6 +631,16 @@
                 alert('Tính năng menu mobile đang được cập nhật.');
             });
         }
+
+        // Auto hide bubble on scroll
+        const bubble = document.getElementById('aiBubble');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                bubble.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+            } else {
+                bubble.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }
+        });
     </script>
 
 </body>
