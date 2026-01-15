@@ -172,27 +172,72 @@
                     <img src="logo-qlxnc.png" alt="QLXNC"
                         class="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-md">
                     <div class="hidden md:block">
-                        <h1 class="text-white font-bold text-base leading-none">CÔNG AN TỈNH PHÚ THỌ</h1>
-                        <p class="text-cand-gold text-xs font-bold tracking-wider">PHÒNG QUẢN LÝ XUẤT NHẬP CẢNH</p>
+                        <h1 class="text-white font-bold text-base leading-none" data-i18n="unit_name_1">CÔNG AN TỈNH PHÚ
+                            THỌ</h1>
+                        <p class="text-cand-gold text-xs font-bold tracking-wider" data-i18n="unit_name_2">PHÒNG QUẢN LÝ
+                            XUẤT NHẬP CẢNH</p>
                     </div>
                 </div>
 
                 <!-- Desktop Nav -->
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="#home" class="text-white/90 hover:text-cand-gold font-medium transition-colors">Trang
-                        chủ</a>
-                    <a href="#documents" class="text-white/90 hover:text-cand-gold font-medium transition-colors">Văn
-                        bản</a>
+                    <a href="#home" class="text-white/90 hover:text-cand-gold font-medium transition-colors"
+                        data-i18n="home">Trang chủ</a>
+                    <a href="#documents" class="text-white/90 hover:text-cand-gold font-medium transition-colors"
+                        data-i18n="documents">Văn bản</a>
                     <a href="#ai-assistant"
-                        class="px-5 py-2 bg-gradient-to-r from-cand-gold to-cand-gold-dark text-white font-bold rounded-full shadow-lg hover:shadow-glow transition-all transform hover:scale-105">
+                        class="px-5 py-2 bg-gradient-to-r from-cand-gold to-cand-gold-dark text-white font-bold rounded-full shadow-lg hover:shadow-glow transition-all transform hover:scale-105"
+                        data-i18n="ai_assistant">
                         Hỏi đáp AI
                     </a>
+                    <!-- Language Switcher -->
+                    <div
+                        class="flex items-center gap-2 ml-2 bg-black/20 px-3 py-1.5 rounded-full border border-white/10">
+                        <button onclick="setLanguage('vi')"
+                            class="text-cand-gold font-bold text-sm hover:text-white transition-colors"
+                            id="lang-btn-vi">VN</button>
+                        <span class="text-white/40 text-xs">|</span>
+                        <button onclick="setLanguage('en')"
+                            class="text-white/70 text-sm hover:text-cand-gold transition-colors"
+                            id="lang-btn-en">EN</button>
+                    </div>
                 </nav>
 
-                <!-- Mobile Menu Details (omitted for brevity, can be same logic) -->
-                <button id="mobileMenuBtn" class="md:hidden text-white">
+                <!-- Mobile Menu Details -->
+                <button id="mobileMenuBtn"
+                    class="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
                     <i data-lucide="menu" class="w-7 h-7"></i>
                 </button>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobileMenu"
+                class="hidden md:hidden border-t border-white/10 overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="py-4 space-y-2 flex flex-col">
+                    <a href="#home"
+                        class="block px-4 py-2 text-white/90 hover:bg-white/10 hover:text-cand-gold transition-colors rounded-lg"
+                        onclick="toggleMobileMenu()" data-i18n="home">Trang chủ</a>
+                    <a href="#documents"
+                        class="block px-4 py-2 text-white/90 hover:bg-white/10 hover:text-cand-gold transition-colors rounded-lg"
+                        onclick="toggleMobileMenu()" data-i18n="documents">Văn bản</a>
+                    <a href="#ai-assistant"
+                        class="block px-4 py-2 text-white/90 hover:bg-white/10 hover:text-cand-gold transition-colors rounded-lg"
+                        onclick="toggleMobileMenu()" data-i18n="ai_assistant">Hỏi đáp AI</a>
+
+                    <div class="px-4 pt-2 mt-2 border-t border-white/10 flex items-center gap-4">
+                        <span class="text-white/60 text-sm" data-i18n="language">Ngôn ngữ:</span>
+                        <div
+                            class="flex items-center gap-2 bg-black/20 px-3 py-1.5 rounded-full border border-white/10">
+                            <button onclick="setLanguage('vi')"
+                                class="text-cand-gold font-bold text-sm hover:text-white transition-colors"
+                                id="mob-lang-vi">VN</button>
+                            <span class="text-white/40 text-xs">|</span>
+                            <button onclick="setLanguage('en')"
+                                class="text-white/70 text-sm hover:text-cand-gold transition-colors"
+                                id="mob-lang-en">EN</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -212,15 +257,18 @@
             <!-- Logo Block -->
             <div class="mb-4 flex flex-col items-center justify-center">
                 <img src="logo.png" alt="CAND" class="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-2xl mb-2">
-                <h2 class="text-white font-bold text-sm md:text-base leading-tight">CÔNG AN TỈNH PHÚ THỌ</h2>
-                <p class="text-cand-gold font-bold text-xs md:text-sm tracking-wider">PHÒNG QUẢN LÝ XUẤT NHẬP CẢNH</p>
+                <h2 class="text-white font-bold text-sm md:text-base leading-tight" data-i18n="unit_name_1">CÔNG AN TỈNH
+                    PHÚ THỌ</h2>
+                <p class="text-cand-gold font-bold text-xs md:text-sm tracking-wider" data-i18n="unit_name_2">PHÒNG QUẢN
+                    LÝ XUẤT NHẬP CẢNH</p>
             </div>
 
-            <p class="font-dancing text-2xl md:text-4xl text-white mb-2 tracking-wide font-bold drop-shadow-md">Phong
+            <p class="font-dancing text-2xl md:text-4xl text-white mb-2 tracking-wide font-bold drop-shadow-md"
+                data-i18n="hero_movement">Phong
                 trào thi đua</p>
 
-            <h1
-                class="font-black text-6xl md:text-8xl lg:text-9xl text-cand-gold text-3d mb-8 tracking-tighter uppercase relative inline-block">
+            <h1 class="font-black text-6xl md:text-8xl lg:text-9xl text-cand-gold text-3d mb-8 tracking-tighter uppercase relative inline-block"
+                data-i18n="hero_3best">
                 BA NHẤT
                 <!-- Stars -->
                 <div class="flex justify-center gap-4 mt-2 mb-4 text-cand-gold text-2xl md:text-4xl">
@@ -236,26 +284,29 @@
             <div class="space-y-4 md:space-y-6 mb-12">
                 <div class="transform hover:scale-105 transition-transform duration-300">
                     <h2 class="text-3xl md:text-5xl font-bold text-white uppercase tracking-tight drop-shadow-lg">
-                        <span class="text-cand-gold">"</span>KỶ LUẬT NHẤT<span class="text-cand-gold">"</span>
+                        <span class="text-cand-gold">"</span><span data-i18n="best_discipline">KỶ LUẬT NHẤT</span><span
+                            class="text-cand-gold">"</span>
                     </h2>
                 </div>
                 <div class="transform hover:scale-105 transition-transform duration-300">
                     <h2 class="text-3xl md:text-5xl font-bold text-white uppercase tracking-tight drop-shadow-lg">
-                        <span class="text-cand-gold">"</span>TRUNG THÀNH NHẤT<span class="text-cand-gold">"</span>
+                        <span class="text-cand-gold">"</span><span data-i18n="best_loyalty">TRUNG THÀNH NHẤT</span><span
+                            class="text-cand-gold">"</span>
                     </h2>
                 </div>
                 <div class="transform hover:scale-105 transition-transform duration-300">
                     <h2 class="text-3xl md:text-5xl font-bold text-white uppercase tracking-tight drop-shadow-lg">
-                        <span class="text-cand-gold">"</span>GẦN DÂN NHẤT<span class="text-cand-gold">"</span>
+                        <span class="text-cand-gold">"</span><span data-i18n="best_closeness">GẦN DÂN NHẤT</span><span
+                            class="text-cand-gold">"</span>
                     </h2>
                 </div>
             </div>
 
             <div class="max-w-3xl mx-auto border-t border-cand-gold/50 pt-6 mt-6">
                 <div class="flex flex-col gap-2 text-white/90 text-sm md:text-lg font-bold uppercase tracking-wider">
-                    <p>KỶ LUẬT LÀ NỀN TẢNG</p>
-                    <p>TRUNG THÀNH LÀ CỐT LÕI</p>
-                    <p>GẦN DÂN LÀ THƯỚC ĐO</p>
+                    <p data-i18n="motto_1">KỶ LUẬT LÀ NỀN TẢNG</p>
+                    <p data-i18n="motto_2">TRUNG THÀNH LÀ CỐT LÕI</p>
+                    <p data-i18n="motto_3">GẦN DÂN LÀ THƯỚC ĐO</p>
                 </div>
             </div>
 
@@ -263,12 +314,12 @@
                 <a href="#documents"
                     class="px-8 py-4 bg-white text-cand-red-dark font-bold rounded-full shadow-xl hover:bg-gray-100 transition-all btn-shine flex items-center justify-center gap-2">
                     <i data-lucide="file-text" class="w-5 h-5"></i>
-                    Tra cứu Văn bản
+                    <span data-i18n="search_docs">Tra cứu Văn bản</span>
                 </a>
                 <a href="#ai-assistant"
                     class="px-8 py-4 bg-cand-gold text-cand-red-dark font-bold rounded-full shadow-xl hover:bg-cand-gold-dark hover:text-white transition-all btn-shine flex items-center justify-center gap-2">
                     <i data-lucide="bot" class="w-5 h-5"></i>
-                    Hỏi Trợ lý AI
+                    <span data-i18n="ask_ai">Hỏi Trợ lý AI</span>
                 </a>
             </div>
         </div>
@@ -288,8 +339,8 @@
     <section id="documents" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h3 class="text-3xl md:text-5xl font-bold text-cand-red-dark mb-4 drop-shadow-sm font-playfair">Kho Văn
-                    Bản Pháp Luật</h3>
+                <h3 class="text-3xl md:text-5xl font-bold text-cand-red-dark mb-4 drop-shadow-sm font-playfair"
+                    data-i18n="docs_title">Kho Văn Bản Pháp Luật</h3>
                 <div class="w-24 h-1 bg-cand-gold mx-auto rounded-full"></div>
             </div>
 
@@ -304,18 +355,26 @@
                         <i data-lucide="gavel" class="w-7 h-7 text-cand-red group-hover:text-white"></i>
                     </div>
                     <span
-                        class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20">NGHỊ
+                        class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
+                        data-i18n="tag_decree">NGHỊ
                         ĐỊNH</span>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors">Nghị
+                    <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                        data-i18n="doc1_title">Nghị
                         định 282/2025/NĐ-CP</h4>
-                    <p class="text-gray-600 text-sm mb-6 line-clamp-3">Quy định xử phạt vi phạm hành chính trong lĩnh
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc1_desc">Quy định xử phạt vi phạm
+                        hành chính trong lĩnh
                         vực an ninh, trật tự, an toàn xã hội.</p>
+
+
+
                     <div class="flex gap-3 mt-auto">
                         <button onclick="openModal('doc1')"
-                            class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all">Xem
+                            class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
+                            data-i18n="view_quick">Xem
                             nhanh</button>
                         <a href="2025_1583_1584_282_2025_ND_CP.pdf" target="_blank"
-                            class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all">Mở
+                            class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all"
+                            data-i18n="open_file">Mở
                             file</a>
                     </div>
                 </div>
@@ -330,17 +389,25 @@
                         <i data-lucide="book" class="w-7 h-7 text-cand-red group-hover:text-white"></i>
                     </div>
                     <span
-                        class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20">LUẬT</span>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors">LUẬT
+                        class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
+                        data-i18n="tag_law">LUẬT</span>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                        data-i18n="doc2_title">LUẬT
                         NHẬP CẢNH, XUẤT CẢNH, QUÁ CẢNH, CƯ TRÚ CỦA NGƯỜI NƯỚC NGOÀI TẠI VIỆT NAM</h4>
-                    <p class="text-gray-600 text-sm mb-6 line-clamp-3">Văn bản hợp nhất quy định về nhập cảnh, xuất
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc2_desc">Văn bản hợp nhất quy định
+                        về nhập cảnh, xuất
                         cảnh, quá cảnh, cư trú của người nước ngoài.</p>
+
+
+
                     <div class="flex gap-3 mt-auto">
                         <button onclick="openModal('doc2')"
-                            class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all">Xem
+                            class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
+                            data-i18n="view_quick">Xem
                             nhanh</button>
                         <a href="2023_1257_1258_30_VBHN_VPQH.pdf" target="_blank"
-                            class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all">Mở
+                            class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all"
+                            data-i18n="open_file">Mở
                             file</a>
                     </div>
                 </div>
@@ -355,18 +422,26 @@
                         <i data-lucide="landmark" class="w-7 h-7 text-cand-red group-hover:text-white"></i>
                     </div>
                     <span
-                        class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20">QUY
+                        class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
+                        data-i18n="tag_regulation">QUY
                         CHẾ</span>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors">Quy chế
+                    <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                        data-i18n="doc3_title">Quy chế
                         phối hợp trong quản lý người nước ngoài cư trú, hoạt động trên địa bàn tỉnh Phú Thọ</h4>
-                    <p class="text-gray-600 text-sm mb-6 line-clamp-3">Quy định về phối hợp quản lý người nước ngoài
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc3_desc">Quy định về phối hợp quản
+                        lý người nước ngoài
                         trên địa bàn tỉnh Phú Thọ.</p>
+
+
+
                     <div class="flex gap-3 mt-auto">
                         <button onclick="openModal('doc3')"
-                            class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all">Xem
+                            class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
+                            data-i18n="view_quick">Xem
                             nhanh</button>
                         <a href="Quy_che_phoi_hop_quan_ly_NNN_Phu_Tho.pdf" target="_blank"
-                            class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all">Mở
+                            class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all"
+                            data-i18n="open_file">Mở
                             file</a>
                     </div>
                 </div>
@@ -382,12 +457,12 @@
                 <div class="lg:w-1/2">
                     <div class="flex items-center gap-3 mb-6">
                         <img src="icon.png" class="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-md">
-                        <h3
-                            class="text-2xl sm:text-3xl md:text-5xl font-bold text-cand-red-dark font-playfair leading-tight whitespace-nowrap">
+                        <h3 class="text-2xl sm:text-3xl md:text-5xl font-bold text-cand-red-dark font-playfair leading-tight whitespace-nowrap"
+                            data-i18n="ai_section_title">
                             Trợ Lý Ảo Pháp Luật
                         </h3>
                     </div>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-i18n="ai_section_desc">
                         Hệ thống giải đáp tự động thông minh, giúp bạn tra cứu nhanh chóng các quy định về xuất nhập
                         cảnh. Chính xác - Nhanh chóng - Tiện lợi.
                     </p>
@@ -395,7 +470,7 @@
                         target="_blank"
                         class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cand-red to-cand-red-dark text-white font-bold rounded-full shadow-lg hover:shadow-glow hover:scale-105 transition-all duration-300">
                         <i data-lucide="message-circle" class="w-6 h-6"></i>
-                        Trò chuyện ngay
+                        <span data-i18n="chat_now">Trò chuyện ngay</span>
                     </a>
                 </div>
                 <div class="lg:w-1/2 relative">
@@ -407,22 +482,23 @@
                                     <i data-lucide="bot" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <h5 class="font-bold text-gray-900">Trợ lý AI</h5>
+                                    <h5 class="font-bold text-gray-900" data-i18n="ai_name">Trợ lý AI</h5>
                                     <span class="text-green-500 text-xs font-bold flex items-center gap-1">
-                                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Online
+                                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> <span
+                                            data-i18n="online_status">Online</span>
                                     </span>
                                 </div>
                             </div>
                             <div class="space-y-4">
                                 <div class="flex justify-end">
-                                    <div
-                                        class="bg-cand-red text-white px-5 py-3 rounded-2xl rounded-tr-sm shadow-md max-w-xs">
+                                    <div class="bg-cand-red text-white px-5 py-3 rounded-2xl rounded-tr-sm shadow-md max-w-xs"
+                                        data-i18n="chat_demo_q">
                                         Thủ tục gia hạn visa du lịch gồm những gì?
                                     </div>
                                 </div>
                                 <div class="flex justify-start">
-                                    <div
-                                        class="bg-white text-gray-800 border border-gray-200 px-5 py-3 rounded-2xl rounded-tl-sm shadow-sm max-w-sm">
+                                    <div class="bg-white text-gray-800 border border-gray-200 px-5 py-3 rounded-2xl rounded-tl-sm shadow-sm max-w-sm"
+                                        data-i18n="chat_demo_a">
                                         Theo quy định mới nhất, bạn cần chuẩn bị: Hộ chiếu gốc, tờ khai NA5, và xác nhận
                                         tạm trú...
                                     </div>
@@ -446,15 +522,18 @@
                 <div class="flex items-center gap-3 mb-4">
                     <img src="logo.png" alt="Logo" class="w-12 h-12 object-contain bg-white rounded-full p-1">
                     <div class="text-left">
-                        <h4 class="font-bold text-lg leading-none">CÔNG AN TỈNH PHÚ THỌ</h4>
-                        <p class="text-cand-gold text-xs font-bold mt-1">VÌ NƯỚC QUÊN THÂN - VÌ DÂN PHỤC VỤ</p>
+                        <h4 class="font-bold text-lg leading-none" data-i18n="unit_name_1">CÔNG AN TỈNH PHÚ THỌ</h4>
+                        <p class="text-cand-gold text-xs font-bold mt-1" data-i18n="footer_slogan">VÌ NƯỚC QUÊN THÂN -
+                            VÌ DÂN PHỤC VỤ</p>
                     </div>
                 </div>
             </div>
             <div class="border-t border-white/10 pt-8 text-center">
-                <p class="text-white/60 text-sm font-medium uppercase tracking-wide">Thiết kế bởi Đại úy Vi Ngọc Phương
+                <p class="text-white/60 text-sm font-medium uppercase tracking-wide" data-i18n="designed_by_label">Thiết
+                    kế bởi Đại úy Vi Ngọc Phương
                 </p>
-                <p class="text-white/60 text-sm font-medium uppercase tracking-wide mt-1">Bí thư Chi đoàn ghép Phòng
+                <p class="text-white/60 text-sm font-medium uppercase tracking-wide mt-1" data-i18n="designed_by_role">
+                    Bí thư Chi đoàn ghép Phòng
                     PA01-PA08</p>
             </div>
         </div>
@@ -467,7 +546,8 @@
         <!-- Speech Bubble -->
         <div id="aiBubble"
             class="mb-28 mr-2 bg-white border-2 border-cand-gold text-gray-800 px-3 py-2 rounded-xl rounded-br-none shadow-lg max-w-[160px] relative transition-all duration-500 opacity-100 transform translate-y-0">
-            <p class="text-xs font-bold leading-tight">Xin chào ! Tôi là Trợ lý AI, bạn có cần giúp gì không?</p>
+            <p class="text-xs font-bold leading-tight" data-i18n="bubble_text">Xin chào ! Tôi là Trợ lý AI, bạn có cần
+                giúp gì không?</p>
             <div
                 class="absolute -right-2 bottom-0 w-0 h-0 border-l-[8px] border-l-transparent border-t-[8px] border-t-cand-gold border-r-[8px] border-r-transparent transform -skew-x-12">
             </div>
@@ -497,112 +577,1077 @@
         </div>
     </div>
 
+    <!-- ========== WELCOME MODAL ========== -->
+    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div
+                class="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-lg w-full transform scale-100 animate-pulse-once">
+                <!-- Header -->
+                <div class="bg-gradient-to-r from-cand-red to-cand-red-dark p-6 text-center">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <img src="logo.png" alt="Logo Công an"
+                            class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-lg">
+                        <img src="logo-qlxnc.png" alt="Logo QLXNC"
+                            class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-lg">
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-cand-gold uppercase tracking-wide"
+                        id="welcome-title">Chào mừng bạn!</h2>
+                    <p class="text-white text-base md:text-lg mt-2 font-medium" id="welcome-subtitle">Cổng thông tin
+                        tuyên truyền pháp luật</p>
+                    <p class="text-white/70 text-xs mt-1" id="welcome-org">Phòng Quản lý xuất nhập cảnh - Công an tỉnh
+                        Phú Thọ</p>
+                </div>
+
+                <!-- Body -->
+                <div class="p-6 space-y-4">
+                    <p class="text-gray-600 text-center text-sm" id="welcome-intro">Khám phá các tính năng chính của
+                        chúng tôi:</p>
+
+                    <div class="space-y-3">
+                        <!-- Feature 1: Documents -->
+                        <div class="flex items-start gap-4 p-3 bg-blue-50 rounded-xl border border-blue-100">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat1-title">Thư Viện Văn Bản
+                                    Pháp Luật</h4>
+                                <p class="text-gray-600 text-xs" id="welcome-feat1-desc">Tra cứu nhanh các nghị định,
+                                    luật và quy chế về xuất nhập cảnh.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2: Quick View -->
+                        <div class="flex items-start gap-4 p-3 bg-red-50 rounded-xl border border-red-100">
+                            <div class="w-10 h-10 bg-cand-red rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat2-title">Xem Nhanh & Tóm Tắt
+                                </h4>
+                                <p class="text-gray-600 text-xs" id="welcome-feat2-desc">Nắm bắt nội dung chính của văn
+                                    bản mà không cần mở file PDF.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3: AI Assistant -->
+                        <div class="flex items-start gap-4 p-3 bg-amber-50 rounded-xl border border-amber-100">
+                            <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="bot" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat3-title">Trợ Lý AI Pháp Luật
+                                </h4>
+                                <p class="text-gray-600 text-xs" id="welcome-feat3-desc">Hỏi đáp thủ tục visa, cư trú
+                                    với trí tuệ nhân tạo 24/7.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 4: Bilingual -->
+                        <div class="flex items-start gap-4 p-3 bg-green-50 rounded-xl border border-green-100">
+                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="languages" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat4-title">Hỗ trợ Song ngữ
+                                </h4>
+                                <p class="text-gray-600 text-xs" id="welcome-feat4-desc">Giao diện và nội dung có sẵn
+                                    bằng cả Tiếng Việt và Tiếng Anh.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="px-6 pb-6">
+                    <button onclick="closeWelcomeModal()"
+                        class="w-full py-3 bg-gradient-to-r from-cand-red to-cand-red-dark text-white font-bold rounded-xl shadow-lg hover:shadow-glow hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
+                        <span id="welcome-btn">Bắt đầu khám phá</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                    <label class="flex items-center justify-center gap-2 mt-3 text-xs text-gray-500 cursor-pointer">
+                        <input type="checkbox" id="dontShowAgain"
+                            class="rounded border-gray-300 text-cand-red focus:ring-cand-red">
+                        <span id="welcome-checkbox">Không hiển thị lại</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script>
         lucide.createIcons();
 
+        // ========== MULTI-LANGUAGE SUPPORT ==========
+        const translations = {
+            vi: {
+                home: "Trang chủ",
+                documents: "Văn bản",
+                ai_assistant: "Hỏi đáp AI",
+                language: "Ngôn ngữ:",
+                search_docs: "Tra cứu Văn bản",
+                ask_ai: "Hỏi Trợ lý AI",
+                docs_title: "Kho Văn Bản Pháp Luật",
+                view_quick: "Xem nhanh",
+                open_file: "Mở file",
+                motto_1: "KỶ LUẬT LÀ NỀN TẢNG",
+                motto_2: "TRUNG THÀNH LÀ CỐT LÕI",
+                motto_3: "GẦN DÂN LÀ THƯỚC ĐO",
+                unit_name_1: "CÔNG AN TỈNH PHÚ THỌ",
+                unit_name_2: "PHÒNG QUẢN LÝ XUẤT NHẬP CẢNH",
+                hero_movement: "Phong trào thi đua",
+                hero_3best: "BA NHẤT",
+                best_discipline: "KỶ LUẬT NHẤT",
+                best_loyalty: "TRUNG THÀNH NHẤT",
+                best_closeness: "GẦN DÂN NHẤT",
+                tag_decree: "NGHỊ ĐỊNH",
+                tag_law: "LUẬT",
+                tag_regulation: "QUY CHẾ",
+                doc1_title: "Nghị định 282/2025/NĐ-CP",
+                doc1_desc: "Quy định xử phạt vi phạm hành chính trong lĩnh vực an ninh, trật tự, an toàn xã hội.",
+                doc2_title: "LUẬT NHẬP CẢNH, XUẤT CẢNH, QUÁ CẢNH, CƯ TRÚ CỦA NGƯỜI NƯỚC NGOÀI TẠI VIỆT NAM",
+                doc2_desc: "Văn bản hợp nhất quy định về nhập cảnh, xuất cảnh, quá cảnh, cư trú của người nước ngoài.",
+                doc3_title: "Quy chế phối hợp trong quản lý người nước ngoài cư trú, hoạt động trên địa bàn tỉnh Phú Thọ",
+                doc3_desc: "Quy định về phối hợp quản lý người nước ngoài trên địa bàn tỉnh Phú Thọ.",
+                ai_section_title: "Trợ Lý Ảo Pháp Luật",
+                ai_section_desc: "Hệ thống giải đáp tự động thông minh, giúp bạn tra cứu nhanh chóng các quy định về xuất nhập cảnh. Chính xác - Nhanh chóng - Tiện lợi.",
+                chat_now: "Trò chuyện ngay",
+                ai_name: "Trợ lý AI",
+                chat_demo_q: "Thủ tục gia hạn visa du lịch gồm những gì?",
+                chat_demo_a: "Theo quy định mới nhất, bạn cần chuẩn bị: Hộ chiếu gốc, tờ khai NA5, và xác nhận tạm trú...",
+                footer_slogan: "VÌ NƯỚC QUÊN THÂN - VÌ DÂN PHỤC VỤ",
+                designed_by_label: "Thiết kế bởi Đại úy Vi Ngọc Phương",
+                designed_by_role: "Bí thư Chi đoàn ghép Phòng PA01-PA08",
+                online_status: "Online",
+                bubble_text: "Xin chào ! Tôi là Trợ lý AI, bạn có cần giúp gì không?"
+            },
+            en: {
+                home: "Home",
+                documents: "Legal Docs",
+                ai_assistant: "AI Assistant",
+                language: "Language:",
+                search_docs: "Search Documents",
+                ask_ai: "Ask AI Assistant",
+                docs_title: "Legal Documents Library",
+                view_quick: "Quick View",
+                open_file: "Open File",
+                motto_1: "DISCIPLINE IS THE FOUNDATION",
+                motto_2: "LOYALTY IS THE CORE",
+                motto_3: "CLOSENESS TO PEOPLE IS THE MEASURE",
+                unit_name_1: "PHU THO PROVINCIAL POLICE",
+                unit_name_2: "IMMIGRATION DEPARTMENT",
+                hero_movement: "Emulation Movement",
+                hero_3best: "THREE BESTs",
+                best_discipline: "MOST DISCIPLINED",
+                best_loyalty: "MOST LOYAL",
+                best_closeness: "CLOSEST TO PEOPLE",
+                tag_decree: "DECREE",
+                tag_law: "LAW",
+                tag_regulation: "REGULATION",
+                doc1_title: "Decree 282/2025/ND-CP",
+                doc1_desc: "Regulations on administrative penalties in the fields of security, order, and social safety.",
+                doc2_title: "LAW ON ENTRY, EXIT, TRANSIT, AND RESIDENCE OF FOREIGNERS IN VIETNAM",
+                doc2_desc: "Consolidated text regulating entry, exit, transit, and residence of foreigners.",
+                doc3_title: "Regulation on coordination in managing foreigners residing and operating in Phu Tho province",
+                doc3_desc: "Regulations on coordination in managing foreigners in Phu Tho province.",
+                ai_section_title: "Legal AI Assistant",
+                ai_section_desc: "Smart automated answering system helping you quickly look up immigration regulations. Accurate - Fast - Convenient.",
+                chat_now: "Chat Now",
+                ai_name: "AI Assistant",
+                chat_demo_q: "What are the procedures for extending a tourist visa?",
+                chat_demo_a: "According to the latest regulations, you need: Original passport, NA5 form, and temporary residence confirmation...",
+                footer_slogan: "DEVOTED TO FATHERLAND - SERVING THE PEOPLE",
+                designed_by_label: "Designed by Captain Vi Ngoc Phuong",
+                designed_by_role: "Secretary of Joint Youth Union PA01-PA08",
+                online_status: "Online",
+                bubble_text: "Hello! I am AI Assistant, surely allow me to help you?"
+            }
+        };
+
+        let currentLang = 'vi';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            // Update Text Content
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+
+            // Update Buttons State
+            const ids = ['lang-btn-vi', 'lang-btn-en', 'mob-lang-vi', 'mob-lang-en'];
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+
+                // Check if this button matches current lang
+                const isSelected = id.endsWith(lang);
+                if (isSelected) {
+                    el.classList.add('text-cand-gold', 'font-bold');
+                    el.classList.remove('text-white/70');
+                } else {
+                    el.classList.remove('text-cand-gold', 'font-bold');
+                    el.classList.add('text-white/70');
+                }
+            });
+
+            // Special cases (updating docData titles if we wanted to go deep, but for now we keep doc content in VI mainly as it's legal docs)
+            // But we can update the modal buttons if they were separate, but they are inside HTML string in docData. 
+            // For a simple implementation, we assume doc content stays Vietnamese.
+        }
+
+        // ========== MOBILE MENU ==========
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
         // ========== MODAL FUNCTIONALITY ==========
         const docData = {
             doc1: {
-                title: "Nghị định 282/2025/NĐ-CP",
-                subtitle: "Xử phạt vi phạm hành chính",
                 pdfLink: "2025_1583_1584_282_2025_ND_CP.pdf",
-                content: `
-                    <div class="space-y-6">
-                        <div class="bg-cand-red/5 border-l-4 border-cand-red p-4 rounded-r-lg">
-                            <h4 class="font-bold text-cand-red mb-2">📌 Thông tin chung</h4>
-                            <ul class="text-sm space-y-1">
-                                <li><strong>Số hiệu:</strong> 282/2025/NĐ-CP</li>
-                                <li><strong>Loại văn bản:</strong> Nghị định</li>
-                                <li><strong>Lĩnh vực:</strong> An ninh, trật tự, an toàn xã hội</li>
-                            </ul>
+                vi: {
+                    title: "Nghị định 282/2025/NĐ-CP",
+                    content: `
+                    <div class="space-y-5 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-cand-red p-5 rounded-r-xl shadow-sm">
+                             <h4 class="font-bold text-cand-red text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="scale" class="w-5 h-5"></i>
+                                Nghị định 282/2025/NĐ-CP
+                            </h4>
+                            <p class="text-sm leading-relaxed">Quy định chi tiết các hành vi vi phạm, mức xử phạt và thẩm quyền xử lý liên quan đến <strong>người nước ngoài (NNN)</strong> và các <strong>tổ chức nước ngoài</strong> tại Việt Nam.</p>
                         </div>
-                        
-                        <div>
-                            <h4 class="font-bold text-gray-900 mb-3">📋 Nội dung chính</h4>
-                            <p class="text-sm mb-4">Nghị định quy định về xử phạt vi phạm hành chính trong các lĩnh vực:</p>
-                            <ul class="list-disc list-inside text-sm space-y-2 ml-2">
-                                <li><strong>An ninh, trật tự, an toàn xã hội</strong> - Vi phạm về an ninh quốc gia, trật tự công cộng</li>
-                                <li><strong>Phòng, chống tệ nạn xã hội</strong> - Ma túy, mại dâm, cờ bạc</li>
-                                <li><strong>Phòng cháy, chữa cháy</strong> - Vi phạm quy định PCCC</li>
-                                <li><strong>Cứu nạn, cứu hộ</strong> - Vi phạm trong hoạt động CNCH</li>
-                            </ul>
+
+                        <!-- Section 1: Đối tượng & Hình thức -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-red-100 text-cand-red w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                Đối tượng & Hình thức Xử phạt
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-3 text-sm">
+                                <div class="bg-orange-50/50 p-3 rounded-lg border border-orange-100">
+                                    <strong class="text-orange-700 block mb-1">Đối tượng áp dụng</strong>
+                                    <span class="text-xs">Cá nhân NNN và tổ chức nước ngoài. <strong>Tổ chức vi phạm: Phạt gấp 02 lần</strong> cá nhân.</span>
+                                </div>
+                                <div class="bg-red-50/50 p-3 rounded-lg border border-red-100">
+                                    <strong class="text-cand-red block mb-1">Hình thức đặc thù</strong>
+                                    <span class="text-xs">Ngoài cảnh cáo, phạt tiền: Có thể áp dụng <strong>TRỤC XUẤT</strong> như hình thức chính hoặc bổ sung.</span>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="bg-cand-gold/10 p-4 rounded-lg">
-                            <h4 class="font-bold text-cand-gold-dark mb-2">⚠️ Mức phạt đáng chú ý</h4>
-                            <ul class="text-sm space-y-2">
-                                <li>• Phạt tiền từ <strong>500.000đ - 40.000.000đ</strong> tùy mức độ vi phạm</li>
-                                <li>• Tước quyền sử dụng giấy phép, chứng chỉ hành nghề</li>
-                                <li>• Tịch thu tang vật, phương tiện vi phạm</li>
+
+                        <!-- Section 2: Vi phạm XNC (Điều 21) -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-red-100 text-cand-red w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                Vi phạm Xuất nhập cảnh & Cư trú (Điều 21)
+                            </h5>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="id-card" class="w-4 h-4 text-orange-500 mt-0.5 shrink-0"></i>
+                                    <div>
+                                        <strong>Giấy tờ tùy thân:</strong> Không mang hộ chiếu khi đi lại: <strong class="text-cand-red">300K - 500K</strong>. Khai sai sự thật, vào khu vực cấm: <strong class="text-cand-red">500K - 2 Triệu</strong>.
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <strong class="block mb-2 text-gray-900">Quá hạn tạm trú:</strong>
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">< 16 ngày</span>
+                                            <strong class="text-cand-red">500K - 2Tr</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">16 - 30 ngày</span>
+                                            <strong class="text-cand-red">5 - 10Tr</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">30 - 60 ngày</span>
+                                            <strong class="text-cand-red">10 - 15Tr</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">60 - 90 ngày</span>
+                                            <strong class="text-cand-red">15 - 20Tr</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">90 - 180 ngày</span>
+                                            <strong class="text-cand-red">20 - 25Tr</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">180 ngày - 1 năm</span>
+                                            <strong class="text-cand-red">25 - 30Tr</strong>
+                                        </div>
+                                        <div class="bg-red-100 p-2 rounded border border-red-200 text-center col-span-2">
+                                            <span class="block text-red-700 font-bold">≥ 01 năm</span>
+                                            <strong class="text-cand-red text-sm">30 - 40 Triệu</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="briefcase" class="w-4 h-4 text-blue-500 mt-0.5 shrink-0"></i>
+                                    <div>
+                                        <strong>Hoạt động sai mục đích:</strong> Hành nghề không phép: <strong class="text-cand-red">15 - 20Tr</strong>. Sai mục đích xin visa: <strong class="text-cand-red">20 - 25Tr</strong>.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Trách nhiệm tổ chức -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-red-100 text-cand-red w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
+                                Trách nhiệm Tổ chức mời/bảo lãnh & Cơ sở lưu trú
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-purple-50/50 p-3 rounded-lg border border-purple-100">
+                                    <strong class="text-purple-700 block mb-1">Tổ chức mời, bảo lãnh</strong>
+                                    <span>Không thực hiện đúng trách nhiệm hoặc sử dụng NNN cư trú bất hợp pháp: <strong class="text-cand-red">20 - 25 Triệu</strong>.</span>
+                                </div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-700 block mb-1">Cơ sở lưu trú</strong>
+                                    <span>Không khai báo tạm trú: <strong class="text-cand-red">3 - 20 Triệu</strong> (tùy số lượng NNN từ 01 đến 09+ người).</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 md:col-span-2">
+                                    <strong class="text-gray-700 block mb-1">Kinh doanh bảo vệ</strong>
+                                    <span>Sử dụng NNN làm nhân viên bảo vệ/an ninh: <strong class="text-cand-red">5 - 10 Triệu</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Hành vi bị trục xuất -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-red-100 text-cand-red w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span>
+                                Hành vi bị Trục xuất
+                            </h5>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">Xâm phạm trật tự công cộng</span>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="bomb" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">Vi phạm vũ khí, pháo</span>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="ban" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">Tệ nạn xã hội (ma túy, mại dâm)</span>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="shield-alert" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">Xâm phạm an ninh quốc gia</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 5: Thẩm quyền -->
+                        <div class="bg-red-50/50 p-4 rounded-xl border border-red-100">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base">
+                                <span class="bg-cand-red text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                Thẩm quyền Xử phạt & Trục xuất
+                            </h5>
+                             <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="user" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>Trưởng phòng QL XNC</strong> & <strong>Giám đốc CA tỉnh:</strong> Phạt tiền + quyền quyết định <strong>TRỤC XUẤT</strong>.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="building-2" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>Cục trưởng Cục QL XNC:</strong> Thẩm quyền cao nhất, quyền quyết định trục xuất.</span>
+                                </li>
+                                <li class="flex gap-2 bg-yellow-50 p-2 rounded-lg border border-yellow-200 mt-2">
+                                    <i data-lucide="info" class="w-4 h-4 text-yellow-600 mt-0.5 shrink-0"></i>
+                                    <span class="text-xs"><strong>Lưu ý:</strong> Nếu NNN không có khả năng tài chính nộp phạt nhưng cần đảm bảo an ninh quốc gia, có thể thi hành ngay hình thức <strong>TRỤC XUẤT</strong>.</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                `
+                    `
+                },
+                en: {
+                    title: "Decree 282/2025/ND-CP",
+                    content: `
+                    <div class="space-y-5 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-cand-red p-5 rounded-r-xl shadow-sm">
+                                <h4 class="font-bold text-cand-red text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="scale" class="w-5 h-5"></i>
+                                Decree 282/2025/ND-CP
+                            </h4>
+                            <p class="text-sm leading-relaxed">Detailed regulations on violations, penalties, and authority regarding <strong>foreigners (NNN)</strong> and <strong>foreign organizations</strong> in Vietnam.</p>
+                        </div>
+
+                        <!-- Section 1 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-red-100 text-cand-red w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                Subjects & Penalties
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-3 text-sm">
+                                <div class="bg-orange-50/50 p-3 rounded-lg border border-orange-100">
+                                    <strong class="text-orange-700 block mb-1">Applicable Subjects</strong>
+                                    <span class="text-xs">Foreign individuals and organizations. <strong>Organizations: Fined 2x</strong> individuals.</span>
+                                </div>
+                                <div class="bg-red-50/50 p-3 rounded-lg border border-red-100">
+                                    <strong class="text-cand-red block mb-1">Special Penalty</strong>
+                                    <span class="text-xs">Besides warnings/fines: <strong>EXPULSION</strong> may be applied as main or additional penalty.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-red-100 text-cand-red w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                Immigration & Residence Violations (Art. 21)
+                            </h5>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="id-card" class="w-4 h-4 text-orange-500 mt-0.5 shrink-0"></i>
+                                    <div>
+                                        <strong>Identity Papers:</strong> No passport when traveling: <strong class="text-cand-red">300K - 500K</strong>. False declaration/Restricted area: <strong class="text-cand-red">500K - 2M</strong>.
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <strong class="block mb-2 text-gray-900">Overstaying Temporary Residence:</strong>
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">< 16 days</span>
+                                            <strong class="text-cand-red">500K - 2M</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">16 - 30 days</span>
+                                            <strong class="text-cand-red">5 - 10M</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">30 - 60 days</span>
+                                            <strong class="text-cand-red">10 - 15M</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">60 - 90 days</span>
+                                            <strong class="text-cand-red">15 - 20M</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">90 - 180 days</span>
+                                            <strong class="text-cand-red">20 - 25M</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">180 days - 1 yr</span>
+                                            <strong class="text-cand-red">25 - 30M</strong>
+                                        </div>
+                                        <div class="bg-red-100 p-2 rounded border border-red-200 text-center col-span-2">
+                                            <span class="block text-red-700 font-bold">≥ 01 year</span>
+                                            <strong class="text-cand-red text-sm">30 - 40 Million</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="briefcase" class="w-4 h-4 text-blue-500 mt-0.5 shrink-0"></i>
+                                    <div>
+                                        <strong>Wrong Purpose:</strong> Unlicensed practice: <strong class="text-cand-red">15 - 20M</strong>. Wrong visa purpose: <strong class="text-cand-red">20 - 25M</strong>.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-red-100 text-cand-red w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
+                                Organization & Accommodation Responsibilities
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-purple-50/50 p-3 rounded-lg border border-purple-100">
+                                    <strong class="text-purple-700 block mb-1">Sponsors</strong>
+                                    <span>Fail responsibility or use illegal residents: <strong class="text-cand-red">20 - 25 Million</strong>.</span>
+                                </div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-700 block mb-1">Accommodations</strong>
+                                    <span>Fail to declare stay: <strong class="text-cand-red">3 - 20 Million</strong> (depends on 01 to 09+ people).</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 md:col-span-2">
+                                    <strong class="text-gray-700 block mb-1">Security Business</strong>
+                                    <span>Using foreigners as security staff: <strong class="text-cand-red">5 - 10 Million</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-red-100 text-cand-red w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span>
+                                Acts Leading to Expulsion
+                            </h5>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">Public Disorder</span>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="bomb" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">Weapons/Fireworks</span>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="ban" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">Social Evils (Drugs etc)</span>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="shield-alert" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">National Security</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 5 -->
+                        <div class="bg-red-50/50 p-4 rounded-xl border border-red-100">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base">
+                                <span class="bg-cand-red text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                Authority
+                            </h5>
+                                <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="user" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>IMM Head</strong> & <strong>Provincial Police Director:</strong> Fine + <strong>EXPULSION</strong> decision.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="building-2" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>Director of Immigration Dept:</strong> Highest authority, expulsion decision.</span>
+                                </li>
+                                <li class="flex gap-2 bg-yellow-50 p-2 rounded-lg border border-yellow-200 mt-2">
+                                    <i data-lucide="info" class="w-4 h-4 text-yellow-600 mt-0.5 shrink-0"></i>
+                                    <span class="text-xs"><strong>Note:</strong> Immediate <strong>EXPULSION</strong> can be enforced if security requires, even if unable to pay fines.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    `
+                }
             },
             doc2: {
-                title: "LUẬT NHẬP CẢNH, XUẤT CẢNH, QUÁ CẢNH, CƯ TRÚ CỦA NGƯỜI NƯỚC NGOÀI TẠI VIỆT NAM",
-                subtitle: "Văn bản hợp nhất số 30/VBHN-VPQH",
                 pdfLink: "2023_1257_1258_30_VBHN_VPQH.pdf",
-                content: `
-                    <div class="space-y-6">
-                        <div class="bg-cand-red/5 border-l-4 border-cand-red p-4 rounded-r-lg">
-                            <h4 class="font-bold text-cand-red mb-2">📌 Thông tin chung</h4>
-                            <ul class="text-sm space-y-1">
-                                <li><strong>Số hiệu:</strong> 30/VBHN-VPQH</li>
-                                <li><strong>Loại văn bản:</strong> Văn bản hợp nhất</li>
-                                <li><strong>Cơ quan ban hành:</strong> Văn phòng Quốc hội</li>
+                vi: {
+                    title: "LUẬT NHẬP CẢNH, XUẤT CẢNH, QUÁ CẢNH, CƯ TRÚ CỦA NGƯỜI NƯỚC NGOÀI TẠI VIỆT NAM",
+                    subtitle: "Văn bản hợp nhất số 30/VBHN-VPQH",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-5 rounded-r-xl shadow-sm">
+                             <h4 class="font-bold text-blue-700 text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                                Văn bản hợp nhất số 30/VBHN-VPQH năm 2023
+                            </h4>
+                            <p class="text-sm leading-relaxed">Đây là văn bản pháp lý quan trọng quy định toàn diện về hoạt động của người nước ngoài tại Việt Nam, bao gồm nguyên tắc, điều kiện, trình tự, thủ tục nhập cảnh, xuất cảnh, quá cảnh và cư trú.</p>
+                        </div>
+
+                        <!-- Section 1 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                Phạm vi và Nguyên tắc Chung
+                            </h5>
+                            <ul class="space-y-3 text-sm ml-2">
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>Phạm vi:</strong> Quy định về nguyên tắc, điều kiện, thủ tục, quyền và nghĩa vụ của người nước ngoài.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="shield" class="w-4 h-4 text-blue-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>Nguyên tắc:</strong> Đảm bảo chủ quyền, an ninh quốc gia. Quản lý <strong>công khai, minh bạch, thuận lợi</strong> nhưng chặt chẽ.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4 text-red-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>Nghiêm cấm:</strong> Nhập cảnh trái phép, làm giả giấy tờ, khai sai sự thật, chống phá Nhà nước.</span>
+                                </li>
                             </ul>
                         </div>
 
-                        <div>
-                            <h4 class="font-bold text-gray-900 mb-3">📋 Phạm vi điều chỉnh</h4>
-                            <p class="text-sm">Quy định nguyên tắc, điều kiện, trình tự, thủ tục nhập cảnh, xuất cảnh, quá cảnh, cư trú của người nước ngoài tại Việt Nam.</p>
+                        <!-- Section 2 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                Quy định về Thị thực (Visa)
+                            </h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">DL (Du lịch)</span>
+                                    <span class="text-sm">Không quá 90 ngày</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">LĐ1, LĐ2 (Lao động)</span>
+                                    <span class="text-sm">Không quá 02 năm</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">ĐT1 - ĐT4 (Đầu tư)</span>
+                                    <span class="text-sm">01 - 05 năm (tùy vốn)</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">TT (Thăm thân)</span>
+                                    <span class="text-sm">Không quá 01 năm</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 italic border-l-2 border-gray-300 pl-3">
+                                *Thường không được chuyển đổi mục đích, trừ trường hợp có giấy tờ chứng minh đầu tư, lao động hoặc quan hệ nhân thân.
+                            </p>
                         </div>
-                        
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
-                                <h5 class="font-bold text-sm text-gray-900 mb-1">Thị thực (Visa)</h5>
-                                <p class="text-xs text-gray-500">Quy định các loại ký hiệu, thời hạn và điều kiện cấp thị thực điện tử.</p>
+
+                        <!-- Section 3 & 4 Grid -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Section 3 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm border-b pb-2 border-gray-100">
+                                    <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
+                                    Xuất Nhập Cảnh
+                                </h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li><strong>Điều kiện:</strong> Hộ chiếu còn hạn & Thị thực.</li>
+                                    <li><strong>Miễn thị thực:</strong> Đơn phương miễn thị thực tạm trú <strong>45 ngày</strong>.</li>
+                                    <li><strong>Tạm hoãn XC:</strong> Liên quan vụ án, nợ thuế, chưa chấp hành phạt HC.</li>
+                                </ul>
                             </div>
-                            <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
-                                <h5 class="font-bold text-sm text-gray-900 mb-1">Thẻ tạm trú</h5>
-                                <p class="text-xs text-gray-500">Thủ tục cấp thẻ tạm trú cho nhà đầu tư, người lao động nước ngoài.</p>
+                            
+                            <!-- Section 4 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm border-b pb-2 border-gray-100">
+                                    <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span>
+                                    Cư trú
+                                </h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li><strong>Tạm trú:</strong> Khai báo điện tử hoặc phiếu tại CA xã/phường.</li>
+                                    <li><strong>Thẻ tạm trú:</strong> 02 - 10 năm (ĐT, LĐ, TT).</li>
+                                    <li><strong>Thường trú:</strong> Người có công, chuyên gia, hoặc được bảo lãnh.</li>
+                                </ul>
                             </div>
+                        </div>
+
+                         <!-- Section 5 -->
+                        <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base">
+                                <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                Quyền & Trách nhiệm
+                            </h5>
+                             <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="user-check" class="w-4 h-4 text-blue-600 mt-0.5"></i>
+                                    <span><strong>Quyền lợi:</strong> Bảo hộ tính mạng, tài sản. Được bảo lãnh người thân.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="gavel" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>Nghĩa vụ:</strong> Tuân thủ pháp luật, hoạt động đúng mục đích, mang giấy tờ tùy thân.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="building-2" class="w-4 h-4 text-gray-600 mt-0.5"></i>
+                                    <span><strong>Quản lý:</strong> Bộ Công an (chủ trì), Bộ Ngoại giao (ngoại giao), UBND các cấp (địa phương).</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                `
+                    `
+                },
+                en: {
+                    title: "LAW ON ENTRY, EXIT, TRANSIT, AND RESIDENCE OF FOREIGNERS IN VIETNAM",
+                    subtitle: "Consolidated Document No. 30/VBHN-VPQH",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-5 rounded-r-xl shadow-sm">
+                                <h4 class="font-bold text-blue-700 text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                                Consolidated Document No. 30/VBHN-VPQH 2023
+                            </h4>
+                            <p class="text-sm leading-relaxed">Important legal document comprehensively regulating activities of foreigners in Vietnam: principles, conditions, procedures for entry, exit, transit, and residence.</p>
+                        </div>
+
+                        <!-- Section 1 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                Scope & Principles
+                            </h5>
+                            <ul class="space-y-3 text-sm ml-2">
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>Scope:</strong> Regulations on principles, conditions, procedures, rights, and obligations of foreigners.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="shield" class="w-4 h-4 text-blue-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>Principles:</strong> Ensure sovereignty, national security. Management must be <strong>open, transparent, favorable</strong> yet strict.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4 text-red-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>Prohibited:</strong> Illegal entry, forged papers, false declaration, anti-state activities.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Section 2 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                Visa Regulations
+                            </h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">DL (Tourist)</span>
+                                    <span class="text-sm">Up to 90 days</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">LD1, LD2 (Labor)</span>
+                                    <span class="text-sm">Up to 02 years</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">DT1 - DT4 (Investor)</span>
+                                    <span class="text-sm">01 - 05 years</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">TT (Dependent)</span>
+                                    <span class="text-sm">Up to 01 year</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 italic border-l-2 border-gray-300 pl-3">
+                                *Purpose usually cannot be changed, unless proved Investor, Labor, or Family relations.
+                            </p>
+                        </div>
+
+                        <!-- Section 3 & 4 Grid -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Section 3 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm border-b pb-2 border-gray-100">
+                                    <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
+                                    Entry / Exit
+                                </h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li><strong>Conditions:</strong> Valid passport & Visa.</li>
+                                    <li><strong>Visa Exemption:</strong> Unilateral exemption stay <strong>45 days</strong>.</li>
+                                    <li><strong>Exit Suspension:</strong> Case involvement, tax debt, penalty enforcement.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Section 4 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm border-b pb-2 border-gray-100">
+                                    <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span>
+                                    Residence
+                                </h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li><strong>Temporary:</strong> Report via electronic portal or at Commune Police.</li>
+                                    <li><strong>Residence Card:</strong> 02 - 10 years (Inv, Labor, Dep).</li>
+                                    <li><strong>Permanent:</strong> Meritorious, Experts, or Guaranteed.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                            <!-- Section 5 -->
+                        <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base">
+                                <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                Rights & Obligations
+                            </h5>
+                                <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="user-check" class="w-4 h-4 text-blue-600 mt-0.5"></i>
+                                    <span><strong>Rights:</strong> Protected life, property. Guarantee relatives.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="gavel" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>Obligations:</strong> Obey laws, proper purpose, carry ID papers.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="building-2" class="w-4 h-4 text-gray-600 mt-0.5"></i>
+                                    <span><strong>Management:</strong> MPS (Lead), MFA (Diplomatic), People's Committees (Local).</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    `
+                }
             },
             doc3: {
-                title: "Quy chế phối hợp trong quản lý người nước ngoài cư trú, hoạt động trên địa bàn tỉnh Phú Thọ",
-                subtitle: "Quyết định 2262/QĐ-UBND",
                 pdfLink: "Quy_che_phoi_hop_quan_ly_NNN_Phu_Tho.pdf",
-                content: `
-                    <div class="space-y-6">
-                        <div class="bg-cand-red/5 border-l-4 border-cand-red p-4 rounded-r-lg">
-                            <h4 class="font-bold text-cand-red mb-2">📌 Thông tin chung</h4>
-                            <p class="text-sm">Quy định về trách nhiệm, quan hệ phối hợp giữa các sở, ban, ngành, UBND các huyện, thành, thị trong công tác quản lý người nước ngoài.</p>
+                vi: {
+                    title: "Quy chế phối hợp trong quản lý người nước ngoài cư trú, hoạt động trên địa bàn tỉnh Phú Thọ",
+                    subtitle: "Quyết định 2262/QĐ-UBND",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-teal-50 to-emerald-50 border-l-4 border-teal-500 p-5 rounded-r-xl shadow-sm">
+                             <h4 class="font-bold text-teal-700 text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="landmark" class="w-5 h-5"></i>
+                                Quyết định 3518/2025/QĐ-CTUBND
+                            </h4>
+                            <p class="text-sm leading-relaxed">Quy chế phối hợp quản lý NNN tại Phú Thọ, hiệu lực từ <strong>28/10/2025</strong>, thay thế các quy định năm 2021 và 2024. Thiết lập lưới quản lý đa tầng với Công an tỉnh giữ vai trò "xương sống".</p>
                         </div>
 
-                        <div>
-                            <h4 class="font-bold text-gray-900 mb-3">📋 Nội dung phối hợp</h4>
-                             <ul class="list-disc list-inside text-sm space-y-2 ml-2">
-                                <li>Trao đổi thông tin về tình hình người nước ngoài.</li>
-                                <li>Phối hợp kiểm tra, xử lý vi phạm pháp luật.</li>
-                                <li>Quản lý lao động là người nước ngoài.</li>
-                                <li>Quản lý hoạt động du lịch, giáo dục, đầu tư.</li>
+                        <!-- Section 1: Cơ quan chủ trì -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-teal-100 text-teal-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                Cơ quan Chủ trì
+                            </h5>
+                            <div class="grid grid-cols-1 gap-2 text-sm">
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="shield-check" class="w-5 h-5 text-teal-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-teal-700">Công an tỉnh:</strong>
+                                        <span class="text-gray-600">Chủ trì quản lý nhà nước về XNC, cư trú NNN.</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="briefcase" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-blue-700">Sở Nội vụ:</strong>
+                                        <span class="text-gray-600">Chủ trì quản lý lao động nước ngoài.</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="globe" class="w-5 h-5 text-purple-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-purple-700">Sở Ngoại vụ:</strong>
+                                        <span class="text-gray-600">Quản lý đoàn khách theo lời mời lãnh đạo tỉnh, công tác lãnh sự.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Sở chuyên ngành -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-teal-100 text-teal-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                Trách nhiệm Sở Chuyên ngành
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-700 block mb-1">Sở GD&ĐT</strong>
+                                    <span>Quản lý NNN tại cơ sở giáo dục. Phối hợp CA tỉnh khi mời giáo viên NNN.</span>
+                                </div>
+                                <div class="bg-pink-50/50 p-3 rounded-lg border border-pink-100">
+                                    <strong class="text-pink-700 block mb-1">Sở Y tế</strong>
+                                    <span>Báo cáo CA tỉnh việc cấp chứng chỉ hành nghề <strong>trước ngày 15 hàng tháng</strong>.</span>
+                                </div>
+                                <div class="bg-orange-50/50 p-3 rounded-lg border border-orange-100">
+                                    <strong class="text-orange-700 block mb-1">Sở Công Thương</strong>
+                                    <span>Quản lý VP đại diện thương nhân. Báo cáo <strong>trước 07 ngày</strong> khi NNN đến.</span>
+                                </div>
+                                <div class="bg-cyan-50/50 p-3 rounded-lg border border-cyan-100">
+                                    <strong class="text-cyan-700 block mb-1">Ban QL KCN</strong>
+                                    <span>Rà soát cư trú, quy hoạch lưu trú KCN, xử lý đình công liên quan NNN.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3 & 4 Grid -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Section 3: Tình huống đặc biệt -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-2 text-sm border-b pb-2 border-gray-100 flex items-center gap-2">
+                                    <span class="bg-red-100 text-red-600 w-5 h-5 rounded-full flex items-center justify-center text-xs">!</span>
+                                    Tình huống Đặc biệt
+                                </h5>
+                                <ul class="space-y-2 text-xs">
+                                    <li class="flex gap-2">
+                                        <i data-lucide="alert-triangle" class="w-3 h-3 text-red-500 mt-0.5 shrink-0"></i>
+                                        <span><strong>Tai nạn/Tử vong:</strong> Báo Bộ Ngoại giao trong <strong>12 giờ</strong>.</span>
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <i data-lucide="shield" class="w-3 h-3 text-purple-500 mt-0.5 shrink-0"></i>
+                                        <span><strong>NNN ưu đãi vi phạm:</strong> Sở Ngoại vụ chủ trì xử lý ngoại giao.</span>
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <i data-lucide="log-out" class="w-3 h-3 text-cand-red mt-0.5 shrink-0"></i>
+                                        <span><strong>Trục xuất:</strong> Công an tỉnh chủ trì thực hiện.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Section 4: Báo cáo -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-2 text-sm border-b pb-2 border-gray-100 flex items-center gap-2">
+                                    <i data-lucide="calendar-check" class="w-4 h-4 text-teal-600"></i>
+                                    Cơ chế Báo cáo
+                                </h5>
+                                <ul class="space-y-2 text-xs">
+                                    <li>• <strong>Hàng tháng:</strong> Trước ngày 15 → Công an tỉnh.</li>
+                                    <li>• <strong>6 tháng:</strong> Trước 15/6 → Phòng Quản lý XNC.</li>
+                                    <li>• <strong>Năm:</strong> Trước 15/12 → Phòng Quản lý XNC.</li>
+                                    <li>• <strong>Khai báo tạm trú:</strong> Qua trang điện tử Bộ Công an.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Section 5: Trách nhiệm bảo lãnh -->
+                        <div class="bg-teal-50/50 p-4 rounded-xl border border-teal-100">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base">
+                                <span class="bg-teal-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                Trách nhiệm Cơ sở Mời/Bảo lãnh
+                            </h5>
+                             <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="megaphone" class="w-4 h-4 text-teal-600 mt-0.5"></i>
+                                    <span>Phối hợp tuyên truyền pháp luật Việt Nam cho NNN, phòng ngừa vi phạm.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="handshake" class="w-4 h-4 text-teal-600 mt-0.5"></i>
+                                    <span>Phối hợp giải quyết các vụ việc phát sinh liên quan đến người mình bảo lãnh.</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                `
-            }
+                    `
+                },
+                en: {
+                    title: "Coordination Regulation on Management of Foreigners in Phu Tho Province",
+                    subtitle: "Decision 2262/QD-UBND",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-teal-50 to-emerald-50 border-l-4 border-teal-500 p-5 rounded-r-xl shadow-sm">
+                                <h4 class="font-bold text-teal-700 text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="landmark" class="w-5 h-5"></i>
+                                Decision 3518/2025/QD-CTUBND
+                            </h4>
+                            <p class="text-sm leading-relaxed">Regulation on coordination in managing Foreigners in Phu Tho, effective from <strong>Oct 28, 2025</strong>, replacing 2021 & 2024 regulations. Establishes multi-layer management grid with Provincial Police as "backbone".</p>
+                        </div>
+
+                        <!-- Section 1 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-teal-100 text-teal-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                Leading Agencies
+                            </h5>
+                            <div class="grid grid-cols-1 gap-2 text-sm">
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="shield-check" class="w-5 h-5 text-teal-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-teal-700">Provincial Police:</strong>
+                                        <span class="text-gray-600">Lead state management on Immigration & Residence.</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="briefcase" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-blue-700">Home Affairs Dept:</strong>
+                                        <span class="text-gray-600">Lead management of foreign labor.</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="globe" class="w-5 h-5 text-purple-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-purple-700">Foreign Affairs Dept:</strong>
+                                        <span class="text-gray-600">Manage official guests, consular work.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-teal-100 text-teal-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                Specialized Dept Responsibilities
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-700 block mb-1">Education Dept</strong>
+                                    <span>Manage foreigners in education. Coordinate with Police when inviting teachers.</span>
+                                2</div>
+                                <div class="bg-pink-50/50 p-3 rounded-lg border border-pink-100">
+                                    <strong class="text-pink-700 block mb-1">Health Dept</strong>
+                                    <span>Report practice certificates to Police <strong>before 15th monthly</strong>.</span>
+                                </div>
+                                <div class="bg-orange-50/50 p-3 rounded-lg border border-orange-100">
+                                    <strong class="text-orange-700 block mb-1">Industry & Trade</strong>
+                                    <span>Manage rep offices. Report <strong>7 days prior</strong> to foreigner arrival.</span>
+                                </div>
+                                <div class="bg-cyan-50/50 p-3 rounded-lg border border-cyan-100">
+                                    <strong class="text-cyan-700 block mb-1">Industrial Zones Auth</strong>
+                                    <span>Review residence/planning in IZs, handle strikes involving foreigners.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3 & 4 Grid -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Section 3 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-2 text-sm border-b pb-2 border-gray-100 flex items-center gap-2">
+                                    <span class="bg-red-100 text-red-600 w-5 h-5 rounded-full flex items-center justify-center text-xs">!</span>
+                                    Special Situations
+                                </h5>
+                                <ul class="space-y-2 text-xs">
+                                    <li class="flex gap-2">
+                                        <i data-lucide="alert-triangle" class="w-3 h-3 text-red-500 mt-0.5 shrink-0"></i>
+                                        <span><strong>Accident/Death:</strong> Notify MFA within <strong>12 hours</strong>.</span>
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <i data-lucide="shield" class="w-3 h-3 text-purple-500 mt-0.5 shrink-0"></i>
+                                        <span><strong>Privileged Foreigners:</strong> Foreign Affairs Dept handles diplomatically.</span>
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <i data-lucide="log-out" class="w-3 h-3 text-cand-red mt-0.5 shrink-0"></i>
+                                        <span><strong>Expulsion:</strong> Provincial Police executes.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Section 4 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-2 text-sm border-b pb-2 border-gray-100 flex items-center gap-2">
+                                    <i data-lucide="calendar-check" class="w-4 h-4 text-teal-600"></i>
+                                    Reporting Mechanism
+                                </h5>
+                                <ul class="space-y-2 text-xs">
+                                    <li>• <strong>Monthly:</strong> Before 15th → Provincial Police.</li>
+                                    <li>• <strong>6-monthly:</strong> Before Jun 15 → Immigration Office.</li>
+                                    <li>• <strong>Annual:</strong> Before Dec 15 → Immigration Office.</li>
+                                    <li>• <strong>Stay Declaration:</strong> via MPS online portal.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Section 5 -->
+                        <div class="bg-teal-50/50 p-4 rounded-xl border border-teal-100">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base">
+                                <span class="bg-teal-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                Sponsor/Host Responsibilities
+                            </h5>
+                                <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="megaphone" class="w-4 h-4 text-teal-600 mt-0.5"></i>
+                                    <span>Coordinate to propagate VN laws to foreigners, prevent violations.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="handshake" class="w-4 h-4 text-teal-600 mt-0.5"></i>
+                                    <span>Coordinate to resolve arising incidents related to sponsored persons.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    `
+                }
+            },
         };
 
         function openModal(id) {
             const data = docData[id];
             if (!data) return;
-            document.getElementById('modalTitle').innerText = data.title;
-            document.getElementById('modalBody').innerHTML = data.content;
+
+            let title = data.title;
+            let content = data.content;
+
+            // Multi-language support
+            if (data.vi && data.en) {
+                const lang = currentLang || 'vi';
+                title = data[lang].title;
+                content = data[lang].content;
+            }
+
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerHTML = content;
             document.getElementById('modalPdfLink').href = data.pdfLink;
 
             const modal = document.getElementById('docModal');
@@ -623,15 +1668,6 @@
             }
         });
 
-        // Mobile Menu (Simple Toggle)
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        // Simple alert for now as mobile menu HTML structure was simplified in this version
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', () => {
-                alert('Tính năng menu mobile đang được cập nhật.');
-            });
-        }
-
         // Auto hide bubble on scroll
         const bubble = document.getElementById('aiBubble');
         window.addEventListener('scroll', () => {
@@ -639,6 +1675,87 @@
                 bubble.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
             } else {
                 bubble.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }
+        });
+
+        // ========== WELCOME MODAL FUNCTIONALITY ==========
+        const welcomeTranslations = {
+            vi: {
+                title: "CHÀO MỪNG BẠN!",
+                subtitle: "Cổng thông tin tuyên truyền pháp luật",
+                org: "Phòng Quản lý xuất nhập cảnh - Công an tỉnh Phú Thọ",
+                intro: "Khám phá các tính năng chính của chúng tôi:",
+                feat1_title: "Thư Viện Văn Bản Pháp Luật",
+                feat1_desc: "Tra cứu nhanh các nghị định, luật và quy chế về xuất nhập cảnh.",
+                feat2_title: "Xem Nhanh & Tóm Tắt",
+                feat2_desc: "Nắm bắt nội dung chính của văn bản mà không cần mở file PDF.",
+                feat3_title: "Trợ Lý AI Pháp Luật",
+                feat3_desc: "Hỏi đáp thủ tục visa, cư trú với trí tuệ nhân tạo 24/7.",
+                feat4_title: "Hỗ trợ Song ngữ",
+                feat4_desc: "Giao diện và nội dung có sẵn bằng cả Tiếng Việt và Tiếng Anh.",
+                btn: "Bắt đầu khám phá",
+                checkbox: "Không hiển thị lại"
+            },
+            en: {
+                title: "WELCOME!",
+                subtitle: "Legal Information Portal",
+                org: "Immigration Department - Phu Tho Provincial Police",
+                intro: "Explore our key features:",
+                feat1_title: "Legal Document Library",
+                feat1_desc: "Quickly search decrees, laws, and regulations on immigration.",
+                feat2_title: "Quick View & Summary",
+                feat2_desc: "Grasp the main content without opening PDF files.",
+                feat3_title: "Legal AI Assistant",
+                feat3_desc: "Ask about visa and residence procedures with 24/7 AI.",
+                feat4_title: "Bilingual Support",
+                feat4_desc: "Interface and content available in both Vietnamese and English.",
+                btn: "Start Exploring",
+                checkbox: "Don't show again"
+            }
+        };
+
+        function updateWelcomeModalLang(lang) {
+            const t = welcomeTranslations[lang];
+            document.getElementById('welcome-title').innerText = t.title;
+            document.getElementById('welcome-subtitle').innerText = t.subtitle;
+            document.getElementById('welcome-org').innerText = t.org;
+            document.getElementById('welcome-intro').innerText = t.intro;
+            document.getElementById('welcome-feat1-title').innerText = t.feat1_title;
+            document.getElementById('welcome-feat1-desc').innerText = t.feat1_desc;
+            document.getElementById('welcome-feat2-title').innerText = t.feat2_title;
+            document.getElementById('welcome-feat2-desc').innerText = t.feat2_desc;
+            document.getElementById('welcome-feat3-title').innerText = t.feat3_title;
+            document.getElementById('welcome-feat3-desc').innerText = t.feat3_desc;
+            document.getElementById('welcome-feat4-title').innerText = t.feat4_title;
+            document.getElementById('welcome-feat4-desc').innerText = t.feat4_desc;
+            document.getElementById('welcome-btn').innerText = t.btn;
+            document.getElementById('welcome-checkbox').innerText = t.checkbox;
+        }
+
+        function showWelcomeModal() {
+            const modal = document.getElementById('welcomeModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons(); // Render icons in modal
+            updateWelcomeModalLang(currentLang);
+        }
+
+        function closeWelcomeModal() {
+            const modal = document.getElementById('welcomeModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+
+            // Save preference if checkbox is checked
+            if (document.getElementById('dontShowAgain').checked) {
+                localStorage.setItem('hideWelcomeModal', 'true');
+            }
+        }
+
+        // Show welcome modal on page load (unless user opted out)
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('hideWelcomeModal') !== 'true') {
+                // Small delay for smoother UX
+                setTimeout(showWelcomeModal, 500);
             }
         });
     </script>
