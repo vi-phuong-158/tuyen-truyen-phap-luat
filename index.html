@@ -8,6 +8,9 @@
     <meta name="description"
         content="Cổng thông tin tuyên truyền, phổ biến pháp luật về xuất nhập cảnh, cư trú của người nước ngoài tại Việt Nam.">
 
+    <!-- Preload Critical Images -->
+    <link rel="preload" as="image" href="ba-nhat-banner.jpg">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -19,7 +22,7 @@
         rel="stylesheet">
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.562.0"></script>
 
     <script>
         tailwind.config = {
@@ -168,8 +171,8 @@
             <div class="flex items-center justify-between h-16 md:h-20">
                 <!-- Logo -->
                 <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="Logo" class="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-md">
-                    <img src="logo-qlxnc.png" alt="QLXNC"
+                    <img src="logo.png" alt="Logo" width="96" height="96" class="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-md">
+                    <img src="logo-qlxnc.png" alt="QLXNC" width="96" height="96"
                         class="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-md">
                     <div class="hidden md:block">
                         <h1 class="text-white font-bold text-base leading-none">CÔNG AN TỈNH PHÚ THỌ</h1>
@@ -211,7 +214,7 @@
 
             <!-- Logo Block -->
             <div class="mb-4 flex flex-col items-center justify-center">
-                <img src="logo.png" alt="CAND" class="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-2xl mb-2">
+                <img src="logo.png" alt="CAND" width="96" height="96" class="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-2xl mb-2">
                 <h2 class="text-white font-bold text-sm md:text-base leading-tight">CÔNG AN TỈNH PHÚ THỌ</h2>
                 <p class="text-cand-gold font-bold text-xs md:text-sm tracking-wider">PHÒNG QUẢN LÝ XUẤT NHẬP CẢNH</p>
             </div>
@@ -381,7 +384,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-1/2">
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="icon.png" class="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-md">
+                        <img src="icon.png" width="160" height="160" loading="lazy" class="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-md">
                         <h3
                             class="text-2xl sm:text-3xl md:text-5xl font-bold text-cand-red-dark font-playfair leading-tight whitespace-nowrap">
                             Trợ Lý Ảo Pháp Luật
@@ -444,7 +447,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col items-center justify-center text-center mb-8">
                 <div class="flex items-center gap-3 mb-4">
-                    <img src="logo.png" alt="Logo" class="w-12 h-12 object-contain bg-white rounded-full p-1">
+                    <img src="logo.png" alt="Logo" width="96" height="96" loading="lazy" class="w-12 h-12 object-contain bg-white rounded-full p-1">
                     <div class="text-left">
                         <h4 class="font-bold text-lg leading-none">CÔNG AN TỈNH PHÚ THỌ</h4>
                         <p class="text-cand-gold text-xs font-bold mt-1">VÌ NƯỚC QUÊN THÂN - VÌ DÂN PHỤC VỤ</p>
@@ -474,7 +477,7 @@
         </div>
 
         <!-- Character -->
-        <img src="icon.png"
+        <img src="icon.png" width="160" height="160" loading="lazy"
             class="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-300"
             alt="Chat">
     </a>
