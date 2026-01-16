@@ -19,7 +19,7 @@
         rel="stylesheet">
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 
     <script>
         tailwind.config = {
@@ -678,7 +678,11 @@
 
     <!-- Scripts -->
     <script>
-        lucide.createIcons();
+        document.addEventListener("DOMContentLoaded", () => {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
 
         // ========== MULTI-LANGUAGE SUPPORT ==========
         const translations = {
