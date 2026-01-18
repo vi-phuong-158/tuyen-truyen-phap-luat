@@ -204,7 +204,7 @@
                 </nav>
 
                 <!-- Mobile Menu Details -->
-                <button id="mobileMenuBtn"
+                <button id="mobileMenuBtn" aria-label="Menu chính"
                     class="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
                     <i data-lucide="menu" class="w-7 h-7"></i>
                 </button>
@@ -566,7 +566,7 @@
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" class="hover:bg-white/20 p-2 rounded-lg"><i data-lucide="x"></i></button>
+                <button id="closeModalBtn" aria-label="Đóng cửa sổ" onclick="closeModal()" class="hover:bg-white/20 p-2 rounded-lg"><i data-lucide="x"></i></button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
             <div class="p-6 bg-gray-50 flex justify-end gap-3">
@@ -814,6 +814,8 @@
         }
 
         // ========== MODAL FUNCTIONALITY ==========
+        let lastFocusedElement = null;
+
         const docData = {
             doc1: {
                 pdfLink: "2025_1583_1584_282_2025_ND_CP.pdf",
@@ -1633,6 +1635,7 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement;
             const data = docData[id];
             if (!data) return;
 
@@ -1653,12 +1656,23 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Focus management
+            setTimeout(() => {
+                const closeBtn = document.getElementById('closeModalBtn');
+                if (closeBtn) closeBtn.focus();
+            }, 50);
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            // Restore focus
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
 
         // Close modal on escape key
