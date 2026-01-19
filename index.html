@@ -204,7 +204,7 @@
                 </nav>
 
                 <!-- Mobile Menu Details -->
-                <button id="mobileMenuBtn"
+                <button id="mobileMenuBtn" aria-label="Menu chính" aria-expanded="false"
                     class="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
                     <i data-lucide="menu" class="w-7 h-7"></i>
                 </button>
@@ -566,7 +566,7 @@
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" class="hover:bg-white/20 p-2 rounded-lg"><i data-lucide="x"></i></button>
+                <button onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i data-lucide="x"></i></button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
             <div class="p-6 bg-gray-50 flex justify-end gap-3">
@@ -767,6 +767,7 @@
         };
 
         let currentLang = 'vi';
+        let lastFocusedElement;
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -806,7 +807,10 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
         function toggleMobileMenu() {
-            mobileMenu.classList.toggle('hidden');
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
+            }
         }
 
         if (mobileMenuBtn) {
@@ -1633,6 +1637,7 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement;
             const data = docData[id];
             if (!data) return;
 
@@ -1659,6 +1664,7 @@
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
         }
 
         // Close modal on escape key
