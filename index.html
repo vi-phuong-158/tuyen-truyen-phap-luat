@@ -582,7 +582,7 @@
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
+                <button id="modalCloseBtn" onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
                         data-lucide="x"></i></button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
@@ -832,6 +832,8 @@
         }
 
         // ========== MODAL FUNCTIONALITY ==========
+        let lastFocusedElement = null;
+
         const docData = {
             doc1: {
                 pdfLink: "2025_1583_1584_282_2025_ND_CP.pdf",
@@ -1651,6 +1653,7 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement;
             const data = docData[id];
             if (!data) return;
 
@@ -1674,12 +1677,23 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Focus management
+            setTimeout(() => {
+                const closeBtn = document.getElementById('modalCloseBtn');
+                if (closeBtn) closeBtn.focus();
+            }, 50);
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
         }
 
         // Close modal on escape key
