@@ -203,11 +203,24 @@
                     </div>
                 </nav>
 
-                <!-- Mobile Menu Details -->
-                <button id="mobileMenuBtn" aria-label="Menu chính" aria-expanded="false"
-                    class="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
-                    <i data-lucide="menu" class="w-7 h-7"></i>
-                </button>
+                <!-- Mobile Language Switcher (visible on mobile only) -->
+                <div class="flex items-center gap-2 md:hidden">
+                    <div class="flex items-center gap-1 bg-black/20 px-2 py-1 rounded-full border border-white/10">
+                        <button onclick="setLanguage('vi')"
+                            class="text-cand-gold font-bold text-xs hover:text-white transition-colors"
+                            id="mob-header-lang-vi">VN</button>
+                        <span class="text-white/40 text-xs">|</span>
+                        <button onclick="setLanguage('en')"
+                            class="text-white/70 text-xs hover:text-cand-gold transition-colors"
+                            id="mob-header-lang-en">EN</button>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" aria-label="Menu chính" aria-expanded="false"
+                        class="text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
+                        <i data-lucide="menu" class="w-7 h-7"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Mobile Menu Dropdown -->
@@ -784,7 +797,7 @@
             });
 
             // Update Buttons State
-            const ids = ['lang-btn-vi', 'lang-btn-en', 'mob-lang-vi', 'mob-lang-en'];
+            const ids = ['lang-btn-vi', 'lang-btn-en', 'mob-lang-vi', 'mob-lang-en', 'mob-header-lang-vi', 'mob-header-lang-en'];
             ids.forEach(id => {
                 const el = document.getElementById(id);
                 if (!el) return;
