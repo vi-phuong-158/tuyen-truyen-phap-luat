@@ -1,0 +1,4 @@
+## 2026-01-25 - [Unpinned CDNs and Missing CSP in Static Sites]
+**Vulnerability:** The application used unpinned "latest" versions of critical libraries (Tailwind CSS, Lucide Icons) via CDN and lacked a Content Security Policy (CSP).
+**Learning:** In serverless/static environments, we often overlook supply chain security. Using `latest` allows a compromised CDN or library update to inject malicious code (e.g., crypto miners, skimmers) instantly affecting all users without a deployment trigger.
+**Prevention:** Always pin dependencies to specific versions (SHA hash preferred, but semver versioning is a minimum) and enforce a strict CSP that only allows trusted domains, preventing unauthorized data exfiltration even if code injection occurs.
