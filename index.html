@@ -697,6 +697,9 @@
     <script>
         lucide.createIcons();
 
+        // Used for accessibility focus management
+        let lastFocusedElement = null;
+
         // ========== MULTI-LANGUAGE SUPPORT ==========
         const translations = {
             vi: {
@@ -1651,6 +1654,8 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement; // Save focus
+
             const data = docData[id];
             if (!data) return;
 
@@ -1674,12 +1679,24 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Accessibility: Focus the close button
+            setTimeout(() => {
+                const closeBtn = modal.querySelector('button[aria-label="Đóng"]');
+                if (closeBtn) closeBtn.focus();
+            }, 50);
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            // Restore focus
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
         }
 
         // Close modal on escape key
@@ -1754,11 +1771,19 @@
         }
 
         function showWelcomeModal() {
+            lastFocusedElement = document.activeElement; // Save focus (if any)
+
             const modal = document.getElementById('welcomeModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
             lucide.createIcons(); // Render icons in modal
             updateWelcomeModalLang(currentLang);
+
+            // Accessibility: Focus the main action button
+            setTimeout(() => {
+                const mainBtn = document.querySelector('#welcomeModal button[onclick="closeWelcomeModal()"]');
+                if (mainBtn) mainBtn.focus();
+            }, 50);
         }
 
         function closeWelcomeModal() {
@@ -1769,6 +1794,12 @@
             // Save preference if checkbox is checked
             if (document.getElementById('dontShowAgain').checked) {
                 localStorage.setItem('hideWelcomeModal', 'true');
+            }
+
+            // Restore focus
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
             }
         }
 
