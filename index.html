@@ -784,6 +784,7 @@
         };
 
         let currentLang = 'vi';
+        let lastFocusedElement = null;
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -1671,15 +1672,24 @@
             // Re-render icons in the new content
             lucide.createIcons();
 
+            lastFocusedElement = document.activeElement;
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            const closeBtn = modal.querySelector('button[aria-label="Đóng"]');
+            if (closeBtn) closeBtn.focus();
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
         }
 
         // Close modal on escape key
@@ -1759,6 +1769,9 @@
             document.body.style.overflow = 'hidden';
             lucide.createIcons(); // Render icons in modal
             updateWelcomeModalLang(currentLang);
+
+            const startBtn = modal.querySelector('button');
+            if (startBtn) startBtn.focus();
         }
 
         function closeWelcomeModal() {
