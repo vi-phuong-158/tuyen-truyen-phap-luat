@@ -1650,7 +1650,11 @@
             },
         };
 
+        let lastFocusedElement = null;
+
         function openModal(id) {
+            lastFocusedElement = document.activeElement;
+
             const data = docData[id];
             if (!data) return;
 
@@ -1674,12 +1678,24 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Focus management: Focus close button
+            const closeBtn = modal.querySelector('button[aria-label="Đóng"]');
+            if (closeBtn) {
+                // Small timeout to ensure visibility
+                setTimeout(() => closeBtn.focus(), 50);
+            }
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
         }
 
         // Close modal on escape key
@@ -1759,6 +1775,12 @@
             document.body.style.overflow = 'hidden';
             lucide.createIcons(); // Render icons in modal
             updateWelcomeModalLang(currentLang);
+
+            // Focus the primary action button
+            const startBtn = modal.querySelector('button[onclick="closeWelcomeModal()"]');
+            if (startBtn) {
+                setTimeout(() => startBtn.focus(), 50);
+            }
         }
 
         function closeWelcomeModal() {
