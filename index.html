@@ -582,7 +582,7 @@
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
+                <button id="modalCloseBtn" onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
                         data-lucide="x"></i></button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
@@ -700,6 +700,8 @@
         // ========== MULTI-LANGUAGE SUPPORT ==========
         const translations = {
             vi: {
+                menu_label: "Menu chính",
+                close_label: "Đóng",
                 home: "Trang chủ",
                 documents: "Văn bản",
                 ai_assistant: "Hỏi đáp AI",
@@ -741,6 +743,8 @@
                 bubble_text: "Xin chào ! Tôi là Trợ lý AI, bạn có cần giúp gì không?"
             },
             en: {
+                menu_label: "Main Menu",
+                close_label: "Close",
                 home: "Home",
                 documents: "Legal Docs",
                 ai_assistant: "AI Assistant",
@@ -796,6 +800,12 @@
                 }
             });
 
+            // Update ARIA Labels
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            if (menuBtn) menuBtn.setAttribute('aria-label', translations[lang].menu_label);
+            const closeBtn = document.getElementById('modalCloseBtn');
+            if (closeBtn) closeBtn.setAttribute('aria-label', translations[lang].close_label);
+
             // Update Buttons State
             const ids = ['lang-btn-vi', 'lang-btn-en', 'mob-lang-vi', 'mob-lang-en', 'mob-header-lang-vi', 'mob-header-lang-en'];
             ids.forEach(id => {
@@ -832,6 +842,7 @@
         }
 
         // ========== MODAL FUNCTIONALITY ==========
+        let lastFocusedElement = null;
         const docData = {
             doc1: {
                 pdfLink: "2025_1583_1584_282_2025_ND_CP.pdf",
@@ -1651,6 +1662,7 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement;
             const data = docData[id];
             if (!data) return;
 
@@ -1674,12 +1686,22 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Trap focus
+            const closeBtn = document.getElementById('modalCloseBtn');
+            if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            // Restore focus
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
         }
 
         // Close modal on escape key
