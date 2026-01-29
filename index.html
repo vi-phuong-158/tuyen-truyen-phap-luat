@@ -784,6 +784,7 @@
         };
 
         let currentLang = 'vi';
+        let lastFocusedElement = null;
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -1651,6 +1652,7 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement;
             const data = docData[id];
             if (!data) return;
 
@@ -1674,12 +1676,19 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Focus management
+            setTimeout(() => {
+                const closeBtn = modal.querySelector('button[aria-label="Đóng"]');
+                if (closeBtn) closeBtn.focus();
+            }, 100);
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
         }
 
         // Close modal on escape key
@@ -1754,17 +1763,27 @@
         }
 
         function showWelcomeModal() {
+            lastFocusedElement = document.activeElement;
             const modal = document.getElementById('welcomeModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
             lucide.createIcons(); // Render icons in modal
             updateWelcomeModalLang(currentLang);
+
+            // Focus management
+            setTimeout(() => {
+                const mainBtn = modal.querySelector('button[onclick="closeWelcomeModal()"]');
+                if (mainBtn) mainBtn.focus();
+            }, 100);
         }
 
         function closeWelcomeModal() {
             const modal = document.getElementById('welcomeModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+            if (lastFocusedElement && document.body.contains(lastFocusedElement)) {
+                lastFocusedElement.focus();
+            }
 
             // Save preference if checkbox is checked
             if (document.getElementById('dontShowAgain').checked) {
