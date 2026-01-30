@@ -2227,10 +2227,11 @@
 
     <script>
         // Visitor Statistics Logic
-        // Visitor Statistics Logic (Real CountAPI)
+        // Visitor Statistics Logic (Real CounterAPI.dev)
         async function updateVisitorStats() {
             const NAMESPACE = 'tuyen-truyen-phap-luat-v1';
             const TOTAL_KEY = 'total-visits';
+            const INITIAL_OFFSET = 2986; // Start from this number
 
             // Generate Today Key: YYYY-MM-DD
             const now = new Date();
@@ -2243,22 +2244,25 @@
             const fmt = (n) => n.toLocaleString();
 
             try {
-                // 1. Hit Total
-                const totalRes = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${TOTAL_KEY}`);
+                // 1. Hit Total (Increment)
+                // Using counterapi.dev: returns { "count": 123, ... }
+                const totalRes = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}/up`);
                 const totalData = await totalRes.json();
-                document.getElementById('stat-total').innerText = fmt(totalData.value);
 
-                // 2. Hit Today
-                // Note: If key doesn't exist (new day), CountAPI creates it with value 1 automatically if we use 'hit'.
-                // However, to be safe and ensure it starts at 1, 'hit' is perfect.
-                const todayRes = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${TODAY_KEY}`);
+                // Calculate display value
+                const totalCount = (totalData.count || 0) + INITIAL_OFFSET;
+                document.getElementById('stat-total').innerText = fmt(totalCount);
+
+                // 2. Hit Today (Increment)
+                const todayRes = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}/up`);
                 const todayData = await todayRes.json();
-                document.getElementById('stat-today').innerText = fmt(todayData.value);
+                document.getElementById('stat-today').innerText = fmt(todayData.count || 0);
 
             } catch (error) {
                 console.error('Error fetching stats:', error);
-                document.getElementById('stat-total').innerText = 'N/A';
-                document.getElementById('stat-today').innerText = 'N/A';
+                // Fallback to safe values if API fails
+                document.getElementById('stat-total').innerText = '...';
+                document.getElementById('stat-today').innerText = '...';
             }
         }
 
