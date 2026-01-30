@@ -3,10 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Cổng Thông Tin Tuyên Truyền Pháp Luật | Công An Tỉnh Phú Thọ</title>
     <meta name="description"
         content="Cổng thông tin tuyên truyền, phổ biến pháp luật về xuất nhập cảnh, cư trú của người nước ngoài tại Việt Nam.">
+
+    <!-- PWA & SEO -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#D00000">
+    <meta property="og:title" content="Tuyên Truyền Pháp Luật - Công An Phú Thọ">
+    <meta property="og:description"
+        content="Tra cứu văn bản pháp luật và hỏi đáp thủ tục xuất nhập cảnh với Trợ lý ảo AI.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/username/repo/main/logo.png">
+    <meta property="og:url" content="https://username.github.io/repo/">
+    <meta property="og:type" content="website">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -156,6 +166,46 @@
         .btn-shine:hover::after {
             left: 100%;
         }
+
+        /* Chat Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.3s ease-out forwards;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        /* Custom Scrollbar for Chat */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 </head>
 
@@ -179,6 +229,24 @@
                     </div>
                 </div>
 
+                <!-- Campaign Badge (New) -->
+                <div class="hidden lg:flex items-center gap-3 ml-4 pl-4 border-l border-white/20">
+                    <div class="relative w-10 h-10 flex items-center justify-center animate-pulse">
+                        <div class="absolute inset-0 bg-cand-red rounded-full opacity-75 animate-ping"></div>
+                        <div
+                            class="relative bg-cand-red border-2 border-cand-gold rounded-full w-10 h-10 flex items-center justify-center shadow-glow z-10">
+                            <i data-lucide="award" class="w-5 h-5 text-cand-gold"></i>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-cand-gold font-bold text-sm uppercase leading-none filter drop-shadow-sm"
+                            data-i18n="campaign_peak">Cao
+                            điểm 70 ngày đêm</span>
+                        <span class="text-white text-xs font-medium" data-i18n="campaign_digital">Tiên phong chuyển đổi
+                            số</span>
+                    </div>
+                </div>
+
                 <!-- Desktop Nav -->
                 <nav class="hidden md:flex items-center gap-6">
                     <a href="#home" class="text-white/90 hover:text-cand-gold font-medium transition-colors"
@@ -191,8 +259,8 @@
                         Hỏi đáp AI
                     </a>
                     <!-- Language Switcher -->
-                    <div
-                        class="flex items-center gap-2 ml-2 bg-black/20 px-3 py-1.5 rounded-full border border-white/10">
+                    <div id="langSwitcher"
+                        class="flex items-center gap-2 ml-2 bg-black/20 px-3 py-1.5 rounded-full border border-white/10 relative">
                         <button onclick="setLanguage('vi')"
                             class="text-cand-gold font-bold text-sm hover:text-white transition-colors"
                             id="lang-btn-vi">VN</button>
@@ -200,6 +268,10 @@
                         <button onclick="setLanguage('en')"
                             class="text-white/70 text-sm hover:text-cand-gold transition-colors"
                             id="lang-btn-en">EN</button>
+                        <span class="text-white/40 text-xs">|</span>
+                        <button onclick="setLanguage('zh')"
+                            class="text-white/70 text-sm hover:text-cand-gold transition-colors"
+                            id="lang-btn-zh">CN</button>
                     </div>
                 </nav>
 
@@ -213,6 +285,10 @@
                         <button onclick="setLanguage('en')"
                             class="text-white/70 text-xs hover:text-cand-gold transition-colors"
                             id="mob-header-lang-en">EN</button>
+                        <span class="text-white/40 text-xs">|</span>
+                        <button onclick="setLanguage('zh')"
+                            class="text-white/70 text-xs hover:text-cand-gold transition-colors"
+                            id="mob-header-lang-zh">CN</button>
                     </div>
 
                     <!-- Mobile Menu Button -->
@@ -248,6 +324,10 @@
                             <button onclick="setLanguage('en')"
                                 class="text-white/70 text-sm hover:text-cand-gold transition-colors"
                                 id="mob-lang-en">EN</button>
+                            <span class="text-white/40 text-xs">|</span>
+                            <button onclick="setLanguage('zh')"
+                                class="text-white/70 text-sm hover:text-cand-gold transition-colors"
+                                id="mob-lang-zh">CN</button>
                         </div>
                     </div>
                 </div>
@@ -268,12 +348,26 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center py-16">
 
             <!-- Logo Block -->
-            <div class="mb-4 flex flex-col items-center justify-center">
+            <div class="mb-2 flex flex-col items-center justify-center">
                 <img src="logo.png" alt="CAND" class="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-2xl mb-2">
                 <h2 class="text-white font-bold text-sm md:text-base leading-tight" data-i18n="unit_name_1">CÔNG AN TỈNH
                     PHÚ THỌ</h2>
                 <p class="text-cand-gold font-bold text-xs md:text-sm tracking-wider" data-i18n="unit_name_2">PHÒNG QUẢN
                     LÝ XUẤT NHẬP CẢNH</p>
+            </div>
+
+            <div class="mb-6">
+                <div
+                    class="inline-flex flex-col items-center justify-center px-8 py-4 rounded-3xl bg-red-900/90 backdrop-blur-md border border-cand-gold shadow-xl max-w-4xl">
+                    <span class="text-cand-gold font-bold uppercase text-xs md:text-sm tracking-widest mb-1"
+                        data-i18n="anniv_line1">Công trình thanh niên chào mừng</span>
+                    <span
+                        class="text-white font-bold uppercase text-[10px] md:text-base tracking-wide leading-tight mt-1"
+                        data-i18n="anniv_line2">95 năm thành lập Đoàn TNCS Hồ Chí Minh</span>
+                    <span
+                        class="text-white font-bold uppercase text-[10px] md:text-base tracking-wide leading-tight mt-1"
+                        data-i18n="anniv_line3">70 năm truyền thống Đoàn Bộ Công an</span>
+                </div>
             </div>
 
             <p class="font-dancing text-2xl md:text-4xl text-white mb-2 tracking-wide font-bold drop-shadow-md"
@@ -489,44 +583,69 @@
                 </div>
                 <div class="lg:w-1/2 relative">
                     <div class="relative z-10 bg-white rounded-3xl shadow-2xl p-2 border border-gray-100">
-                        <div class="bg-gray-50 rounded-2xl p-6 md:p-8">
-                            <div class="flex items-center gap-4 mb-8">
+                        <div class="bg-gray-50 rounded-2xl p-6 md:p-8 flex flex-col h-[450px]">
+                            <!-- Chat Header -->
+                            <div class="flex items-center gap-4 mb-4 border-b border-gray-200 pb-4 shrink-0">
                                 <div
-                                    class="w-12 h-12 bg-cand-red rounded-full flex items-center justify-center text-white">
+                                    class="w-12 h-12 bg-cand-red rounded-full flex items-center justify-center text-white shadow-md relative">
                                     <i data-lucide="bot" class="w-6 h-6"></i>
+                                    <span
+                                        class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
                                 </div>
                                 <div>
-                                    <h5 class="font-bold text-gray-900" data-i18n="ai_name">Trợ lý AI</h5>
-                                    <span class="text-green-500 text-xs font-bold flex items-center gap-1">
-                                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> <span
-                                            data-i18n="online_status">Online</span>
+                                    <h5 class="font-bold text-gray-900 text-lg" data-i18n="ai_name">Trợ lý AI</h5>
+                                    <span
+                                        class="text-green-600 text-xs font-bold flex items-center gap-1 bg-green-100 px-2 py-0.5 rounded-full w-fit">
+                                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                                        <span data-i18n="online_status">Sẵn sàng hỗ trợ</span>
                                     </span>
                                 </div>
                             </div>
-                            <div class="space-y-4">
-                                <div class="flex justify-end">
-                                    <div class="bg-cand-red text-white px-5 py-3 rounded-2xl rounded-tr-sm shadow-md max-w-xs"
-                                        data-i18n="chat_demo_q">
-                                        Thủ tục gia hạn visa du lịch gồm những gì?
+
+                            <!-- Chat History (Scrollable) -->
+                            <div id="chatHistory" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 custom-scrollbar">
+                                <!-- AI Welcome Message -->
+                                <div class="flex justify-start animate-fade-in-up">
+                                    <div
+                                        class="bg-white text-gray-800 border border-gray-200 px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]">
+                                        <p class="text-sm leading-relaxed" data-i18n="ai_welcome">
+                                            Xin chào! Tôi là Trợ lý AI pháp luật. Bạn muốn hỏi gì về thủ tục xuất nhập
+                                            cảnh hôm nay?
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="flex justify-start">
-                                    <div class="bg-white text-gray-800 border border-gray-200 px-5 py-3 rounded-2xl rounded-tl-sm shadow-sm max-w-sm"
-                                        data-i18n="chat_demo_a">
-                                        Theo quy định mới nhất, bạn cần chuẩn bị: Hộ chiếu gốc, tờ khai NA5, và xác nhận
-                                        tạm trú...
-                                    </div>
+                                <!-- Suggested Questions -->
+                                <div class="flex flex-wrap gap-2 animate-fade-in-up delay-100">
+                                    <button onclick="fillChat('Thủ tục làm hộ chiếu?')"
+                                        class="text-xs bg-white border border-cand-gold text-gray-600 px-3 py-1.5 rounded-full hover:bg-cand-gold hover:text-white transition-colors">
+                                        Thủ tục làm hộ chiếu?
+                                    </button>
+                                    <button onclick="fillChat('Gia hạn visa cho người nước ngoài?')"
+                                        class="text-xs bg-white border border-cand-gold text-gray-600 px-3 py-1.5 rounded-full hover:bg-cand-gold hover:text-white transition-colors">
+                                        Gia hạn visa?
+                                    </button>
                                 </div>
                             </div>
+
+                            <!-- Input Area -->
+                            <div class="relative shrink-0 pt-2 border-t border-gray-100">
+                                <input type="text" id="fakeChatInput"
+                                    class="w-full pl-4 pr-12 py-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-cand-red focus:ring-2 focus:ring-cand-red/20 transition-all shadow-sm text-sm"
+                                    placeholder="Nhập câu hỏi của bạn..." onkeypress="handleChatEnter(event)">
+                                <button onclick="handleChatSend()"
+                                    class="absolute right-2 top-1/2 mt-1 -translate-y-1/2 w-9 h-9 bg-cand-red text-white rounded-lg flex items-center justify-center hover:bg-cand-red-dark transition-colors shadow-md hover:shadow-lg transform active:scale-95">
+                                    <i data-lucide="send" class="w-4 h-4 ml-0.5"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Decorative blobs -->
-                    <div
-                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-cand-gold/20 filter blur-3xl -z-10 rounded-full">
+
+                        <!-- Decorative blobs -->
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-cand-gold/20 filter blur-3xl -z-10 rounded-full">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- ========== FOOTER ========== -->
@@ -541,6 +660,10 @@
                         <h4 class="font-bold text-lg leading-none" data-i18n="unit_name_1">CÔNG AN TỈNH PHÚ THỌ</h4>
                         <p class="text-cand-gold text-xs font-bold mt-1" data-i18n="footer_slogan">VÌ NƯỚC QUÊN THÂN -
                             VÌ DÂN PHỤC VỤ</p>
+                        <p class="text-white/90 text-sm font-bold mt-2 uppercase tracking-wide border-t border-white/20 pt-2"
+                            data-i18n="footer_action">
+                            Tuổi trẻ Công an Đất Tổ: Xung kích - Lập công - Vì an ninh Tổ quốc
+                        </p>
                     </div>
                 </div>
             </div>
@@ -556,8 +679,8 @@
     </footer>
 
     <!-- ========== FLOATING BUTTON ========== -->
-    <a href="https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484" target="_blank"
-        rel="noopener noreferrer" class="fixed bottom-0 right-4 z-50 flex items-end group">
+    <a id="aiFloatingBtn" href="https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484"
+        target="_blank" rel="noopener noreferrer" class="fixed bottom-0 right-4 z-50 flex items-end group">
 
         <!-- Speech Bubble -->
         <div id="aiBubble"
@@ -587,12 +710,16 @@
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
             <div class="p-6 bg-gray-50 flex justify-end gap-3">
-                <button onclick="closeModal()" class="px-6 py-2 border rounded-lg hover:bg-gray-100">Đóng</button>
+                <button onclick="closeModal()" class="px-6 py-2 border rounded-lg hover:bg-gray-100"
+                    data-i18n="close_btn">Đóng</button>
                 <a id="modalPdfLink" href="#" target="_blank" rel="noopener noreferrer"
-                    class="px-6 py-2 bg-cand-red text-white rounded-lg hover:bg-cand-red-dark">Xem chi tiết</a>
+                    class="px-6 py-2 bg-cand-red text-white rounded-lg hover:bg-cand-red-dark"
+                    data-i18n="view_details_btn">Xem chi tiết</a>
             </div>
         </div>
     </div>
+
+    <!-- ========== ONBOARDING REMOVED ========== -->
 
     <!-- ========== WELCOME MODAL ========== -->
     <div id="welcomeModal" class="fixed inset-0 z-[110] hidden">
@@ -618,6 +745,14 @@
 
                 <!-- Body -->
                 <div class="p-6 space-y-4">
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-center mb-2">
+                        <h3 class="text-cand-red font-bold uppercase text-sm" id="welcome-campaign-title"
+                            data-i18n="welcome_campaign_title">Cao điểm 70 ngày đêm</h3>
+                        <p class="text-gray-700 text-xs mt-1" id="welcome-campaign-desc"
+                            data-i18n="welcome_campaign_desc">Tiên phong chuyển đổi số - Lập thành tích chào mừng các
+                            ngày lễ lớn.</p>
+                    </div>
+
                     <p class="text-gray-600 text-center text-sm" id="welcome-intro">Khám phá các tính năng chính của
                         chúng tôi:</p>
 
@@ -738,7 +873,18 @@
                 designed_by_label: "Thiết kế bởi Đại úy Vi Ngọc Phương",
                 designed_by_role: "Bí thư Chi đoàn ghép Phòng PA01-PA08",
                 online_status: "Online",
-                bubble_text: "Xin chào ! Tôi là Trợ lý AI, bạn có cần giúp gì không?"
+                online_status: "Online",
+                bubble_text: "Xin chào ! Tôi là Trợ lý AI, bạn có cần giúp gì không?",
+                campaign_peak: "Cao điểm 70 ngày đêm",
+                campaign_digital: "Tiên phong chuyển đổi số",
+                campaign_peak: "Cao điểm 70 ngày đêm",
+                campaign_digital: "Tiên phong chuyển đổi số",
+                anniv_line1: "Công trình thanh niên chào mừng",
+                anniv_line2: "95 năm thành lập Đoàn TNCS Hồ Chí Minh",
+                anniv_line3: "70 năm truyền thống Đoàn Bộ Công an",
+                footer_action: "Tuổi trẻ Công an Đất Tổ: Xung kích - Lập công - Vì an ninh Tổ quốc",
+                close_btn: "Đóng",
+                view_details_btn: "Xem chi tiết"
             },
             en: {
                 home: "Home",
@@ -779,7 +925,66 @@
                 designed_by_label: "Designed by Captain Vi Ngoc Phuong",
                 designed_by_role: "Secretary of Joint Youth Union PA01-PA08",
                 online_status: "Online",
-                bubble_text: "Hello! I am AI Assistant, surely allow me to help you?"
+                bubble_text: "Hello! I am AI Assistant, surely allow me to help you?",
+                campaign_peak: "70-Day Peak Campaign",
+                campaign_digital: "Pioneering Digital Transformation",
+                campaign_peak: "70-Day Peak Campaign",
+                campaign_digital: "Pioneering Digital Transformation",
+                anniv_line1: "Youth Work Celebrating",
+                anniv_line2: "95th Anniversary of Ho Chi Minh Communist Youth Union",
+                anniv_line3: "70th Anniversary of MPS Youth Union Tradition",
+                footer_action: "Phu Tho Police Youth: Shock - Achievement - For National Security",
+                close_btn: "Close",
+                view_details_btn: "View Details"
+            },
+            zh: {
+                home: "首页",
+                documents: "法律文件",
+                ai_assistant: "AI 助手",
+                language: "语言:",
+                search_docs: "查询文件",
+                ask_ai: "咨询 AI 助手",
+                docs_title: "法律文件库",
+                view_quick: "快速查看",
+                open_file: "打开文件",
+                motto_1: "纪律是基础",
+                motto_2: "忠诚是核心",
+                motto_3: "亲民是标准",
+                unit_name_1: "富寿省公安厅",
+                unit_name_2: "出入境管理处",
+                hero_movement: "竞赛运动",
+                hero_3best: "三个最",
+                best_discipline: "纪律最严",
+                best_loyalty: "最忠诚",
+                best_closeness: "最亲民",
+                tag_decree: "议定",
+                tag_law: "法律",
+                tag_regulation: "规制",
+                doc1_title: "第 282/2025/NĐ-CP 号议定",
+                doc1_desc: "规定安全、秩序和社会安全领域的行政违法处罚。",
+                doc2_title: "关于外国人在越南入境、出境、过境、居留法",
+                doc2_desc: "关于外国人在越南入境、出境、过境、居留规定的合并文本。",
+                doc3_title: "富寿省外国人居留、活动管理协调规制",
+                doc3_desc: "关于富寿省外国人管理协调的规定。",
+                ai_section_title: "法律虚拟助手",
+                ai_section_desc: "智能自动解答系统，帮助您快速查询出入境规定。准确 - 快速 - 便捷。",
+                chat_now: "立即交谈",
+                ai_name: "AI 助手",
+                chat_demo_q: "旅游签证延期手续包括什么？",
+                chat_demo_a: "根据最新规定，您需要准备：护照原件、NA5 申报表和暂住证明...",
+                footer_slogan: "忘我为国 - 服务为民",
+                designed_by_label: "设计者：韦玉方上尉",
+                designed_by_role: "PA01-PA08 联合团支部书记",
+                online_status: "在线",
+                bubble_text: "你好！我是 AI 助手，有什么可以帮您吗？",
+                campaign_peak: "70 天巅峰冲刺",
+                campaign_digital: "数字化转型先锋",
+                anniv_line1: "青年工程 庆祝",
+                anniv_line2: "胡志明共青团成立 95 周年",
+                anniv_line3: "公安部共青团传统 70 周年",
+                footer_action: "富寿公安青年：突击 - 立功 - 为了祖国安全",
+                close_btn: "关闭",
+                view_details_btn: "查看详情"
             }
         };
 
@@ -797,7 +1002,7 @@
             });
 
             // Update Buttons State
-            const ids = ['lang-btn-vi', 'lang-btn-en', 'mob-lang-vi', 'mob-lang-en', 'mob-header-lang-vi', 'mob-header-lang-en'];
+            const ids = ['lang-btn-vi', 'lang-btn-en', 'lang-btn-zh', 'mob-lang-vi', 'mob-lang-en', 'mob-lang-zh', 'mob-header-lang-vi', 'mob-header-lang-en', 'mob-header-lang-zh'];
             ids.forEach(id => {
                 const el = document.getElementById(id);
                 if (!el) return;
@@ -1148,6 +1353,37 @@
                         </div>
                     </div>
                     `
+                },
+                zh: {
+                    title: "第 282/2025/NĐ-CP 号议定",
+                    subtitle: "关于行政处罚的规定",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-cand-red p-5 rounded-r-xl shadow-sm">
+                             <h4 class="font-bold text-cand-red-dark text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="alert-octagon" class="w-5 h-5"></i>
+                                第 282/2025/NĐ-CP 号议定
+                            </h4>
+                            <p class="text-sm leading-relaxed">规定安全、秩序和社会安全领域的行政违法处罚。对违反出入境、居留登记规定的外国人特别重要。</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-cand-red text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                罚款与处罚
+                            </h5>
+                             <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="gavel" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>罚款：</strong> 最高可达 <strong>40,000,000 越南盾</strong>。</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="ban" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>附加处罚：</strong> 对于严重违规行为，可能被<strong>没收证件</strong>或<strong>驱逐出境</strong>。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    `
                 }
             },
             doc2: {
@@ -1383,6 +1619,53 @@
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                    `
+                },
+                zh: {
+                    title: "关于外国人在越南入境、出境、过境、居留法",
+                    subtitle: "第 30/VBHN-VPQH 号合并文本",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-5 rounded-r-xl shadow-sm">
+                                <h4 class="font-bold text-blue-700 text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                                第 30/VBHN-VPQH 号合并文本
+                            </h4>
+                            <p class="text-sm leading-relaxed">关于外国人在越南活动的全面法律规定：入境、出境、过境和居留的原则、条件和程序。</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                范围与原则
+                            </h5>
+                            <ul class="space-y-3 text-sm ml-2">
+                                 <li class="flex items-start gap-2">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>范围：</strong> 关于外国人权利义务的规定。</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="shield" class="w-4 h-4 text-blue-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>原则：</strong> 确保主权、安全。管理<strong>公开、透明、便利</strong>。</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                签证规定 (Visa)
+                            </h5>
+                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">DL (旅游)</span>
+                                    <span class="text-sm">不超过 90 天</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">DT1 - DT4 (投资)</span>
+                                    <span class="text-sm">01 - 05 年</span>
+                                </div>
+                            </div>
+                         </div>
                     </div>
                     `
                 }
@@ -1646,6 +1929,36 @@
                         </div>
                     </div>
                     `
+                },
+                zh: {
+                    title: "富寿省外国人居留、活动管理协调规制",
+                    subtitle: "第 3518/2025/QĐ-CTUBND 号决定",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-teal-50 to-emerald-50 border-l-4 border-teal-500 p-5 rounded-r-xl shadow-sm">
+                             <h4 class="font-bold text-teal-700 text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="landmark" class="w-5 h-5"></i>
+                                第 3518/2025/QĐ-CTUBND 号决定
+                            </h4>
+                            <p class="text-sm leading-relaxed">富寿省外国人管理协调规制，自 <strong>2025年10月28日</strong> 起生效。确立多层级管理网络，以省公安厅为“骨干”。</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-teal-100 text-teal-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                主持机关
+                            </h5>
+                             <div class="grid grid-cols-1 gap-2 text-sm">
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="shield-check" class="w-5 h-5 text-teal-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-teal-700">省公安厅:</strong>
+                                        <span class="text-gray-600">主持出入境、外国人居留的国家管理。</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
                 }
             },
         };
@@ -1715,7 +2028,9 @@
                 feat4_title: "Hỗ trợ Song ngữ",
                 feat4_desc: "Giao diện và nội dung có sẵn bằng cả Tiếng Việt và Tiếng Anh.",
                 btn: "Bắt đầu khám phá",
-                checkbox: "Không hiển thị lại"
+                checkbox: "Không hiển thị lại",
+                campaign_title: "Cao điểm 70 ngày đêm",
+                campaign_desc: "Tiên phong chuyển đổi số - Lập thành tích chào mừng các ngày lễ lớn."
             },
             en: {
                 title: "WELCOME!",
@@ -1731,7 +2046,27 @@
                 feat4_title: "Bilingual Support",
                 feat4_desc: "Interface and content available in both Vietnamese and English.",
                 btn: "Start Exploring",
-                checkbox: "Don't show again"
+                checkbox: "Don't show again",
+                campaign_title: "70-Day Peak Campaign",
+                campaign_desc: "Pioneering Digital Transformation - Celebrating Major Holidays."
+            },
+            zh: {
+                title: "欢迎！",
+                subtitle: "法律宣传信息门户",
+                org: "出入境管理处 - 富寿省公安厅",
+                intro: "探索我们的主要功能：",
+                feat1_title: "法律文件库",
+                feat1_desc: "快速查询关于出入境的议定、法律和规制。",
+                feat2_title: "快速查看和摘要",
+                feat2_desc: "无需打开 PDF 文件即可掌握文件主要内容。",
+                feat3_title: "法律 AI 助手",
+                feat3_desc: "通过 24/7 人工智能咨询签证、居留手续。",
+                feat4_title: "多语言支持",
+                feat4_desc: "界面和内容提供越南语、英语和中文。",
+                btn: "开始探索",
+                checkbox: "不再显示",
+                campaign_title: "70 天巅峰冲刺",
+                campaign_desc: "数字化转型先锋 -以此成绩庆祝各大节日。"
             }
         };
 
@@ -1751,6 +2086,8 @@
             document.getElementById('welcome-feat4-desc').innerText = t.feat4_desc;
             document.getElementById('welcome-btn').innerText = t.btn;
             document.getElementById('welcome-checkbox').innerText = t.checkbox;
+            document.getElementById('welcome-campaign-title').innerText = t.campaign_title;
+            document.getElementById('welcome-campaign-desc').innerText = t.campaign_desc;
         }
 
         function showWelcomeModal() {
@@ -1779,6 +2116,90 @@
                 setTimeout(showWelcomeModal, 500);
             }
         });
+
+        // ========== SERVICE WORKER REGISTRATION ==========
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('SW registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('SW registration failed:', error);
+                    });
+            });
+        }
+
+        // ========== FAKE CHAT FUNCTIONALITY ==========
+        function handleChatSend() {
+            const input = document.getElementById('fakeChatInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            // Add user message to UI
+            const history = document.getElementById('chatHistory');
+            const userMsg = `
+                <div class="flex justify-end animate-fade-in-up">
+                    <div class="bg-cand-red text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-md max-w-[90%] text-sm">
+                        ${query}
+                    </div>
+                </div>
+            `;
+            history.insertAdjacentHTML('beforeend', userMsg);
+            input.value = '';
+
+            // Scroll to bottom
+            history.scrollTop = history.scrollHeight;
+
+            // Simulate thinking
+            const loadingMsg = `
+                <div class="flex justify-start animate-fade-in-up" id="loadingBubble">
+                    <div class="bg-white text-gray-500 border border-gray-200 px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm">
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
+                            <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+                            <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+                        </span>
+                    </div>
+                </div>
+            `;
+            history.insertAdjacentHTML('beforeend', loadingMsg);
+            history.scrollTop = history.scrollHeight;
+
+            // Redirect after 1s
+            setTimeout(() => {
+                // Open NotebookLM
+                window.open('https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484', '_blank');
+
+                // Update UI to show system message
+                const loadingBubble = document.getElementById('loadingBubble');
+                if (loadingBubble) loadingBubble.remove();
+
+                const systemMsg = `
+                     <div class="flex justify-start animate-fade-in-up">
+                          <div class="bg-blue-50 text-blue-800 border border-blue-100 px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%] text-sm">
+                              <p class="font-bold flex items-center gap-2 mb-1">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                                Đã mở kết nối!
+                              </p>
+                              <p>Tôi đã chuyển câu hỏi của bạn sang hệ thống NotebookLM để xử lý chi tiết hơn. Vui lòng kiểm tra tab mới.</p>
+                          </div>
+                     </div>
+                `;
+                history.insertAdjacentHTML('beforeend', systemMsg);
+                history.scrollTop = history.scrollHeight;
+                lucide.createIcons(); // Re-render icons
+            }, 1000);
+        }
+
+        function handleChatEnter(e) {
+            if (e.key === 'Enter') handleChatSend();
+        }
+
+        function fillChat(text) {
+            document.getElementById('fakeChatInput').value = text;
+            handleChatSend();
+        }
     </script>
 
 </body>
