@@ -667,6 +667,20 @@
                     </div>
                 </div>
             </div>
+            <!-- Visitor Stats -->
+            <!-- Visitor Stats -->
+            <div class="grid grid-cols-2 gap-4 max-w-sm mx-auto mb-8 border-t border-b border-white/10 py-6">
+                <!-- Removed Online Stats as requested -->
+                <div class="text-center">
+                    <p class="text-cand-gold font-bold text-xl" id="stat-today">...</p>
+                    <p class="text-white/70 text-xs uppercase" data-i18n="stat_today">Hôm nay</p>
+                </div>
+                <div class="text-center border-l border-white/10">
+                    <p class="text-cand-gold font-bold text-xl" id="stat-total">...</p>
+                    <p class="text-white/70 text-xs uppercase" data-i18n="stat_total">Tổng truy cập</p>
+                </div>
+            </div>
+
             <div class="border-t border-white/10 pt-8 text-center">
                 <p class="text-white/60 text-sm font-medium uppercase tracking-wide" data-i18n="designed_by_label">Thiết
                     kế bởi Đại úy Vi Ngọc Phương
@@ -884,7 +898,10 @@
                 anniv_line3: "70 năm truyền thống Đoàn Bộ Công an",
                 footer_action: "Tuổi trẻ Công an Đất Tổ: Xung kích - Lập công - Vì an ninh Tổ quốc",
                 close_btn: "Đóng",
-                view_details_btn: "Xem chi tiết"
+                view_details_btn: "Xem chi tiết",
+                stat_online: "Đang Online",
+                stat_today: "Hôm nay",
+                stat_total: "Tổng truy cập"
             },
             en: {
                 home: "Home",
@@ -935,7 +952,10 @@
                 anniv_line3: "70th Anniversary of MPS Youth Union Tradition",
                 footer_action: "Phu Tho Police Youth: Shock - Achievement - For National Security",
                 close_btn: "Close",
-                view_details_btn: "View Details"
+                view_details_btn: "View Details",
+                stat_online: "Online",
+                stat_today: "Today",
+                stat_total: "Total Visits"
             },
             zh: {
                 home: "首页",
@@ -984,7 +1004,10 @@
                 anniv_line3: "公安部共青团传统 70 周年",
                 footer_action: "富寿公安青年：突击 - 立功 - 为了祖国安全",
                 close_btn: "关闭",
-                view_details_btn: "查看详情"
+                view_details_btn: "查看详情",
+                stat_online: "在线",
+                stat_today: "今日",
+                stat_total: "总访问量"
             }
         };
 
@@ -2200,6 +2223,47 @@
             document.getElementById('fakeChatInput').value = text;
             handleChatSend();
         }
+    </script>
+
+    <script>
+        // Visitor Statistics Logic
+        // Visitor Statistics Logic (Real CountAPI)
+        async function updateVisitorStats() {
+            const NAMESPACE = 'tuyen-truyen-phap-luat-v1';
+            const TOTAL_KEY = 'total-visits';
+
+            // Generate Today Key: YYYY-MM-DD
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const TODAY_KEY = `visits-${year}-${month}-${day}`;
+
+            // Helper to format with commas
+            const fmt = (n) => n.toLocaleString();
+
+            try {
+                // 1. Hit Total
+                const totalRes = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${TOTAL_KEY}`);
+                const totalData = await totalRes.json();
+                document.getElementById('stat-total').innerText = fmt(totalData.value);
+
+                // 2. Hit Today
+                // Note: If key doesn't exist (new day), CountAPI creates it with value 1 automatically if we use 'hit'.
+                // However, to be safe and ensure it starts at 1, 'hit' is perfect.
+                const todayRes = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${TODAY_KEY}`);
+                const todayData = await todayRes.json();
+                document.getElementById('stat-today').innerText = fmt(todayData.value);
+
+            } catch (error) {
+                console.error('Error fetching stats:', error);
+                document.getElementById('stat-total').innerText = 'N/A';
+                document.getElementById('stat-today').innerText = 'N/A';
+            }
+        }
+
+        // Call on load
+        document.addEventListener('DOMContentLoaded', updateVisitorStats);
     </script>
 
 </body>
