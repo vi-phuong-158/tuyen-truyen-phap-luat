@@ -722,7 +722,7 @@
     </a>
 
     <!-- ========== MODAL (SAME LOGIC) ========== -->
-    <div id="docModal" class="fixed inset-0 z-[100] hidden">
+    <div id="docModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="absolute inset-4 md:inset-20 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-float"
             style="animation: none;">
@@ -745,7 +745,7 @@
     <!-- ========== ONBOARDING REMOVED ========== -->
 
     <!-- ========== WELCOME MODAL ========== -->
-    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden">
+    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
             <div
@@ -1021,6 +1021,7 @@
         };
 
         let currentLang = 'vi';
+        let lastFocusedElement;
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -1996,6 +1997,8 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement; // Store currently focused element
+
             const data = docData[id];
             if (!data) return;
 
@@ -2019,12 +2022,23 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Move focus to Close button for accessibility
+            setTimeout(() => {
+                const closeBtn = modal.querySelector('button[aria-label="Đóng"]');
+                if (closeBtn) closeBtn.focus();
+            }, 100);
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            // Restore focus
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
 
         // Close modal on escape key
@@ -2128,6 +2142,12 @@
             document.body.style.overflow = 'hidden';
             lucide.createIcons(); // Render icons in modal
             updateWelcomeModalLang(currentLang);
+
+            // Move focus to the primary action button
+            setTimeout(() => {
+                const primaryBtn = modal.querySelector('button span#welcome-btn')?.parentElement;
+                if (primaryBtn) primaryBtn.focus();
+            }, 100);
         }
 
         function closeWelcomeModal() {
