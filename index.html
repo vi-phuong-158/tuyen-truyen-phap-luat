@@ -2,17 +2,24 @@
 <html lang="vi">
 
 <head>
+    <!-- Security: Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
+                   script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; 
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+                   font-src 'self' https://fonts.gstatic.com; 
+                   img-src 'self' data: https: blob:; 
+                   connect-src 'self' https://api.counterapi.dev https://www.google-analytics.com;">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MN222YF1D7"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-MN222YF1D7');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Cổng Thông Tin Tuyên Truyền Pháp Luật | Công An Tỉnh Phú Thọ</title>
     <meta name="description"
         content="Cổng thông tin tuyên truyền, phổ biến pháp luật về xuất nhập cảnh, cư trú của người nước ngoài tại Việt Nam.">
@@ -27,6 +34,10 @@
     <meta property="og:url" content="https://username.github.io/repo/">
     <meta property="og:type" content="website">
 
+    <!-- Preconnect for faster loading -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -37,8 +48,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,700&family=Dancing+Script:wght@700&display=swap"
         rel="stylesheet">
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons (deferred for performance) -->
+    <script defer src="https://unpkg.com/lucide@latest"></script>
 
     <script>
         tailwind.config = {
@@ -215,10 +226,76 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+
+        /* ========== ACCESSIBILITY ========== */
+        /* Skip to main content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #D00000;
+            color: white;
+            padding: 8px 16px;
+            z-index: 9999;
+            transition: top 0.3s;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Reduced motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Better focus states for keyboard navigation */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible {
+            outline: 3px solid #FFD700;
+            outline-offset: 2px;
+        }
+
+        /* ========== PRINT STYLES ========== */
+        @media print {
+
+            .hero-section,
+            #aiFloatingBtn,
+            #header,
+            #aiBubble,
+            .btn-shine {
+                display: none !important;
+            }
+
+            body {
+                font-size: 12pt;
+                line-height: 1.5;
+            }
+
+            .modern-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
+    <!-- Skip to main content (Accessibility) -->
+    <a href="#main-content" class="skip-link">Chuyển đến nội dung chính / Skip to main content</a>
+
 
     <!-- ========== HEADER ========== -->
     <header id="header"
@@ -452,254 +529,264 @@
     </section>
 
     <!-- ========== DOCUMENTS SECTION ========== -->
-    <section id="documents" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h3 class="text-3xl md:text-5xl font-bold text-cand-red-dark mb-4 drop-shadow-sm font-playfair"
-                    data-i18n="docs_title">Kho Văn Bản Pháp Luật</h3>
-                <div class="w-24 h-1 bg-cand-gold mx-auto rounded-full"></div>
+    <main id="main-content">
+        <section id="documents" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-5xl font-bold text-cand-red-dark mb-4 drop-shadow-sm font-playfair"
+                        data-i18n="docs_title">Kho Văn Bản Pháp Luật</h3>
+                    <div class="w-24 h-1 bg-cand-gold mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="modern-card rounded-2xl p-6 md:p-8 relative group">
+                        <div
+                            class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cand-red to-cand-gold rounded-t-2xl">
+                        </div>
+                        <div
+                            class="w-14 h-14 bg-cand-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-cand-red group-hover:text-white transition-colors duration-300">
+                            <i data-lucide="gavel" class="w-7 h-7 text-cand-red group-hover:text-white"></i>
+                        </div>
+                        <span
+                            class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
+                            data-i18n="tag_decree">NGHỊ
+                            ĐỊNH</span>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                            data-i18n="doc1_title">Nghị
+                            định 282/2025/NĐ-CP</h4>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc1_desc">Quy định xử phạt vi
+                            phạm
+                            hành chính trong lĩnh
+                            vực an ninh, trật tự, an toàn xã hội.</p>
+
+
+
+                        <div class="flex gap-3 mt-auto">
+                            <button onclick="openModal('doc1')"
+                                class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
+                                data-i18n="view_quick">Xem
+                                nhanh</button>
+                            <a href="2025_1583_1584_282_2025_ND_CP.pdf" target="_blank" rel="noopener noreferrer"
+                                class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all"
+                                data-i18n="open_file">Mở
+                                file</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="modern-card rounded-2xl p-6 md:p-8 relative group">
+                        <div
+                            class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cand-red to-cand-gold rounded-t-2xl">
+                        </div>
+                        <div
+                            class="w-14 h-14 bg-cand-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-cand-red group-hover:text-white transition-colors duration-300">
+                            <i data-lucide="book" class="w-7 h-7 text-cand-red group-hover:text-white"></i>
+                        </div>
+                        <span
+                            class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
+                            data-i18n="tag_law">LUẬT</span>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                            data-i18n="doc2_title">LUẬT
+                            NHẬP CẢNH, XUẤT CẢNH, QUÁ CẢNH, CƯ TRÚ CỦA NGƯỜI NƯỚC NGOÀI TẠI VIỆT NAM</h4>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc2_desc">Văn bản hợp nhất quy
+                            định
+                            về nhập cảnh, xuất
+                            cảnh, quá cảnh, cư trú của người nước ngoài.</p>
+
+
+
+                        <div class="flex gap-3 mt-auto">
+                            <button onclick="openModal('doc2')"
+                                class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
+                                data-i18n="view_quick">Xem
+                                nhanh</button>
+                            <a href="2023_1257_1258_30_VBHN_VPQH.pdf" target="_blank" rel="noopener noreferrer"
+                                class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all"
+                                data-i18n="open_file">Mở
+                                file</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="modern-card rounded-2xl p-6 md:p-8 relative group">
+                        <div
+                            class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cand-red to-cand-gold rounded-t-2xl">
+                        </div>
+                        <div
+                            class="w-14 h-14 bg-cand-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-cand-red group-hover:text-white transition-colors duration-300">
+                            <i data-lucide="landmark" class="w-7 h-7 text-cand-red group-hover:text-white"></i>
+                        </div>
+                        <span
+                            class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
+                            data-i18n="tag_regulation">QUY
+                            CHẾ</span>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                            data-i18n="doc3_title">Quy chế
+                            phối hợp trong quản lý người nước ngoài cư trú, hoạt động trên địa bàn tỉnh Phú Thọ</h4>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc3_desc">Quy định về phối hợp
+                            quản
+                            lý người nước ngoài
+                            trên địa bàn tỉnh Phú Thọ.</p>
+
+
+
+                        <div class="flex gap-3 mt-auto">
+                            <button onclick="openModal('doc3')"
+                                class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
+                                data-i18n="view_quick">Xem
+                                nhanh</button>
+                            <a href="Quy_che_phoi_hop_quan_ly_NNN_Phu_Tho.pdf" target="_blank" rel="noopener noreferrer"
+                                class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all"
+                                data-i18n="open_file">Mở
+                                file</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="modern-card rounded-2xl p-6 md:p-8 relative group">
-                    <div
-                        class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cand-red to-cand-gold rounded-t-2xl">
+        <!-- ========== AI ASSISTANT SECTION ========== -->
+        <section id="ai-assistant" class="py-20 bg-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-cand-red/5 skew-x-12 transform translate-x-32"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center gap-3 mb-6">
+                            <img src="icon.png" alt="Biểu tượng trợ lý AI" loading="lazy" decoding="async"
+                                class="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-md">
+                            <h3 class="text-2xl sm:text-3xl md:text-5xl font-bold text-cand-red-dark font-playfair leading-tight whitespace-nowrap"
+                                data-i18n="ai_section_title">
+                                Trợ Lý Ảo Pháp Luật
+                            </h3>
+                        </div>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-i18n="ai_section_desc">
+                            Hệ thống giải đáp tự động thông minh, giúp bạn tra cứu nhanh chóng các quy định về xuất nhập
+                            cảnh. Chính xác - Nhanh chóng - Tiện lợi.
+                        </p>
+                        <a href="https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484"
+                            target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cand-red to-cand-red-dark text-white font-bold rounded-full shadow-lg hover:shadow-glow hover:scale-105 transition-all duration-300">
+                            <i data-lucide="message-circle" class="w-6 h-6"></i>
+                            <span data-i18n="chat_now">Trò chuyện ngay</span>
+                        </a>
                     </div>
-                    <div
-                        class="w-14 h-14 bg-cand-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-cand-red group-hover:text-white transition-colors duration-300">
-                        <i data-lucide="gavel" class="w-7 h-7 text-cand-red group-hover:text-white"></i>
-                    </div>
-                    <span
-                        class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
-                        data-i18n="tag_decree">NGHỊ
-                        ĐỊNH</span>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
-                        data-i18n="doc1_title">Nghị
-                        định 282/2025/NĐ-CP</h4>
-                    <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc1_desc">Quy định xử phạt vi phạm
-                        hành chính trong lĩnh
-                        vực an ninh, trật tự, an toàn xã hội.</p>
-
-
-
-                    <div class="flex gap-3 mt-auto">
-                        <button onclick="openModal('doc1')"
-                            class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
-                            data-i18n="view_quick">Xem
-                            nhanh</button>
-                        <a href="2025_1583_1584_282_2025_ND_CP.pdf" target="_blank" rel="noopener noreferrer"
-                            class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all"
-                            data-i18n="open_file">Mở
-                            file</a>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="modern-card rounded-2xl p-6 md:p-8 relative group">
-                    <div
-                        class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cand-red to-cand-gold rounded-t-2xl">
-                    </div>
-                    <div
-                        class="w-14 h-14 bg-cand-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-cand-red group-hover:text-white transition-colors duration-300">
-                        <i data-lucide="book" class="w-7 h-7 text-cand-red group-hover:text-white"></i>
-                    </div>
-                    <span
-                        class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
-                        data-i18n="tag_law">LUẬT</span>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
-                        data-i18n="doc2_title">LUẬT
-                        NHẬP CẢNH, XUẤT CẢNH, QUÁ CẢNH, CƯ TRÚ CỦA NGƯỜI NƯỚC NGOÀI TẠI VIỆT NAM</h4>
-                    <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc2_desc">Văn bản hợp nhất quy định
-                        về nhập cảnh, xuất
-                        cảnh, quá cảnh, cư trú của người nước ngoài.</p>
-
-
-
-                    <div class="flex gap-3 mt-auto">
-                        <button onclick="openModal('doc2')"
-                            class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
-                            data-i18n="view_quick">Xem
-                            nhanh</button>
-                        <a href="2023_1257_1258_30_VBHN_VPQH.pdf" target="_blank" rel="noopener noreferrer"
-                            class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all"
-                            data-i18n="open_file">Mở
-                            file</a>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="modern-card rounded-2xl p-6 md:p-8 relative group">
-                    <div
-                        class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cand-red to-cand-gold rounded-t-2xl">
-                    </div>
-                    <div
-                        class="w-14 h-14 bg-cand-red/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-cand-red group-hover:text-white transition-colors duration-300">
-                        <i data-lucide="landmark" class="w-7 h-7 text-cand-red group-hover:text-white"></i>
-                    </div>
-                    <span
-                        class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
-                        data-i18n="tag_regulation">QUY
-                        CHẾ</span>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
-                        data-i18n="doc3_title">Quy chế
-                        phối hợp trong quản lý người nước ngoài cư trú, hoạt động trên địa bàn tỉnh Phú Thọ</h4>
-                    <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc3_desc">Quy định về phối hợp quản
-                        lý người nước ngoài
-                        trên địa bàn tỉnh Phú Thọ.</p>
-
-
-
-                    <div class="flex gap-3 mt-auto">
-                        <button onclick="openModal('doc3')"
-                            class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
-                            data-i18n="view_quick">Xem
-                            nhanh</button>
-                        <a href="Quy_che_phoi_hop_quan_ly_NNN_Phu_Tho.pdf" target="_blank" rel="noopener noreferrer"
-                            class="flex-1 py-2 bg-cand-red text-white rounded-lg font-semibold text-center hover:bg-cand-red-dark hover:shadow-lg transition-all"
-                            data-i18n="open_file">Mở
-                            file</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== AI ASSISTANT SECTION ========== -->
-    <section id="ai-assistant" class="py-20 bg-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-cand-red/5 skew-x-12 transform translate-x-32"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="lg:w-1/2">
-                    <div class="flex items-center gap-3 mb-6">
-                        <img src="icon.png" alt="Biểu tượng trợ lý AI" loading="lazy" decoding="async"
-                            class="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-md">
-                        <h3 class="text-2xl sm:text-3xl md:text-5xl font-bold text-cand-red-dark font-playfair leading-tight whitespace-nowrap"
-                            data-i18n="ai_section_title">
-                            Trợ Lý Ảo Pháp Luật
-                        </h3>
-                    </div>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-i18n="ai_section_desc">
-                        Hệ thống giải đáp tự động thông minh, giúp bạn tra cứu nhanh chóng các quy định về xuất nhập
-                        cảnh. Chính xác - Nhanh chóng - Tiện lợi.
-                    </p>
-                    <a href="https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484"
-                        target="_blank" rel="noopener noreferrer"
-                        class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cand-red to-cand-red-dark text-white font-bold rounded-full shadow-lg hover:shadow-glow hover:scale-105 transition-all duration-300">
-                        <i data-lucide="message-circle" class="w-6 h-6"></i>
-                        <span data-i18n="chat_now">Trò chuyện ngay</span>
-                    </a>
-                </div>
-                <div class="lg:w-1/2 relative">
-                    <div class="relative z-10 bg-white rounded-3xl shadow-2xl p-2 border border-gray-100">
-                        <div class="bg-gray-50 rounded-2xl p-6 md:p-8 flex flex-col h-[450px]">
-                            <!-- Chat Header -->
-                            <div class="flex items-center gap-4 mb-4 border-b border-gray-200 pb-4 shrink-0">
-                                <div
-                                    class="w-12 h-12 bg-cand-red rounded-full flex items-center justify-center text-white shadow-md relative">
-                                    <i data-lucide="bot" class="w-6 h-6"></i>
-                                    <span
-                                        class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-gray-900 text-lg" data-i18n="ai_name">Trợ lý AI</h5>
-                                    <span
-                                        class="text-green-600 text-xs font-bold flex items-center gap-1 bg-green-100 px-2 py-0.5 rounded-full w-fit">
-                                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                                        <span data-i18n="online_status">Sẵn sàng hỗ trợ</span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <!-- Chat History (Scrollable) -->
-                            <div id="chatHistory" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 custom-scrollbar">
-                                <!-- AI Welcome Message -->
-                                <div class="flex justify-start animate-fade-in-up">
+                    <div class="lg:w-1/2 relative">
+                        <div class="relative z-10 bg-white rounded-3xl shadow-2xl p-2 border border-gray-100">
+                            <div class="bg-gray-50 rounded-2xl p-6 md:p-8 flex flex-col h-[450px]">
+                                <!-- Chat Header -->
+                                <div class="flex items-center gap-4 mb-4 border-b border-gray-200 pb-4 shrink-0">
                                     <div
-                                        class="bg-white text-gray-800 border border-gray-200 px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]">
-                                        <p class="text-sm leading-relaxed" data-i18n="ai_welcome">
-                                            Xin chào! Tôi là Trợ lý AI pháp luật. Bạn muốn hỏi gì về thủ tục xuất nhập
-                                            cảnh hôm nay?
-                                        </p>
+                                        class="w-12 h-12 bg-cand-red rounded-full flex items-center justify-center text-white shadow-md relative">
+                                        <i data-lucide="bot" class="w-6 h-6"></i>
+                                        <span
+                                            class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-gray-900 text-lg" data-i18n="ai_name">Trợ lý AI</h5>
+                                        <span
+                                            class="text-green-600 text-xs font-bold flex items-center gap-1 bg-green-100 px-2 py-0.5 rounded-full w-fit">
+                                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                                            <span data-i18n="online_status">Sẵn sàng hỗ trợ</span>
+                                        </span>
                                     </div>
                                 </div>
-                                <!-- Suggested Questions -->
-                                <div class="flex flex-wrap gap-2 animate-fade-in-up delay-100">
-                                    <button onclick="fillChat('Thủ tục làm hộ chiếu?')"
-                                        class="text-xs bg-white border border-cand-gold text-gray-600 px-3 py-1.5 rounded-full hover:bg-cand-gold hover:text-white transition-colors">
-                                        Thủ tục làm hộ chiếu?
-                                    </button>
-                                    <button onclick="fillChat('Gia hạn visa cho người nước ngoài?')"
-                                        class="text-xs bg-white border border-cand-gold text-gray-600 px-3 py-1.5 rounded-full hover:bg-cand-gold hover:text-white transition-colors">
-                                        Gia hạn visa?
+
+                                <!-- Chat History (Scrollable) -->
+                                <div id="chatHistory"
+                                    class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 custom-scrollbar">
+                                    <!-- AI Welcome Message -->
+                                    <div class="flex justify-start animate-fade-in-up">
+                                        <div
+                                            class="bg-white text-gray-800 border border-gray-200 px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]">
+                                            <p class="text-sm leading-relaxed" data-i18n="ai_welcome">
+                                                Xin chào! Tôi là Trợ lý AI pháp luật. Bạn muốn hỏi gì về thủ tục xuất
+                                                nhập
+                                                cảnh hôm nay?
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Suggested Questions -->
+                                    <div class="flex flex-wrap gap-2 animate-fade-in-up delay-100">
+                                        <button onclick="fillChat('Thủ tục làm hộ chiếu?')"
+                                            class="text-xs bg-white border border-cand-gold text-gray-600 px-3 py-1.5 rounded-full hover:bg-cand-gold hover:text-white transition-colors">
+                                            Thủ tục làm hộ chiếu?
+                                        </button>
+                                        <button onclick="fillChat('Gia hạn visa cho người nước ngoài?')"
+                                            class="text-xs bg-white border border-cand-gold text-gray-600 px-3 py-1.5 rounded-full hover:bg-cand-gold hover:text-white transition-colors">
+                                            Gia hạn visa?
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Input Area -->
+                                <div class="relative shrink-0 pt-2 border-t border-gray-100">
+                                    <input type="text" id="fakeChatInput"
+                                        class="w-full pl-4 pr-12 py-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-cand-red focus:ring-2 focus:ring-cand-red/20 transition-all shadow-sm text-sm"
+                                        placeholder="Nhập câu hỏi của bạn..." onkeypress="handleChatEnter(event)">
+                                    <button onclick="handleChatSend()"
+                                        class="absolute right-2 top-1/2 mt-1 -translate-y-1/2 w-9 h-9 bg-cand-red text-white rounded-lg flex items-center justify-center hover:bg-cand-red-dark transition-colors shadow-md hover:shadow-lg transform active:scale-95">
+                                        <i data-lucide="send" class="w-4 h-4 ml-0.5"></i>
                                     </button>
                                 </div>
                             </div>
 
-                            <!-- Input Area -->
-                            <div class="relative shrink-0 pt-2 border-t border-gray-100">
-                                <input type="text" id="fakeChatInput"
-                                    class="w-full pl-4 pr-12 py-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-cand-red focus:ring-2 focus:ring-cand-red/20 transition-all shadow-sm text-sm"
-                                    placeholder="Nhập câu hỏi của bạn..." onkeypress="handleChatEnter(event)">
-                                <button onclick="handleChatSend()"
-                                    class="absolute right-2 top-1/2 mt-1 -translate-y-1/2 w-9 h-9 bg-cand-red text-white rounded-lg flex items-center justify-center hover:bg-cand-red-dark transition-colors shadow-md hover:shadow-lg transform active:scale-95">
-                                    <i data-lucide="send" class="w-4 h-4 ml-0.5"></i>
-                                </button>
+                            <!-- Decorative blobs -->
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-cand-gold/20 filter blur-3xl -z-10 rounded-full">
                             </div>
                         </div>
+                    </div>
+                </div>
+        </section>
 
-                        <!-- Decorative blobs -->
-                        <div
-                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-cand-gold/20 filter blur-3xl -z-10 rounded-full">
+        <!-- ========== FOOTER ========== -->
+        <footer class="bg-cand-red-dark text-white pt-16 pb-8 border-t-4 border-cand-gold">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col items-center justify-center text-center mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <!-- Bolt: Added lazy loading for offscreen image -->
+                        <img src="logo.png" alt="Logo" loading="lazy" decoding="async"
+                            class="w-12 h-12 object-contain bg-white rounded-full p-1">
+                        <div class="text-left">
+                            <h4 class="font-bold text-lg leading-none" data-i18n="unit_name_1">CÔNG AN TỈNH PHÚ THỌ</h4>
+                            <p class="text-cand-gold text-xs font-bold mt-1" data-i18n="footer_slogan">VÌ NƯỚC QUÊN THÂN
+                                -
+                                VÌ DÂN PHỤC VỤ</p>
+                            <p class="text-white/90 text-sm font-bold mt-2 uppercase tracking-wide border-t border-white/20 pt-2"
+                                data-i18n="footer_action">
+                                Tuổi trẻ Công an Đất Tổ: Xung kích - Lập công - Vì an ninh Tổ quốc
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-    </section>
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="bg-cand-red-dark text-white pt-16 pb-8 border-t-4 border-cand-gold">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col items-center justify-center text-center mb-8">
-                <div class="flex items-center gap-3 mb-4">
-                    <!-- Bolt: Added lazy loading for offscreen image -->
-                    <img src="logo.png" alt="Logo" loading="lazy" decoding="async"
-                        class="w-12 h-12 object-contain bg-white rounded-full p-1">
-                    <div class="text-left">
-                        <h4 class="font-bold text-lg leading-none" data-i18n="unit_name_1">CÔNG AN TỈNH PHÚ THỌ</h4>
-                        <p class="text-cand-gold text-xs font-bold mt-1" data-i18n="footer_slogan">VÌ NƯỚC QUÊN THÂN -
-                            VÌ DÂN PHỤC VỤ</p>
-                        <p class="text-white/90 text-sm font-bold mt-2 uppercase tracking-wide border-t border-white/20 pt-2"
-                            data-i18n="footer_action">
-                            Tuổi trẻ Công an Đất Tổ: Xung kích - Lập công - Vì an ninh Tổ quốc
-                        </p>
+                <!-- Visitor Stats -->
+                <!-- Visitor Stats -->
+                <div class="grid grid-cols-2 gap-4 max-w-sm mx-auto mb-8 border-t border-b border-white/10 py-6">
+                    <!-- Removed Online Stats as requested -->
+                    <div class="text-center">
+                        <p class="text-cand-gold font-bold text-xl" id="stat-today">...</p>
+                        <p class="text-white/70 text-xs uppercase" data-i18n="stat_today">Hôm nay</p>
+                    </div>
+                    <div class="text-center border-l border-white/10">
+                        <p class="text-cand-gold font-bold text-xl" id="stat-total">...</p>
+                        <p class="text-white/70 text-xs uppercase" data-i18n="stat_total">Tổng truy cập</p>
                     </div>
                 </div>
-            </div>
-            <!-- Visitor Stats -->
-            <!-- Visitor Stats -->
-            <div class="grid grid-cols-2 gap-4 max-w-sm mx-auto mb-8 border-t border-b border-white/10 py-6">
-                <!-- Removed Online Stats as requested -->
-                <div class="text-center">
-                    <p class="text-cand-gold font-bold text-xl" id="stat-today">...</p>
-                    <p class="text-white/70 text-xs uppercase" data-i18n="stat_today">Hôm nay</p>
-                </div>
-                <div class="text-center border-l border-white/10">
-                    <p class="text-cand-gold font-bold text-xl" id="stat-total">...</p>
-                    <p class="text-white/70 text-xs uppercase" data-i18n="stat_total">Tổng truy cập</p>
-                </div>
-            </div>
 
-            <div class="border-t border-white/10 pt-8 text-center">
-                <p class="text-white/60 text-sm font-medium uppercase tracking-wide" data-i18n="designed_by_label">Thiết
-                    kế bởi Đại úy Vi Ngọc Phương
-                </p>
-                <p class="text-white/60 text-sm font-medium uppercase tracking-wide mt-1" data-i18n="designed_by_role">
-                    Bí thư Chi đoàn ghép Phòng
-                    PA01-PA08</p>
+                <div class="border-t border-white/10 pt-8 text-center">
+                    <p class="text-white/60 text-sm font-medium uppercase tracking-wide" data-i18n="designed_by_label">
+                        Thiết
+                        kế bởi Đại úy Vi Ngọc Phương
+                    </p>
+                    <p class="text-white/60 text-sm font-medium uppercase tracking-wide mt-1"
+                        data-i18n="designed_by_role">
+                        Bí thư Chi đoàn ghép Phòng
+                        PA01-PA08</p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </main>
 
     <!-- ========== FLOATING BUTTON ========== -->
     <a id="aiFloatingBtn" href="https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484"
@@ -708,7 +795,8 @@
         <!-- Speech Bubble -->
         <div id="aiBubble"
             class="mb-28 mr-2 bg-white border-2 border-cand-gold text-gray-800 px-3 py-2 rounded-xl rounded-br-none shadow-lg max-w-[160px] relative transition-all duration-500 opacity-100 transform translate-y-0">
-            <p class="text-xs font-bold leading-tight" data-i18n="bubble_text">Xin chào ! Tôi là Trợ lý AI, bạn có cần
+            <p class="text-xs font-bold leading-tight" data-i18n="bubble_text">Xin chào ! Tôi là Trợ lý AI, bạn có
+                cần
                 giúp gì không?</p>
             <div
                 class="absolute -right-2 bottom-0 w-0 h-0 border-l-[8px] border-l-transparent border-t-[8px] border-t-cand-gold border-r-[8px] border-r-transparent transform -skew-x-12">
@@ -762,7 +850,8 @@
                         id="welcome-title">Chào mừng bạn!</h2>
                     <p class="text-white text-base md:text-lg mt-2 font-medium" id="welcome-subtitle">Cổng thông tin
                         tuyên truyền pháp luật</p>
-                    <p class="text-white/70 text-xs mt-1" id="welcome-org">Phòng Quản lý xuất nhập cảnh - Công an tỉnh
+                    <p class="text-white/70 text-xs mt-1" id="welcome-org">Phòng Quản lý xuất nhập cảnh - Công an
+                        tỉnh
                         Phú Thọ</p>
                 </div>
 
@@ -772,7 +861,8 @@
                         <h3 class="text-cand-red font-bold uppercase text-sm" id="welcome-campaign-title"
                             data-i18n="welcome_campaign_title">Cao điểm 70 ngày đêm</h3>
                         <p class="text-gray-700 text-xs mt-1" id="welcome-campaign-desc"
-                            data-i18n="welcome_campaign_desc">Tiên phong chuyển đổi số - Lập thành tích chào mừng các
+                            data-i18n="welcome_campaign_desc">Tiên phong chuyển đổi số - Lập thành tích chào mừng
+                            các
                             ngày lễ lớn.</p>
                     </div>
 
@@ -786,9 +876,11 @@
                                 <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat1-title">Thư Viện Văn Bản
+                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat1-title">Thư Viện Văn
+                                    Bản
                                     Pháp Luật</h4>
-                                <p class="text-gray-600 text-xs" id="welcome-feat1-desc">Tra cứu nhanh các nghị định,
+                                <p class="text-gray-600 text-xs" id="welcome-feat1-desc">Tra cứu nhanh các nghị
+                                    định,
                                     luật và quy chế về xuất nhập cảnh.</p>
                             </div>
                         </div>
@@ -799,9 +891,11 @@
                                 <i data-lucide="zap" class="w-5 h-5 text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat2-title">Xem Nhanh & Tóm Tắt
+                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat2-title">Xem Nhanh & Tóm
+                                    Tắt
                                 </h4>
-                                <p class="text-gray-600 text-xs" id="welcome-feat2-desc">Nắm bắt nội dung chính của văn
+                                <p class="text-gray-600 text-xs" id="welcome-feat2-desc">Nắm bắt nội dung chính của
+                                    văn
                                     bản mà không cần mở file PDF.</p>
                             </div>
                         </div>
@@ -812,9 +906,11 @@
                                 <i data-lucide="bot" class="w-5 h-5 text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat3-title">Trợ Lý AI Pháp Luật
+                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat3-title">Trợ Lý AI Pháp
+                                    Luật
                                 </h4>
-                                <p class="text-gray-600 text-xs" id="welcome-feat3-desc">Hỏi đáp thủ tục visa, cư trú
+                                <p class="text-gray-600 text-xs" id="welcome-feat3-desc">Hỏi đáp thủ tục visa, cư
+                                    trú
                                     với trí tuệ nhân tạo 24/7.</p>
                             </div>
                         </div>
@@ -827,7 +923,8 @@
                             <div>
                                 <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat4-title">Hỗ trợ Song ngữ
                                 </h4>
-                                <p class="text-gray-600 text-xs" id="welcome-feat4-desc">Giao diện và nội dung có sẵn
+                                <p class="text-gray-600 text-xs" id="welcome-feat4-desc">Giao diện và nội dung có
+                                    sẵn
                                     bằng cả Tiếng Việt và Tiếng Anh.</p>
                             </div>
                         </div>
@@ -2162,18 +2259,36 @@
             });
         }
 
+        // ========== SECURITY: XSS PREVENTION ==========
+        function sanitizeHTML(str) {
+            const escapeMap = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;',
+                '/': '&#x2F;',
+                '`': '&#x60;',
+                '=': '&#x3D;'
+            };
+            return String(str).replace(/[&<>"'`=\/]/g, s => escapeMap[s]);
+        }
+
         // ========== FAKE CHAT FUNCTIONALITY ==========
         function handleChatSend() {
             const input = document.getElementById('fakeChatInput');
             const query = input.value.trim();
             if (!query) return;
 
+            // SECURITY: Sanitize user input before inserting into DOM
+            const safeQuery = sanitizeHTML(query);
+
             // Add user message to UI
             const history = document.getElementById('chatHistory');
             const userMsg = `
                 <div class="flex justify-end animate-fade-in-up">
                     <div class="bg-cand-red text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-md max-w-[90%] text-sm">
-                        ${query}
+                        ${safeQuery}
                     </div>
                 </div>
             `;
@@ -2200,8 +2315,8 @@
 
             // Redirect after 1s
             setTimeout(() => {
-                // Open NotebookLM
-                window.open('https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484', '_blank');
+                // Open NotebookLM with security attributes
+                window.open('https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484', '_blank', 'noopener,noreferrer');
 
                 // Update UI to show system message
                 const loadingBubble = document.getElementById('loadingBubble');
@@ -2223,6 +2338,7 @@
                 lucide.createIcons(); // Re-render icons
             }, 1000);
         }
+
 
         function handleChatEnter(e) {
             if (e.key === 'Enter') handleChatSend();
@@ -2247,36 +2363,124 @@
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const day = String(now.getDate()).padStart(2, '0');
-            const TODAY_KEY = `visits-${year}-${month}-${day}`;
+            const dateKey = `${year}-${month}-${day}`;
+            const TODAY_KEY = `visits-${dateKey}`;
 
             // Helper to format with commas
             const fmt = (n) => n.toLocaleString();
 
-            try {
-                // 1. Hit Total (Increment)
-                // Using counterapi.dev: returns { "count": 123, ... }
-                const totalRes = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}/up`);
-                const totalData = await totalRes.json();
+            // LocalStorage keys for fallback
+            const LS_TOTAL_KEY = 'visitor_total_count';
+            const LS_TODAY_KEY = 'visitor_today_count';
+            const LS_DATE_KEY = 'visitor_last_date';
+            const LS_VISITED_KEY = 'visitor_session_counted';
 
-                // Calculate display value
+            // Get stored values
+            let storedTotal = parseInt(localStorage.getItem(LS_TOTAL_KEY) || '0');
+            let storedToday = parseInt(localStorage.getItem(LS_TODAY_KEY) || '0');
+            const storedDate = localStorage.getItem(LS_DATE_KEY);
+
+            // Reset today count if it's a new day
+            if (storedDate !== dateKey) {
+                storedToday = 0;
+                localStorage.setItem(LS_DATE_KEY, dateKey);
+            }
+
+            // Check if this session was already counted
+            const sessionCounted = sessionStorage.getItem(LS_VISITED_KEY);
+
+            // If not counted in this session, increment local counts
+            if (!sessionCounted) {
+                storedTotal++;
+                storedToday++;
+                localStorage.setItem(LS_TOTAL_KEY, storedTotal.toString());
+                localStorage.setItem(LS_TODAY_KEY, storedToday.toString());
+                sessionStorage.setItem(LS_VISITED_KEY, 'true');
+            }
+
+            try {
+                // 1. Hit Total (Increment) - only if not counted in this session
+                // Using counterapi.dev: returns { "count": 123, ... }
+                const totalUrl = sessionCounted
+                    ? `https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}`
+                    : `https://api.counterapi.dev/v1/${NAMESPACE}/${TOTAL_KEY}/up`;
+
+                const totalRes = await fetch(totalUrl, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+
+                if (!totalRes.ok) throw new Error(`HTTP ${totalRes.status}`);
+
+                const totalData = await totalRes.json();
                 const totalCount = (totalData.count || 0) + INITIAL_OFFSET;
                 document.getElementById('stat-total').innerText = fmt(totalCount);
 
-                // 2. Hit Today (Increment)
-                const todayRes = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}/up`);
+                // Sync local storage with API value
+                localStorage.setItem(LS_TOTAL_KEY, (totalData.count || 0).toString());
+
+                // 2. Hit Today (Increment) - only if not counted in this session
+                const todayUrl = sessionCounted
+                    ? `https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}`
+                    : `https://api.counterapi.dev/v1/${NAMESPACE}/${TODAY_KEY}/up`;
+
+                const todayRes = await fetch(todayUrl, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+
+                if (!todayRes.ok) throw new Error(`HTTP ${todayRes.status}`);
+
                 const todayData = await todayRes.json();
                 document.getElementById('stat-today').innerText = fmt(todayData.count || 0);
 
+                // Sync local storage with API value
+                localStorage.setItem(LS_TODAY_KEY, (todayData.count || 0).toString());
+
             } catch (error) {
-                console.error('Error fetching stats:', error);
-                // Fallback to safe values if API fails
-                document.getElementById('stat-total').innerText = '...';
-                document.getElementById('stat-today').innerText = '...';
+                console.error('API error, using local fallback:', error);
+                // Use localStorage fallback values
+                document.getElementById('stat-total').innerText = fmt(storedTotal + INITIAL_OFFSET);
+                document.getElementById('stat-today').innerText = fmt(storedToday);
             }
         }
 
         // Call on load
         document.addEventListener('DOMContentLoaded', updateVisitorStats);
+    </script>
+
+    <script>
+        // ========== KEYBOARD NAVIGATION (ACCESSIBILITY) ==========
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                // Close document modal
+                const docModal = document.getElementById('docModal');
+                if (docModal && !docModal.classList.contains('hidden')) {
+                    docModal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+
+                // Close welcome modal
+                const welcomeModal = document.getElementById('welcomeModal');
+                if (welcomeModal && !welcomeModal.classList.contains('hidden')) {
+                    welcomeModal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+
+                // Close mobile menu
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        });
+
+        // Initialize Lucide icons after DOM is ready (since script is deferred)
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
     </script>
 
 </body>
