@@ -810,13 +810,13 @@
     </a>
 
     <!-- ========== MODAL (SAME LOGIC) ========== -->
-    <div id="docModal" class="fixed inset-0 z-[100] hidden">
+    <div id="docModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="absolute inset-4 md:inset-20 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-float"
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
+                <button id="modalCloseBtn" onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
                         data-lucide="x"></i></button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
@@ -833,7 +833,7 @@
     <!-- ========== ONBOARDING REMOVED ========== -->
 
     <!-- ========== WELCOME MODAL ========== -->
-    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden">
+    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
             <div
@@ -950,8 +950,6 @@
 
     <!-- Scripts -->
     <script>
-        lucide.createIcons();
-
         // ========== MULTI-LANGUAGE SUPPORT ==========
         const translations = {
             vi: {
@@ -1166,6 +1164,8 @@
         }
 
         // ========== MODAL FUNCTIONALITY ==========
+        let lastFocusedElement = null;
+
         const docData = {
             doc1: {
                 pdfLink: "2025_1583_1584_282_2025_ND_CP.pdf",
@@ -2093,6 +2093,8 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement; // Save trigger element
+
             const data = docData[id];
             if (!data) return;
 
@@ -2116,12 +2118,24 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Accessibility: Focus management
+            // Focus the Close (X) button by default
+            const closeBtn = document.getElementById('modalCloseBtn');
+            if (closeBtn) {
+                setTimeout(() => closeBtn.focus(), 50);
+            }
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            // Restore focus
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
 
         // Close modal on escape key
@@ -2225,6 +2239,12 @@
             document.body.style.overflow = 'hidden';
             lucide.createIcons(); // Render icons in modal
             updateWelcomeModalLang(currentLang);
+
+            // Focus the main action button
+            const startBtn = modal.querySelector('button span#welcome-btn')?.parentElement;
+            if (startBtn) {
+                setTimeout(() => startBtn.focus(), 50);
+            }
         }
 
         function closeWelcomeModal() {
@@ -2235,6 +2255,12 @@
             // Save preference if checkbox is checked
             if (document.getElementById('dontShowAgain').checked) {
                 localStorage.setItem('hideWelcomeModal', 'true');
+            }
+
+            // Set focus to the Skip Link (start of page)
+            const skipLink = document.querySelector('.skip-link');
+            if (skipLink) {
+                setTimeout(() => skipLink.focus(), 50);
             }
         }
 
