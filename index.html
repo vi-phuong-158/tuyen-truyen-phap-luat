@@ -816,7 +816,7 @@
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
+                <button id="modalCloseBtn" onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
                         data-lucide="x"></i></button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
@@ -933,7 +933,7 @@
 
                 <!-- Footer -->
                 <div class="px-6 pb-6">
-                    <button onclick="closeWelcomeModal()"
+                    <button id="welcomeActionBtn" onclick="closeWelcomeModal()"
                         class="w-full py-3 bg-gradient-to-r from-cand-red to-cand-red-dark text-white font-bold rounded-xl shadow-lg hover:shadow-glow hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
                         <span id="welcome-btn">Bắt đầu khám phá</span>
                         <i data-lucide="arrow-right" class="w-5 h-5"></i>
@@ -950,11 +950,12 @@
 
     <!-- Scripts -->
     <script>
-        lucide.createIcons();
+        let lastFocusedElement = null;
 
         // ========== MULTI-LANGUAGE SUPPORT ==========
         const translations = {
             vi: {
+                menu_label: "Menu chính",
                 home: "Trang chủ",
                 documents: "Văn bản",
                 ai_assistant: "Hỏi đáp AI",
@@ -1010,6 +1011,7 @@
                 stat_total: "Tổng truy cập"
             },
             en: {
+                menu_label: "Main Menu",
                 home: "Home",
                 documents: "Legal Docs",
                 ai_assistant: "AI Assistant",
@@ -1064,6 +1066,7 @@
                 stat_total: "Total Visits"
             },
             zh: {
+                menu_label: "主菜单",
                 home: "首页",
                 documents: "法律文件",
                 ai_assistant: "AI 助手",
@@ -1150,6 +1153,17 @@
             // Special cases (updating docData titles if we wanted to go deep, but for now we keep doc content in VI mainly as it's legal docs)
             // But we can update the modal buttons if they were separate, but they are inside HTML string in docData. 
             // For a simple implementation, we assume doc content stays Vietnamese.
+
+            // Update ARIA Labels
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            if (modalCloseBtn && translations[lang] && translations[lang].close_btn) {
+                modalCloseBtn.setAttribute('aria-label', translations[lang].close_btn);
+            }
+
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            if (mobileMenuBtn && translations[lang] && translations[lang].menu_label) {
+                mobileMenuBtn.setAttribute('aria-label', translations[lang].menu_label);
+            }
         }
 
         // ========== MOBILE MENU ==========
@@ -2093,6 +2107,8 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement; // Capture focus
+
             const data = docData[id];
             if (!data) return;
 
@@ -2111,17 +2127,29 @@
             document.getElementById('modalPdfLink').href = data.pdfLink;
 
             // Re-render icons in the new content
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
 
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Set focus to close button
+            setTimeout(() => {
+                const closeBtn = document.getElementById('modalCloseBtn');
+                if (closeBtn) closeBtn.focus();
+            }, 50);
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            // Restore focus
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
         }
 
         // Close modal on escape key
@@ -2223,8 +2251,14 @@
             const modal = document.getElementById('welcomeModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
-            lucide.createIcons(); // Render icons in modal
+            if (typeof lucide !== 'undefined') lucide.createIcons(); // Render icons in modal
             updateWelcomeModalLang(currentLang);
+
+            // Focus primary action
+            setTimeout(() => {
+                const btn = document.getElementById('welcomeActionBtn');
+                if (btn) btn.focus();
+            }, 50);
         }
 
         function closeWelcomeModal() {
