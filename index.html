@@ -4,6 +4,7 @@
 <head>
     <!-- Security: Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
+                   object-src 'none'; base-uri 'self';
                    script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com; 
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
                    font-src 'self' https://fonts.gstatic.com; 
@@ -49,7 +50,7 @@
         rel="stylesheet">
 
     <!-- Lucide Icons (deferred for performance) -->
-    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://unpkg.com/lucide@0.563.0/dist/umd/lucide.min.js" integrity="sha384-aRB6X3zBuyu5EQF6GZFp0RCYdOwxYAOdFk4nViPfqSXYxc+MrZlqbM+nUYRwDQn1" crossorigin="anonymous"></script>
 
     <script>
         tailwind.config = {
