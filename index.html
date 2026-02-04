@@ -810,13 +810,13 @@
     </a>
 
     <!-- ========== MODAL (SAME LOGIC) ========== -->
-    <div id="docModal" class="fixed inset-0 z-[100] hidden">
+    <div id="docModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="absolute inset-4 md:inset-20 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-float"
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
+                <button id="modalCloseBtn" onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
                         data-lucide="x"></i></button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
@@ -833,7 +833,7 @@
     <!-- ========== ONBOARDING REMOVED ========== -->
 
     <!-- ========== WELCOME MODAL ========== -->
-    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden">
+    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
             <div
@@ -933,7 +933,7 @@
 
                 <!-- Footer -->
                 <div class="px-6 pb-6">
-                    <button onclick="closeWelcomeModal()"
+                    <button id="welcomeActionBtn" onclick="closeWelcomeModal()"
                         class="w-full py-3 bg-gradient-to-r from-cand-red to-cand-red-dark text-white font-bold rounded-xl shadow-lg hover:shadow-glow hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
                         <span id="welcome-btn">Bắt đầu khám phá</span>
                         <i data-lucide="arrow-right" class="w-5 h-5"></i>
@@ -950,7 +950,8 @@
 
     <!-- Scripts -->
     <script>
-        lucide.createIcons();
+        // lucide.createIcons(); // Removed to prevent ReferenceError with deferred script
+        let lastFocusedElement = null;
 
         // ========== MULTI-LANGUAGE SUPPORT ==========
         const translations = {
@@ -2093,6 +2094,7 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement;
             const data = docData[id];
             if (!data) return;
 
@@ -2116,12 +2118,22 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Focus management
+            setTimeout(() => {
+                const closeBtn = document.getElementById('modalCloseBtn');
+                if (closeBtn) closeBtn.focus();
+            }, 50);
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
 
         // Close modal on escape key
@@ -2220,17 +2232,28 @@
         }
 
         function showWelcomeModal() {
+            lastFocusedElement = document.activeElement;
             const modal = document.getElementById('welcomeModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
             lucide.createIcons(); // Render icons in modal
             updateWelcomeModalLang(currentLang);
+
+            // Focus management
+            setTimeout(() => {
+                const actionBtn = document.getElementById('welcomeActionBtn');
+                if (actionBtn) actionBtn.focus();
+            }, 50);
         }
 
         function closeWelcomeModal() {
             const modal = document.getElementById('welcomeModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
 
             // Save preference if checkbox is checked
             if (document.getElementById('dontShowAgain').checked) {
