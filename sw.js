@@ -1,12 +1,12 @@
-const CACHE_NAME = 'tuyen-truyen-v1';
+const CACHE_NAME = 'tuyen-truyen-v2';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
     './logo.png',
     './logo-qlxnc.png',
     './icon.png',
-    'https://cdn.tailwindcss.com',
-    'https://unpkg.com/lucide@latest',
+    'https://cdn.tailwindcss.com/3.4.17',
+    'https://unpkg.com/lucide@0.563.0/dist/umd/lucide.min.js',
     'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,700&family=Dancing+Script:wght@700&display=swap'
 ];
 
