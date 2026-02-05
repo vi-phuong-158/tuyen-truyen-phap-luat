@@ -721,10 +721,10 @@
 
                                 <!-- Input Area -->
                                 <div class="relative shrink-0 pt-2 border-t border-gray-100">
-                                    <input type="text" id="fakeChatInput"
+                                    <input type="text" id="fakeChatInput" aria-label="Nhập câu hỏi"
                                         class="w-full pl-4 pr-12 py-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-cand-red focus:ring-2 focus:ring-cand-red/20 transition-all shadow-sm text-sm"
                                         placeholder="Nhập câu hỏi của bạn..." onkeypress="handleChatEnter(event)">
-                                    <button onclick="handleChatSend()"
+                                    <button onclick="handleChatSend()" aria-label="Gửi câu hỏi" title="Gửi câu hỏi"
                                         class="absolute right-2 top-1/2 mt-1 -translate-y-1/2 w-9 h-9 bg-cand-red text-white rounded-lg flex items-center justify-center hover:bg-cand-red-dark transition-colors shadow-md hover:shadow-lg transform active:scale-95">
                                         <i data-lucide="send" class="w-4 h-4 ml-0.5"></i>
                                     </button>
@@ -810,13 +810,13 @@
     </a>
 
     <!-- ========== MODAL (SAME LOGIC) ========== -->
-    <div id="docModal" class="fixed inset-0 z-[100] hidden">
+    <div id="docModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="absolute inset-4 md:inset-20 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-float"
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
+                <button onclick="closeModal()" aria-label="Đóng" id="modalCloseBtn" class="hover:bg-white/20 p-2 rounded-lg"><i
                         data-lucide="x"></i></button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
@@ -833,7 +833,7 @@
     <!-- ========== ONBOARDING REMOVED ========== -->
 
     <!-- ========== WELCOME MODAL ========== -->
-    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden">
+    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
             <div
