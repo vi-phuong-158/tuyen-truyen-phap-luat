@@ -555,7 +555,7 @@
                             class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
                             data-i18n="tag_decree">NGHỊ
                             ĐỊNH</span>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                        <h4 id="doc1-title" class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
                             data-i18n="doc1_title">Nghị
                             định 282/2025/NĐ-CP</h4>
                         <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc1_desc">Quy định xử phạt vi
@@ -566,7 +566,7 @@
 
 
                         <div class="flex gap-3 mt-auto">
-                            <button onclick="openModal('doc1')"
+                            <button id="doc1-btn" aria-labelledby="doc1-btn doc1-title" onclick="openModal('doc1')"
                                 class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
                                 data-i18n="view_quick">Xem
                                 nhanh</button>
@@ -589,7 +589,7 @@
                         <span
                             class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
                             data-i18n="tag_law">LUẬT</span>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                        <h4 id="doc2-title" class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
                             data-i18n="doc2_title">LUẬT
                             NHẬP CẢNH, XUẤT CẢNH, QUÁ CẢNH, CƯ TRÚ CỦA NGƯỜI NƯỚC NGOÀI TẠI VIỆT NAM</h4>
                         <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc2_desc">Văn bản hợp nhất quy
@@ -600,7 +600,7 @@
 
 
                         <div class="flex gap-3 mt-auto">
-                            <button onclick="openModal('doc2')"
+                            <button id="doc2-btn" aria-labelledby="doc2-btn doc2-title" onclick="openModal('doc2')"
                                 class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
                                 data-i18n="view_quick">Xem
                                 nhanh</button>
@@ -624,7 +624,7 @@
                             class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
                             data-i18n="tag_regulation">QUY
                             CHẾ</span>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                        <h4 id="doc3-title" class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
                             data-i18n="doc3_title">Quy chế
                             phối hợp trong quản lý người nước ngoài cư trú, hoạt động trên địa bàn tỉnh Phú Thọ</h4>
                         <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc3_desc">Quy định về phối hợp
@@ -635,7 +635,7 @@
 
 
                         <div class="flex gap-3 mt-auto">
-                            <button onclick="openModal('doc3')"
+                            <button id="doc3-btn" aria-labelledby="doc3-btn doc3-title" onclick="openModal('doc3')"
                                 class="flex-1 py-2 border border-cand-red text-cand-red rounded-lg font-semibold hover:bg-cand-red hover:text-white transition-all"
                                 data-i18n="view_quick">Xem
                                 nhanh</button>
@@ -819,8 +819,11 @@
             style="animation: none;">
             <div class="flex items-center justify-between p-6 bg-cand-red-dark text-white">
                 <h3 id="modalTitle" class="text-xl font-bold">Title</h3>
-                <button onclick="closeModal()" aria-label="Đóng" class="hover:bg-white/20 p-2 rounded-lg"><i
-                        data-lucide="x"></i></button>
+                <button onclick="closeModal()" class="hover:bg-white/20 p-2 rounded-lg" id="modalCloseBtn"
+                    aria-labelledby="modalCloseLabel">
+                    <span id="modalCloseLabel" class="sr-only" data-i18n="close_btn">Đóng</span>
+                    <i data-lucide="x"></i>
+                </button>
             </div>
             <div id="modalBody" class="flex-1 p-6 overflow-y-auto"></div>
             <div class="p-6 bg-gray-50 flex justify-end gap-3">
