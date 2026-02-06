@@ -351,35 +351,52 @@
                     </a>
                     <!-- Language Switcher -->
                     <div id="langSwitcher"
-                        class="flex items-center gap-2 ml-2 bg-black/20 px-3 py-1.5 rounded-full border border-white/10 relative">
-                        <button onclick="setLanguage('vi')"
-                            class="text-cand-gold font-bold text-sm hover:text-white transition-colors"
-                            id="lang-btn-vi">VN</button>
-                        <span class="text-white/40 text-xs">|</span>
-                        <button onclick="setLanguage('en')"
-                            class="text-white/70 text-sm hover:text-cand-gold transition-colors"
-                            id="lang-btn-en">EN</button>
-                        <span class="text-white/40 text-xs">|</span>
-                        <button onclick="setLanguage('zh')"
-                            class="text-white/70 text-sm hover:text-cand-gold transition-colors"
-                            id="lang-btn-zh">CN</button>
+                        class="flex items-center gap-3 ml-4 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 transition-all hover:bg-white/20">
+                        <div class="flex items-center gap-2 text-white/80 mr-2 border-r border-white/20 pr-3">
+                            <i data-lucide="globe" class="w-4 h-4"></i>
+                            <span class="text-xs font-medium uppercase hidden lg:inline" data-i18n="language">Ngôn
+                                ngữ</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button onclick="setLanguage('vi')"
+                                class="text-cand-gold font-bold text-sm hover:text-white transition-all transform hover:scale-110"
+                                id="lang-btn-vi">VN</button>
+                            <span class="text-white/20 text-xs">|</span>
+                            <button onclick="setLanguage('en')"
+                                class="text-white/70 text-sm hover:text-cand-gold transition-all transform hover:scale-110"
+                                id="lang-btn-en">EN</button>
+                            <span class="text-white/20 text-xs">|</span>
+                            <button onclick="setLanguage('zh')"
+                                class="text-white/70 text-sm hover:text-cand-gold transition-all transform hover:scale-110"
+                                id="lang-btn-zh">CN</button>
+                            <span class="text-white/20 text-xs">|</span>
+                            <button onclick="setLanguage('kr')"
+                                class="text-white/70 text-sm hover:text-cand-gold transition-all transform hover:scale-110"
+                                id="lang-btn-kr">KR</button>
+                        </div>
                     </div>
                 </nav>
 
                 <!-- Mobile Language Switcher (visible on mobile only) -->
                 <div class="flex items-center gap-2 md:hidden">
-                    <div class="flex items-center gap-1 bg-black/20 px-2 py-1 rounded-full border border-white/10">
+                    <div
+                        class="flex items-center gap-1 bg-red-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-cand-gold/50 shadow-lg ring-1 ring-white/10">
+                        <i data-lucide="globe" class="w-3 h-3 text-cand-gold mr-1"></i>
                         <button onclick="setLanguage('vi')"
-                            class="text-cand-gold font-bold text-xs hover:text-white transition-colors"
+                            class="text-cand-gold font-bold text-xs hover:text-white transition-colors uppercase"
                             id="mob-header-lang-vi">VN</button>
-                        <span class="text-white/40 text-xs">|</span>
+                        <span class="text-white/40 text-[10px]">|</span>
                         <button onclick="setLanguage('en')"
-                            class="text-white/70 text-xs hover:text-cand-gold transition-colors"
+                            class="text-white/80 text-xs hover:text-cand-gold transition-colors uppercase"
                             id="mob-header-lang-en">EN</button>
-                        <span class="text-white/40 text-xs">|</span>
+                        <span class="text-white/40 text-[10px]">|</span>
                         <button onclick="setLanguage('zh')"
-                            class="text-white/70 text-xs hover:text-cand-gold transition-colors"
+                            class="text-white/80 text-xs hover:text-cand-gold transition-colors uppercase"
                             id="mob-header-lang-zh">CN</button>
+                        <span class="text-white/40 text-[10px]">|</span>
+                        <button onclick="setLanguage('kr')"
+                            class="text-white/80 text-xs hover:text-cand-gold transition-colors uppercase"
+                            id="mob-header-lang-kr">KR</button>
                     </div>
 
                     <!-- Mobile Menu Button -->
@@ -419,6 +436,10 @@
                             <button onclick="setLanguage('zh')"
                                 class="text-white/70 text-sm hover:text-cand-gold transition-colors"
                                 id="mob-lang-zh">CN</button>
+                            <span class="text-white/40 text-xs">|</span>
+                            <button onclick="setLanguage('kr')"
+                                class="text-white/70 text-sm hover:text-cand-gold transition-colors"
+                                id="mob-lang-kr">KR</button>
                         </div>
                     </div>
                 </div>
@@ -802,7 +823,7 @@
 
         <!-- Speech Bubble -->
         <div id="aiBubble"
-            class="mb-28 mr-2 bg-white border-2 border-cand-gold text-gray-800 px-3 py-2 rounded-xl rounded-br-none shadow-lg max-w-[160px] relative transition-all duration-500 opacity-100 transform translate-y-0">
+            class="mb-20 mr-[-5px] bg-white border-2 border-cand-gold text-gray-800 px-3 py-2 rounded-xl rounded-br-none shadow-lg max-w-[160px] relative transition-all duration-500 opacity-100 transform translate-y-0">
             <p class="text-xs font-bold leading-tight" data-i18n="bubble_text">Xin chào ! Tôi là Trợ lý AI, bạn có
                 cần
                 giúp gì không?</p>
@@ -844,122 +865,7 @@
 
     <!-- ========== ONBOARDING REMOVED ========== -->
 
-    <!-- ========== WELCOME MODAL ========== -->
-    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden" role="dialog" aria-modal="true"
-        aria-labelledby="welcome-title">
-        <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
-        <div class="absolute inset-0 flex items-center justify-center p-4">
-            <div
-                class="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-lg w-full transform scale-100 animate-pulse-once">
-                <!-- Header -->
-                <div class="bg-gradient-to-r from-cand-red to-cand-red-dark p-6 text-center">
-                    <div class="flex items-center justify-center gap-3 mb-4">
-                        <img src="logo.png" alt="Logo Công an"
-                            class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-lg">
-                        <img src="logo-qlxnc.png" alt="Logo QLXNC"
-                            class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-lg">
-                    </div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-cand-gold uppercase tracking-wide"
-                        id="welcome-title">Chào mừng bạn!</h2>
-                    <p class="text-white text-base md:text-lg mt-2 font-medium" id="welcome-subtitle">Cổng thông tin
-                        tuyên truyền pháp luật</p>
-                    <p class="text-white/70 text-xs mt-1" id="welcome-org">Phòng Quản lý xuất nhập cảnh - Công an
-                        tỉnh
-                        Phú Thọ</p>
-                </div>
 
-                <!-- Body -->
-                <div class="p-6 space-y-4">
-                    <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-center mb-2">
-                        <h3 class="text-cand-red font-bold uppercase text-sm" id="welcome-campaign-title"
-                            data-i18n="welcome_campaign_title">Cao điểm 70 ngày đêm</h3>
-                        <p class="text-gray-700 text-xs mt-1" id="welcome-campaign-desc"
-                            data-i18n="welcome_campaign_desc">Tiên phong chuyển đổi số - Lập thành tích chào mừng
-                            các
-                            ngày lễ lớn.</p>
-                    </div>
-
-                    <p class="text-gray-600 text-center text-sm" id="welcome-intro">Khám phá các tính năng chính của
-                        chúng tôi:</p>
-
-                    <div class="space-y-3">
-                        <!-- Feature 1: Documents -->
-                        <div class="flex items-start gap-4 p-3 bg-blue-50 rounded-xl border border-blue-100">
-                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center shrink-0">
-                                <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat1-title">Thư Viện Văn
-                                    Bản
-                                    Pháp Luật</h4>
-                                <p class="text-gray-600 text-xs" id="welcome-feat1-desc">Tra cứu nhanh các nghị
-                                    định,
-                                    luật và quy chế về xuất nhập cảnh.</p>
-                            </div>
-                        </div>
-
-                        <!-- Feature 2: Quick View -->
-                        <div class="flex items-start gap-4 p-3 bg-red-50 rounded-xl border border-red-100">
-                            <div class="w-10 h-10 bg-cand-red rounded-full flex items-center justify-center shrink-0">
-                                <i data-lucide="zap" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat2-title">Xem Nhanh & Tóm
-                                    Tắt
-                                </h4>
-                                <p class="text-gray-600 text-xs" id="welcome-feat2-desc">Nắm bắt nội dung chính của
-                                    văn
-                                    bản mà không cần mở file PDF.</p>
-                            </div>
-                        </div>
-
-                        <!-- Feature 3: AI Assistant -->
-                        <div class="flex items-start gap-4 p-3 bg-amber-50 rounded-xl border border-amber-100">
-                            <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center shrink-0">
-                                <i data-lucide="bot" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat3-title">Trợ Lý AI Pháp
-                                    Luật
-                                </h4>
-                                <p class="text-gray-600 text-xs" id="welcome-feat3-desc">Hỏi đáp thủ tục visa, cư
-                                    trú
-                                    với trí tuệ nhân tạo 24/7.</p>
-                            </div>
-                        </div>
-
-                        <!-- Feature 4: Bilingual -->
-                        <div class="flex items-start gap-4 p-3 bg-green-50 rounded-xl border border-green-100">
-                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shrink-0">
-                                <i data-lucide="languages" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900 text-sm" id="welcome-feat4-title">Hỗ trợ Song ngữ
-                                </h4>
-                                <p class="text-gray-600 text-xs" id="welcome-feat4-desc">Giao diện và nội dung có
-                                    sẵn
-                                    bằng cả Tiếng Việt và Tiếng Anh.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Footer -->
-                <div class="px-6 pb-6">
-                    <button onclick="closeWelcomeModal()"
-                        class="w-full py-3 bg-gradient-to-r from-cand-red to-cand-red-dark text-white font-bold rounded-xl shadow-lg hover:shadow-glow hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
-                        <span id="welcome-btn">Bắt đầu khám phá</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
-                    <label class="flex items-center justify-center gap-2 mt-3 text-xs text-gray-500 cursor-pointer">
-                        <input type="checkbox" id="dontShowAgain"
-                            class="rounded border-gray-300 text-cand-red focus:ring-cand-red">
-                        <span id="welcome-checkbox">Không hiển thị lại</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Scripts -->
     <script>
@@ -1125,6 +1031,58 @@
                 stat_online: "在线",
                 stat_today: "今日",
                 stat_total: "总访问量"
+            },
+            kr: {
+                home: "홈",
+                documents: "법률 문서",
+                ai_assistant: "AI 도우미",
+                language: "언어:",
+                search_docs: "문서 검색",
+                ask_ai: "AI 도우미 질문",
+                docs_title: "법률 문서 보관소",
+                view_quick: "빠른 보기",
+                open_file: "파일 열기",
+                motto_1: "규율은 기초",
+                motto_2: "충성은 핵심",
+                motto_3: "국민 친화는 척도",
+                unit_name_1: "푸토성 공안",
+                unit_name_2: "출입국 관리 처",
+                hero_movement: "경쟁 운동",
+                hero_3best: "3가지 최고",
+                best_discipline: "최고의 규율",
+                best_loyalty: "최고의 충성",
+                best_closeness: "가장 친근한",
+                tag_decree: "시행령",
+                tag_law: "법률",
+                tag_regulation: "규정",
+                doc1_title: "시행령 282/2025/NĐ-CP",
+                doc1_desc: "안보, 질서 및 사회 안전 분야의 행정 위반 처벌 규정.",
+                doc2_title: "베트남 내 외국인의 입국, 출국, 경유, 거주에 관한 법률",
+                doc2_desc: "외국인의 입국, 출국, 경유, 거주 규정에 관한 통합 문서.",
+                doc3_title: "푸토성 내 외국인 거주 및 활동 관리 협력 규정",
+                doc3_desc: "푸토성 내 외국인 관리 협력에 관한 규정.",
+                ai_section_title: "법률 가상 비서",
+                ai_section_desc: "출입국 규정을 신속하게 검색할 수 있도록 도와주는 지능형 자동 응답 시스템. 정확 - 신속 - 편리.",
+                chat_now: "지금 채팅하기",
+                ai_name: "AI 도우미",
+                chat_demo_q: "관광 비자 연장 절차는 어떻게 되나요?",
+                chat_demo_a: "최신 규정에 따르면: 여권 원본, NA5 신고서, 임시 거주 확인서가 필요합니다...",
+                footer_slogan: "조국을 위해 헌신 - 국민을 위해 봉사",
+                designed_by_label: "디자인: Vi Ngoc Phuong 대위",
+                designed_by_role: "PA01-PA08 연합 청년단 서기",
+                online_status: "온라인",
+                bubble_text: "안녕하세요! AI 도우미입니다. 무엇을 도와드릴까요?",
+                campaign_peak: "70일 집중 캠페인",
+                campaign_digital: "디지털 전환 선도",
+                anniv_line1: "청년 공사 축하",
+                anniv_line2: "호치민 공산청년단 창립 95주년",
+                anniv_line3: "공안부 청년단 전통 70주년",
+                footer_action: "푸토 공안 청년: 돌격 - 공로 - 조국 안보를 위하여",
+                close_btn: "닫기",
+                view_details_btn: "자세히 보기",
+                stat_online: "온라인",
+                stat_today: "오늘",
+                stat_total: "총 방문수"
             }
         };
 
@@ -1142,7 +1100,7 @@
             });
 
             // Update Buttons State
-            const ids = ['lang-btn-vi', 'lang-btn-en', 'lang-btn-zh', 'mob-lang-vi', 'mob-lang-en', 'mob-lang-zh', 'mob-header-lang-vi', 'mob-header-lang-en', 'mob-header-lang-zh'];
+            const ids = ['lang-btn-vi', 'lang-btn-en', 'lang-btn-zh', 'lang-btn-kr', 'mob-lang-vi', 'mob-lang-en', 'mob-lang-zh', 'mob-lang-kr', 'mob-header-lang-vi', 'mob-header-lang-en', 'mob-header-lang-zh', 'mob-header-lang-kr'];
             ids.forEach(id => {
                 const el = document.getElementById(id);
                 if (!el) return;
@@ -1526,6 +1484,161 @@
                         </div>
                     </div>
                     `
+                },
+                kr: {
+                    title: "시행령 282/2025/NĐ-CP",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-cand-red p-5 rounded-r-xl shadow-sm">
+                             <h4 class="font-bold text-cand-red-dark text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="alert-octagon" class="w-5 h-5"></i>
+                                시행령 282/2025/NĐ-CP
+                            </h4>
+                            <p class="text-sm leading-relaxed">안보, 질서 및 사회 안전 분야의 행정 위반 처벌 규정. 베트남 내 <strong>외국인</strong> 및 <strong>외국 단체</strong>와 관련된 위반 행위, 처벌 수준 및 처리 권한을 상세히 규정.</p>
+                        </div>
+                         <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-cand-red text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                처벌 대상 및 형태
+                            </h5>
+                             <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="users" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>대상:</strong> 외국인 개인 및 단체. <strong>단체 위반: 개인의 2배</strong> 벌금.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="ban" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>특별 처벌:</strong> 경고/벌금 외에 <strong>추방</strong>이 주된 또는 추가 처벌로 적용될 수 있음.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Section 2 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-cand-red text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                출입국 및 거주 위반 (제21조)
+                            </h5>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="id-card" class="w-4 h-4 text-orange-500 mt-0.5 shrink-0"></i>
+                                    <div>
+                                        <strong>신분 증명서:</strong> 여권 미소지(이동 중): <strong class="text-cand-red">30만-50만</strong>. 허위 신고/제한 구역: <strong class="text-cand-red">50만-200만</strong>.
+                                    </div>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <strong class="block mb-2 text-gray-900">임시 거주 기간 초과:</strong>
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">16일 미만</span>
+                                            <strong class="text-cand-red">50만-200만</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">16 - 30일</span>
+                                            <strong class="text-cand-red">500만-1천만</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">30 - 60일</span>
+                                            <strong class="text-cand-red">1천만-1500만</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">60 - 90일</span>
+                                            <strong class="text-cand-red">1500만-2천만</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">90 - 180일</span>
+                                            <strong class="text-cand-red">2천만-2500만</strong>
+                                        </div>
+                                        <div class="bg-white p-2 rounded border text-center">
+                                            <span class="block text-gray-500">180일 - 1년</span>
+                                            <strong class="text-cand-red">2500만-3천만</strong>
+                                        </div>
+                                        <div class="bg-red-100 p-2 rounded border border-red-200 text-center col-span-2">
+                                            <span class="block text-red-700 font-bold">1년 이상</span>
+                                            <strong class="text-cand-red text-sm">3천만-4천만 동</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="briefcase" class="w-4 h-4 text-blue-500 mt-0.5 shrink-0"></i>
+                                    <div>
+                                        <strong>목적 위반:</strong> 무허가 활동: <strong class="text-cand-red">1500만-2천만</strong>. 비자 목적 위반: <strong class="text-cand-red">2천만-2500만</strong>.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-cand-red text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
+                                단체 및 숙박 시설의 책임
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-purple-50/50 p-3 rounded-lg border border-purple-100">
+                                    <strong class="text-purple-700 block mb-1">보증인</strong>
+                                    <span>책임 불이행 또는 불법 거주자 고용: <strong class="text-cand-red">2천만-2500만 동</strong>.</span>
+                                </div>
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-700 block mb-1">숙박 시설</strong>
+                                    <span>거주 신고 불이행: <strong class="text-cand-red">300만-2천만 동</strong> (인원에 따라 차등).</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg border border-gray-200 md:col-span-2">
+                                    <strong class="text-gray-700 block mb-1">경비업</strong>
+                                    <span>외국인을 경비원으로 고용: <strong class="text-cand-red">500만-1천만 동</strong>.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-cand-red text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span>
+                                추방 대상 행위
+                            </h5>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">공공 질서 침해</span>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="bomb" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">무기/폭발물 위반</span>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="ban" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">사회적 악덕(마약 등)</span>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded-lg text-center border border-red-100">
+                                    <i data-lucide="shield-alert" class="w-4 h-4 text-red-500 mx-auto mb-1"></i>
+                                    <span class="block">국가 안보 침해</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 5 -->
+                        <div class="bg-red-50/50 p-4 rounded-xl border border-red-100">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base">
+                                <span class="bg-cand-red text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                처벌 및 추방 권한
+                            </h5>
+                                <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="user" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>출입국 관리 실장</strong> & <strong>지방 공안 국장:</strong> 벌금 + <strong>추방</strong> 결정 권한.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="building-2" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>출입국 관리 국장:</strong> 최고 권한, 추방 결정.</span>
+                                </li>
+                                <li class="flex gap-2 bg-yellow-50 p-2 rounded-lg border border-yellow-200 mt-2">
+                                    <i data-lucide="info" class="w-4 h-4 text-yellow-600 mt-0.5 shrink-0"></i>
+                                    <span class="text-xs"><strong>참고:</strong> 안보상 필요시 벌금 납부 능력과 관계없이 즉시 <strong>추방</strong> 가능.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    `
                 }
             },
             doc2: {
@@ -1808,6 +1921,115 @@
                                 </div>
                             </div>
                          </div>
+                    </div>
+                    `
+                },
+                kr: {
+                    title: "베트남 내 외국인의 입국, 출국, 경유, 거주에 관한 법률",
+                    subtitle: "통합 문서 제 30/VBHN-VPQH 호",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-5 rounded-r-xl shadow-sm">
+                                <h4 class="font-bold text-blue-700 text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                                통합 문서 제 30/VBHN-VPQH 호
+                            </h4>
+                            <p class="text-sm leading-relaxed">베트남 내 외국인 활동에 대한 포괄적인 법률 규정: 입국, 출국, 경유, 거주의 원칙, 조건 및 절차.</p>
+                        </div>
+                         <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                범위 및 원칙
+                            </h5>
+                            <ul class="space-y-3 text-sm ml-2">
+                                 <li class="flex items-start gap-2">
+                                    <i data-lucide="shield" class="w-4 h-4 text-blue-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>원칙:</strong> 주권 및 국가 안보 보장. 관리는 <strong>공개적, 투명, 편리</strong>하면서도 엄격해야 함.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4 text-red-500 mt-0.5 shrink-0"></i>
+                                    <span><strong>금지:</strong> 불법 입국, 서류 위조, 허위 신고, 반국가 활동.</span>
+                                </li>
+                            </ul>
+                        </div>
+                         <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                비자 규정
+                            </h5>
+                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">DL (관광)</span>
+                                    <span class="text-sm">90일 이하</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">LĐ1, LĐ2 (노동)</span>
+                                    <span class="text-sm">2년 이하</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">ĐT1 - ĐT4 (투자)</span>
+                                    <span class="text-sm">01 - 05 년</span>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <span class="block font-bold text-blue-600 text-xs mb-1">TT (동반)</span>
+                                    <span class="text-sm">1년 이하</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 italic border-l-2 border-gray-300 pl-3">
+                                *투자, 노동, 가족 관계 입증 서류가 있는 경우를 제외하고는 일반적으로 목적 변경 불가.
+                            </p>
+                         </div>
+
+                        <!-- Section 3 & 4 Grid -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Section 3 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm border-b pb-2 border-gray-100">
+                                    <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span>
+                                    입국 / 출국
+                                </h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li><strong>조건:</strong> 유효한 여권 및 비자.</li>
+                                    <li><strong>비자 면제:</strong> 일방적 비자 면제 <strong>45일</strong>.</li>
+                                    <li><strong>출국 정지:</strong> 사건 연루, 세금 체납, 행정 처벌 미이행.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Section 4 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-sm border-b pb-2 border-gray-100">
+                                    <span class="bg-blue-100 text-blue-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span>
+                                    거주
+                                </h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li><strong>임시 거주:</strong> 전자 포털 또는 지역 공안 신고.</li>
+                                    <li><strong>거주증:</strong> 2 - 10년 (투자, 노동, 동반).</li>
+                                    <li><strong>영주권:</strong> 유공자, 전문가, 보증인.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                             <!-- Section 5 -->
+                        <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base">
+                                <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                권리 및 의무
+                            </h5>
+                                <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="user-check" class="w-4 h-4 text-blue-600 mt-0.5"></i>
+                                    <span><strong>권리:</strong> 생명, 재산 보호. 친척 초청 보증.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="gavel" class="w-4 h-4 text-cand-red mt-0.5"></i>
+                                    <span><strong>의무:</strong> 법률 준수, 목적에 맞는 활동, 신분증 소지.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="building-2" class="w-4 h-4 text-gray-600 mt-0.5"></i>
+                                    <span><strong>관리:</strong> 공안부(주관), 외교부(외교), 인민위원회(지방).</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     `
                 }
@@ -2101,6 +2323,133 @@
                         </div>
                     </div>
                     `
+                },
+                kr: {
+                    title: "푸토성 내 외국인 거주 및 활동 관리 협력 규정",
+                    subtitle: "결정문 제 3518/2025/QĐ-CTUBND 호",
+                    content: `
+                    <div class="space-y-6 text-gray-800 font-inter">
+                        <div class="bg-gradient-to-r from-teal-50 to-emerald-50 border-l-4 border-teal-500 p-5 rounded-r-xl shadow-sm">
+                             <h4 class="font-bold text-teal-700 text-lg mb-2 flex items-center gap-2">
+                                <i data-lucide="landmark" class="w-5 h-5"></i>
+                                결정문 제 3518/2025/QĐ-CTUBND 호
+                            </h4>
+                            <p class="text-sm leading-relaxed">푸토성 외국인 관리 협력 규정, <strong>2025년 10월 28일</strong>부터 효력 발생. 공안국을 "중추"로 하는 다단계 관리 네트워크 구축.</p>
+                        </div>
+                         <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-teal-100 text-teal-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+                                주관 기관
+                            </h5>
+                             <div class="grid grid-cols-1 gap-2 text-sm">
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="shield-check" class="w-5 h-5 text-teal-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-teal-700">공안국:</strong>
+                                        <span class="text-gray-600">출입국 및 외국인 거주에 대한 국가 관리 주관.</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="briefcase" class="w-5 h-5 text-blue-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-blue-700">내무국:</strong>
+                                        <span class="text-gray-600">외국인 노동 관리 주관.</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                                    <i data-lucide="globe" class="w-5 h-5 text-purple-600 shrink-0"></i>
+                                    <div>
+                                        <strong class="text-purple-700">외무국:</strong>
+                                        <span class="text-gray-600">지방 정부 초청 귀빈 및 영사 업무 관리.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2 -->
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base border-b pb-2 border-gray-100">
+                                <span class="bg-teal-100 text-teal-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                                전문 부서 책임
+                            </h5>
+                            <div class="grid md:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-blue-50/50 p-3 rounded-lg border border-blue-100">
+                                    <strong class="text-blue-700 block mb-1">교육청</strong>
+                                    <span>교육 분야 외국인 관리. 외국인 교사 초청 시 공안국과 협력.</span>
+                                </div>
+                                <div class="bg-pink-50/50 p-3 rounded-lg border border-pink-100">
+                                    <strong class="text-pink-700 block mb-1">보건국</strong>
+                                    <span>매월 <strong>15일 전까지</strong> 공안국에 개업 자격증 보고.</span>
+                                </div>
+                                <div class="bg-orange-50/50 p-3 rounded-lg border border-orange-100">
+                                    <strong class="text-orange-700 block mb-1">산업통상국</strong>
+                                    <span>대표 사무소 관리. 외국인 도착 <strong>7일 전</strong> 보고.</span>
+                                </div>
+                                <div class="bg-cyan-50/50 p-3 rounded-lg border border-cyan-100">
+                                    <strong class="text-cyan-700 block mb-1">산업단지 관리 위원회</strong>
+                                    <span>거주/숙박 계획 검토, 파업 처리.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3 & 4 Grid -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <!-- Section 3 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-2 text-sm border-b pb-2 border-gray-100 flex items-center gap-2">
+                                    <span class="bg-red-100 text-red-600 w-5 h-5 rounded-full flex items-center justify-center text-xs">!</span>
+                                    특별 상황
+                                </h5>
+                                <ul class="space-y-2 text-xs">
+                                    <li class="flex gap-2">
+                                        <i data-lucide="alert-triangle" class="w-3 h-3 text-red-500 mt-0.5 shrink-0"></i>
+                                        <span><strong>사고/사망:</strong> <strong>12시간 이내</strong> 외무국 통보.</span>
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <i data-lucide="shield" class="w-3 h-3 text-purple-500 mt-0.5 shrink-0"></i>
+                                        <span><strong>면책 특권 외국인:</strong> 외무국에서 외교적으로 처리.</span>
+                                    </li>
+                                    <li class="flex gap-2">
+                                        <i data-lucide="log-out" class="w-3 h-3 text-cand-red mt-0.5 shrink-0"></i>
+                                        <span><strong>추방:</strong> 공안국 주관 집행.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Section 4 -->
+                            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <h5 class="font-bold text-gray-900 mb-2 text-sm border-b pb-2 border-gray-100 flex items-center gap-2">
+                                    <i data-lucide="calendar-check" class="w-4 h-4 text-teal-600"></i>
+                                    보고 메커니즘
+                                </h5>
+                                <ul class="space-y-2 text-xs">
+                                    <li>• <strong>매월:</strong> 15일 전 → 공안국.</li>
+                                    <li>• <strong>6개월:</strong> 6월 15일 전 → 출입국 관리실.</li>
+                                    <li>• <strong>연간:</strong> 12월 15일 전 → 출입국 관리실.</li>
+                                    <li>• <strong>거주 신고:</strong> 공안부 온라인 포털.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Section 5 -->
+                        <div class="bg-teal-50/50 p-4 rounded-xl border border-teal-100">
+                            <h5 class="font-bold text-gray-900 mb-3 flex items-center gap-2 text-base">
+                                <span class="bg-teal-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span>
+                                보증/초청 기관 책임
+                            </h5>
+                                <ul class="text-sm space-y-2 ml-1">
+                                <li class="flex gap-2">
+                                    <i data-lucide="megaphone" class="w-4 h-4 text-teal-600 mt-0.5"></i>
+                                    <span>베트남 법률 홍보 협력, 위반 예방.</span>
+                                </li>
+                                <li class="flex gap-2">
+                                    <i data-lucide="handshake" class="w-4 h-4 text-teal-600 mt-0.5"></i>
+                                    <span>피보증인 관련 사건 발생 시 해결 협력.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    `
                 }
             },
         };
@@ -2168,122 +2517,7 @@
             }
         });
 
-        // ========== WELCOME MODAL FUNCTIONALITY ==========
-        const welcomeTranslations = {
-            vi: {
-                title: "CHÀO MỪNG BẠN!",
-                subtitle: "Cổng thông tin tuyên truyền pháp luật",
-                org: "Phòng Quản lý xuất nhập cảnh - Công an tỉnh Phú Thọ",
-                intro: "Khám phá các tính năng chính của chúng tôi:",
-                feat1_title: "Thư Viện Văn Bản Pháp Luật",
-                feat1_desc: "Tra cứu nhanh các nghị định, luật và quy chế về xuất nhập cảnh.",
-                feat2_title: "Xem Nhanh & Tóm Tắt",
-                feat2_desc: "Nắm bắt nội dung chính của văn bản mà không cần mở file PDF.",
-                feat3_title: "Trợ Lý AI Pháp Luật",
-                feat3_desc: "Hỏi đáp thủ tục visa, cư trú với trí tuệ nhân tạo 24/7.",
-                feat4_title: "Hỗ trợ Song ngữ",
-                feat4_desc: "Giao diện và nội dung có sẵn bằng cả Tiếng Việt và Tiếng Anh.",
-                btn: "Bắt đầu khám phá",
-                checkbox: "Không hiển thị lại",
-                campaign_title: "Cao điểm 70 ngày đêm",
-                campaign_desc: "Tiên phong chuyển đổi số - Lập thành tích chào mừng các ngày lễ lớn."
-            },
-            en: {
-                title: "WELCOME!",
-                subtitle: "Legal Information Portal",
-                org: "Immigration Department - Phu Tho Provincial Police",
-                intro: "Explore our key features:",
-                feat1_title: "Legal Document Library",
-                feat1_desc: "Quickly search decrees, laws, and regulations on immigration.",
-                feat2_title: "Quick View & Summary",
-                feat2_desc: "Grasp the main content without opening PDF files.",
-                feat3_title: "Legal AI Assistant",
-                feat3_desc: "Ask about visa and residence procedures with 24/7 AI.",
-                feat4_title: "Bilingual Support",
-                feat4_desc: "Interface and content available in both Vietnamese and English.",
-                btn: "Start Exploring",
-                checkbox: "Don't show again",
-                campaign_title: "70-Day Peak Campaign",
-                campaign_desc: "Pioneering Digital Transformation - Celebrating Major Holidays."
-            },
-            zh: {
-                title: "欢迎！",
-                subtitle: "法律宣传信息门户",
-                org: "出入境管理处 - 富寿省公安厅",
-                intro: "探索我们的主要功能：",
-                feat1_title: "法律文件库",
-                feat1_desc: "快速查询关于出入境的议定、法律和规制。",
-                feat2_title: "快速查看和摘要",
-                feat2_desc: "无需打开 PDF 文件即可掌握文件主要内容。",
-                feat3_title: "法律 AI 助手",
-                feat3_desc: "通过 24/7 人工智能咨询签证、居留手续。",
-                feat4_title: "多语言支持",
-                feat4_desc: "界面和内容提供越南语、英语和中文。",
-                btn: "开始探索",
-                checkbox: "不再显示",
-                campaign_title: "70 天巅峰冲刺",
-                campaign_desc: "数字化转型先锋 -以此成绩庆祝各大节日。"
-            }
-        };
 
-        function updateWelcomeModalLang(lang) {
-            const t = welcomeTranslations[lang];
-            document.getElementById('welcome-title').innerText = t.title;
-            document.getElementById('welcome-subtitle').innerText = t.subtitle;
-            document.getElementById('welcome-org').innerText = t.org;
-            document.getElementById('welcome-intro').innerText = t.intro;
-            document.getElementById('welcome-feat1-title').innerText = t.feat1_title;
-            document.getElementById('welcome-feat1-desc').innerText = t.feat1_desc;
-            document.getElementById('welcome-feat2-title').innerText = t.feat2_title;
-            document.getElementById('welcome-feat2-desc').innerText = t.feat2_desc;
-            document.getElementById('welcome-feat3-title').innerText = t.feat3_title;
-            document.getElementById('welcome-feat3-desc').innerText = t.feat3_desc;
-            document.getElementById('welcome-feat4-title').innerText = t.feat4_title;
-            document.getElementById('welcome-feat4-desc').innerText = t.feat4_desc;
-            document.getElementById('welcome-btn').innerText = t.btn;
-            document.getElementById('welcome-checkbox').innerText = t.checkbox;
-            document.getElementById('welcome-campaign-title').innerText = t.campaign_title;
-            document.getElementById('welcome-campaign-desc').innerText = t.campaign_desc;
-        }
-
-        function showWelcomeModal() {
-            const modal = document.getElementById('welcomeModal');
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            lucide.createIcons(); // Render icons in modal
-            updateWelcomeModalLang(currentLang);
-
-            // Focus the main action button
-            const startBtn = modal.querySelector('button span#welcome-btn')?.parentElement;
-            if (startBtn) {
-                setTimeout(() => startBtn.focus(), 50);
-            }
-        }
-
-        function closeWelcomeModal() {
-            const modal = document.getElementById('welcomeModal');
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-
-            // Save preference if checkbox is checked
-            if (document.getElementById('dontShowAgain').checked) {
-                localStorage.setItem('hideWelcomeModal', 'true');
-            }
-
-            // Set focus to the Skip Link (start of page)
-            const skipLink = document.querySelector('.skip-link');
-            if (skipLink) {
-                setTimeout(() => skipLink.focus(), 50);
-            }
-        }
-
-        // Show welcome modal on page load (unless user opted out)
-        window.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('hideWelcomeModal') !== 'true') {
-                // Small delay for smoother UX
-                setTimeout(showWelcomeModal, 500);
-            }
-        });
 
         // ========== SERVICE WORKER REGISTRATION ==========
         if ('serviceWorker' in navigator) {
@@ -2499,12 +2733,7 @@
                     document.body.style.overflow = '';
                 }
 
-                // Close welcome modal
-                const welcomeModal = document.getElementById('welcomeModal');
-                if (welcomeModal && !welcomeModal.classList.contains('hidden')) {
-                    welcomeModal.classList.add('hidden');
-                    document.body.style.overflow = '';
-                }
+
 
                 // Close mobile menu
                 const mobileMenu = document.getElementById('mobileMenu');

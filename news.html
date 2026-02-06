@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Tin Tức Hoạt Động Đoàn | Công An Tỉnh Phú Thọ</title>
+
+    <!-- CSS & Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,700&display=swap"
+        rel="stylesheet">
+    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cand-red': '#D00000',
+                        'cand-red-dark': '#8B0000',
+                        'cand-gold': '#FFD700',
+                        'cand-gold-dark': '#B8860B',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header id="header"
+        class="fixed top-0 left-0 right-0 z-50 bg-cand-red-dark/95 backdrop-blur-md shadow-lg border-b border-cand-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="Logo" class="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-md">
+                    <img src="logo-qlxnc.png" alt="QLXNC"
+                        class="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-md">
+                    <div class="hidden md:block">
+                        <h1 class="text-white font-bold text-base leading-none" data-i18n="unit_name_1">CÔNG AN TỈNH PHÚ
+                            THỌ</h1>
+                        <p class="text-cand-gold text-xs font-bold tracking-wider" data-i18n="unit_name_2">PHÒNG QUẢN LÝ
+                            XUẤT NHẬP CẢNH</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="text-white/90 hover:text-cand-gold font-medium transition-colors"
+                        data-i18n="home">Trang chủ</a>
+                    <a href="documents.html" class="text-white/90 hover:text-cand-gold font-medium transition-colors"
+                        data-i18n="documents">Văn bản</a>
+                    <a href="news.html" class="text-cand-gold font-bold border-b-2 border-cand-gold transition-colors"
+                        data-i18n="news">Tin tức</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobileMenu"
+                class="hidden md:hidden border-t border-white/10 overflow-hidden transition-all duration-300 ease-in-out bg-cand-red-dark">
+                <div class="py-4 space-y-2 flex flex-col">
+                    <a href="index.html" class="block px-4 py-2 text-white/90 hover:bg-white/10" data-i18n="home">Trang
+                        chủ</a>
+                    <a href="documents.html" class="block px-4 py-2 text-white/90 hover:bg-white/10"
+                        data-i18n="documents">Văn bản</a>
+                    <a href="news.html" class="block px-4 py-2 text-cand-gold font-bold bg-white/10"
+                        data-i18n="news">Tin tức</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-20 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Page Title -->
+            <div class="text-center mb-12">
+                <span class="text-cand-red font-bold uppercase tracking-wider text-sm">Hoạt động Đoàn</span>
+                <h2 class="text-3xl md:text-5xl font-black text-gray-900 mt-2 font-playfair">Tin Tức & Sự Kiện</h2>
+                <div class="w-24 h-1.5 bg-cand-gold mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Content Placeholder -->
+            <div
+                class="flex flex-col items-center justify-center py-12 text-center bg-white rounded-3xl border border-gray-100 shadow-sm p-8">
+                <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                    <i data-lucide="newspaper" class="w-10 h-10 text-gray-400"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Đang cập nhật...</h3>
+                <p class="text-gray-500 max-w-md">
+                    Chuyên mục tin tức đang được xây dựng. Vui lòng quay lại sau để cập nhật các hoạt động mới nhất của
+                    Chi đoàn.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-cand-red-dark text-white pt-16 pb-8 border-t-4 border-cand-gold">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h4 class="font-bold text-lg mb-2" data-i18n="unit_name_1">CÔNG AN TỈNH PHÚ THỌ</h4>
+            <p class="text-white/60 text-sm">copyleft &copy; 2025</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
