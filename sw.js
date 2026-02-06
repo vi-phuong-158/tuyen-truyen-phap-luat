@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tuyen-truyen-v2';
+const CACHE_NAME = 'tuyen-truyen-v3';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
