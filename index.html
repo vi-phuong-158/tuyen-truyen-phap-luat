@@ -52,7 +52,9 @@
         rel="stylesheet">
 
     <!-- Lucide Icons (deferred for performance) -->
-    <script defer src="https://unpkg.com/lucide@0.563.0/dist/umd/lucide.min.js" integrity="sha384-aRB6X3zBuyu5EQF6GZFp0RCYdOwxYAOdFk4nViPfqSXYxc+MrZlqbM+nUYRwDQn1" crossorigin="anonymous"></script>
+    <script defer src="https://unpkg.com/lucide@0.563.0/dist/umd/lucide.min.js"
+        integrity="sha384-aRB6X3zBuyu5EQF6GZFp0RCYdOwxYAOdFk4nViPfqSXYxc+MrZlqbM+nUYRwDQn1"
+        crossorigin="anonymous"></script>
 
     <script>
         tailwind.config = {
@@ -555,7 +557,8 @@
                             class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
                             data-i18n="tag_decree">NGHỊ
                             ĐỊNH</span>
-                        <h4 id="doc1-title" class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                        <h4 id="doc1-title"
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
                             data-i18n="doc1_title">Nghị
                             định 282/2025/NĐ-CP</h4>
                         <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc1_desc">Quy định xử phạt vi
@@ -589,7 +592,8 @@
                         <span
                             class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
                             data-i18n="tag_law">LUẬT</span>
-                        <h4 id="doc2-title" class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                        <h4 id="doc2-title"
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
                             data-i18n="doc2_title">LUẬT
                             NHẬP CẢNH, XUẤT CẢNH, QUÁ CẢNH, CƯ TRÚ CỦA NGƯỜI NƯỚC NGOÀI TẠI VIỆT NAM</h4>
                         <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc2_desc">Văn bản hợp nhất quy
@@ -624,7 +628,8 @@
                             class="inline-block px-3 py-1 bg-cand-red/10 text-cand-red text-xs font-bold rounded-full mb-3 border border-cand-red/20"
                             data-i18n="tag_regulation">QUY
                             CHẾ</span>
-                        <h4 id="doc3-title" class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
+                        <h4 id="doc3-title"
+                            class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cand-red transition-colors"
                             data-i18n="doc3_title">Quy chế
                             phối hợp trong quản lý người nước ngoài cư trú, hoạt động trên địa bàn tỉnh Phú Thọ</h4>
                         <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-i18n="doc3_desc">Quy định về phối hợp
@@ -813,7 +818,8 @@
     </a>
 
     <!-- ========== MODAL (SAME LOGIC) ========== -->
-    <div id="docModal" class="fixed inset-0 z-[100] hidden">
+    <div id="docModal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true"
+        aria-labelledby="modalTitle">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
         <div class="absolute inset-4 md:inset-20 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-float"
             style="animation: none;">
@@ -839,7 +845,8 @@
     <!-- ========== ONBOARDING REMOVED ========== -->
 
     <!-- ========== WELCOME MODAL ========== -->
-    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden">
+    <div id="welcomeModal" class="fixed inset-0 z-[110] hidden" role="dialog" aria-modal="true"
+        aria-labelledby="welcome-title">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-md"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
             <div
@@ -1170,6 +1177,8 @@
         }
 
         // ========== MODAL FUNCTIONALITY ==========
+        let lastFocusedElement = null;
+
         const docData = {
             doc1: {
                 pdfLink: "2025_1583_1584_282_2025_ND_CP.pdf",
@@ -2097,6 +2106,8 @@
         };
 
         function openModal(id) {
+            lastFocusedElement = document.activeElement; // Save trigger element
+
             const data = docData[id];
             if (!data) return;
 
@@ -2120,12 +2131,24 @@
             const modal = document.getElementById('docModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+            // Accessibility: Focus management
+            // Focus the Close (X) button by default
+            const closeBtn = document.getElementById('modalCloseBtn');
+            if (closeBtn) {
+                setTimeout(() => closeBtn.focus(), 50);
+            }
         }
 
         function closeModal() {
             const modal = document.getElementById('docModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+
+            // Restore focus
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
 
         // Close modal on escape key
@@ -2229,6 +2252,12 @@
             document.body.style.overflow = 'hidden';
             lucide.createIcons(); // Render icons in modal
             updateWelcomeModalLang(currentLang);
+
+            // Focus the main action button
+            const startBtn = modal.querySelector('button span#welcome-btn')?.parentElement;
+            if (startBtn) {
+                setTimeout(() => startBtn.focus(), 50);
+            }
         }
 
         function closeWelcomeModal() {
@@ -2239,6 +2268,12 @@
             // Save preference if checkbox is checked
             if (document.getElementById('dontShowAgain').checked) {
                 localStorage.setItem('hideWelcomeModal', 'true');
+            }
+
+            // Set focus to the Skip Link (start of page)
+            const skipLink = document.querySelector('.skip-link');
+            if (skipLink) {
+                setTimeout(() => skipLink.focus(), 50);
             }
         }
 
