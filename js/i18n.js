@@ -162,6 +162,58 @@ const translations = {
         stat_online: "在线",
         stat_today: "今日",
         stat_total: "总访问量"
+    },
+    kr: {
+        home: "홈",
+        documents: "법률 문서",
+        ai_assistant: "AI 도우미",
+        language: "언어:",
+        search_docs: "문서 검색",
+        ask_ai: "AI 도우미 질문",
+        docs_title: "법률 문서 보관소",
+        view_quick: "빠른 보기",
+        open_file: "파일 열기",
+        motto_1: "규율은 기초",
+        motto_2: "충성은 핵심",
+        motto_3: "국민 친화는 척도",
+        unit_name_1: "푸토성 공안",
+        unit_name_2: "출입국 관리 처",
+        hero_movement: "경쟁 운동",
+        hero_3best: "3가지 최고",
+        best_discipline: "최고의 규율",
+        best_loyalty: "최고의 충성",
+        best_closeness: "가장 친근한",
+        tag_decree: "시행령",
+        tag_law: "법률",
+        tag_regulation: "규정",
+        doc1_title: "시행령 282/2025/NĐ-CP",
+        doc1_desc: "안보, 질서 및 사회 안전 분야의 행정 위반 처벌 규정.",
+        doc2_title: "베트남 내 외국인의 입국, 출국, 경유, 거주에 관한 법률",
+        doc2_desc: "외국인의 입국, 출국, 경유, 거주 규정에 관한 통합 문서.",
+        doc3_title: "푸토성 내 외국인 거주 및 활동 관리 협력 규정",
+        doc3_desc: "푸토성 내 외국인 관리 협력에 관한 규정.",
+        ai_section_title: "법률 가상 비서",
+        ai_section_desc: "출입국 규정을 신속하게 검색할 수 있도록 도와주는 지능형 자동 응답 시스템. 정확 - 신속 - 편리.",
+        chat_now: "지금 채팅하기",
+        ai_name: "AI 도우미",
+        chat_demo_q: "관광 비자 연장 절차는 어떻게 되나요?",
+        chat_demo_a: "최신 규정에 따르면: 여권 원본, NA5 신고서, 임시 거주 확인서가 필요합니다...",
+        footer_slogan: "조국을 위해 헌신 - 국민을 위해 봉사",
+        designed_by_label: "디자인: Vi Ngoc Phuong 대위",
+        designed_by_role: "PA01-PA08 연합 청년단 서기",
+        online_status: "온라인",
+        bubble_text: "안녕하세요! AI 도우미입니다. 무엇을 도와드릴까요?",
+        campaign_peak: "70일 집중 캠페인",
+        campaign_digital: "디지털 전환 선도",
+        anniv_line1: "청년 공사 축하",
+        anniv_line2: "호치민 공산청년단 창립 95주년",
+        anniv_line3: "공안부 청년단 전통 70주년",
+        footer_action: "푸토 공안 청년: 돌격 - 공로 - 조국 안보를 위하여",
+        close_btn: "닫기",
+        view_details_btn: "자세히 보기",
+        stat_online: "온라인",
+        stat_today: "오늘",
+        stat_total: "총 방문수"
     }
 };
 
@@ -222,10 +274,10 @@ const welcomeTranslations = {
     }
 };
 
-let currentLang = 'vi';
+window.currentLang = 'vi';
 
 function setLanguage(lang) {
-    currentLang = lang;
+    window.currentLang = lang;
 
     // Update Text Content
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -237,9 +289,9 @@ function setLanguage(lang) {
 
     // Update Buttons State
     const langIds = [
-        'lang-btn-vi', 'lang-btn-en', 'lang-btn-zh',
-        'mob-lang-vi', 'mob-lang-en', 'mob-lang-zh',
-        'mob-header-lang-vi', 'mob-header-lang-en', 'mob-header-lang-zh'
+        'lang-btn-vi', 'lang-btn-en', 'lang-btn-zh', 'lang-btn-kr',
+        'mob-lang-vi', 'mob-lang-en', 'mob-lang-zh', 'mob-lang-kr',
+        'mob-header-lang-vi', 'mob-header-lang-en', 'mob-header-lang-zh', 'mob-header-lang-kr'
     ];
 
     langIds.forEach(id => {
