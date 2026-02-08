@@ -161,7 +161,8 @@ function handleChatSend() {
         const messages = {
             vi: { title: 'Đã mở kết nối!', desc: 'Tôi đã chuyển câu hỏi của bạn sang hệ thống NotebookLM để xử lý chi tiết hơn. Vui lòng kiểm tra tab mới.' },
             en: { title: 'Connection opened!', desc: 'I have redirected your question to NotebookLM for detailed processing. Please check the new tab.' },
-            zh: { title: '连接已打开！', desc: '我已将您的问题转至NotebookLM进行详细处理。请检查新标签页。' }
+            zh: { title: '连接已打开！', desc: '我已将您的问题转至NotebookLM进行详细处理。请检查新标签页。' },
+            kr: { title: '연결되었습니다!', desc: '귀하의 질문을 상세 처리를 위해 NotebookLM 시스템으로 전달했습니다. 새 탭을 확인해 주세요.' }
         };
         const msg = messages[lang] || messages.vi;
 
