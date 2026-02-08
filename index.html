@@ -750,10 +750,10 @@
 
                                 <!-- Input Area -->
                                 <div class="relative shrink-0 pt-2 border-t border-gray-100">
-                                    <input type="text" id="fakeChatInput"
+                                    <input type="text" id="fakeChatInput" aria-label="Nhập câu hỏi của bạn..."
                                         class="w-full pl-4 pr-12 py-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-cand-red focus:ring-2 focus:ring-cand-red/20 transition-all shadow-sm text-sm"
                                         placeholder="Nhập câu hỏi của bạn..." onkeypress="handleChatEnter(event)">
-                                    <button onclick="handleChatSend()"
+                                    <button id="chatSendBtn" aria-label="Gửi câu hỏi" onclick="handleChatSend()"
                                         class="absolute right-2 top-1/2 mt-1 -translate-y-1/2 w-9 h-9 bg-cand-red text-white rounded-lg flex items-center justify-center hover:bg-cand-red-dark transition-colors shadow-md hover:shadow-lg transform active:scale-95">
                                         <i data-lucide="send" class="w-4 h-4 ml-0.5"></i>
                                     </button>
@@ -818,7 +818,7 @@
     </main>
 
     <!-- ========== FLOATING BUTTON ========== -->
-    <a id="aiFloatingBtn" href="https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484"
+    <a id="aiFloatingBtn" aria-label="Hỏi đáp với Trợ lý AI" href="https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484"
         target="_blank" rel="noopener noreferrer" class="fixed bottom-0 right-4 z-50 flex items-end group">
 
         <!-- Speech Bubble -->
@@ -924,7 +924,11 @@
                 view_details_btn: "Xem chi tiết",
                 stat_online: "Đang Online",
                 stat_today: "Hôm nay",
-                stat_total: "Tổng truy cập"
+                stat_total: "Tổng truy cập",
+                menu_label: "Menu chính",
+                send_btn_label: "Gửi câu hỏi",
+                chat_placeholder: "Nhập câu hỏi của bạn...",
+                float_btn_label: "Hỏi đáp với Trợ lý AI"
             },
             en: {
                 home: "Home",
@@ -978,7 +982,11 @@
                 view_details_btn: "View Details",
                 stat_online: "Online",
                 stat_today: "Today",
-                stat_total: "Total Visits"
+                stat_total: "Total Visits",
+                menu_label: "Main menu",
+                send_btn_label: "Send question",
+                chat_placeholder: "Type your question...",
+                float_btn_label: "Chat with AI Assistant"
             },
             zh: {
                 home: "首页",
@@ -1030,7 +1038,11 @@
                 view_details_btn: "查看详情",
                 stat_online: "在线",
                 stat_today: "今日",
-                stat_total: "总访问量"
+                stat_total: "总访问量",
+                menu_label: "主菜单",
+                send_btn_label: "发送问题",
+                chat_placeholder: "输入您的问题...",
+                float_btn_label: "咨询 AI 助手"
             },
             kr: {
                 home: "홈",
@@ -1082,7 +1094,11 @@
                 view_details_btn: "자세히 보기",
                 stat_online: "온라인",
                 stat_today: "오늘",
-                stat_total: "총 방문수"
+                stat_total: "총 방문수",
+                menu_label: "메인 메뉴",
+                send_btn_label: "질문 보내기",
+                chat_placeholder: "질문을 입력하세요...",
+                float_btn_label: "AI 도우미와 채팅"
             }
         };
 
@@ -1098,6 +1114,25 @@
                     el.innerText = translations[lang][key];
                 }
             });
+
+            // Update ARIA Labels & Placeholders
+            const map = {
+                'mobileMenuBtn': 'menu_label',
+                'chatSendBtn': 'send_btn_label',
+                'aiFloatingBtn': 'float_btn_label'
+            };
+            for (const [id, key] of Object.entries(map)) {
+                const el = document.getElementById(id);
+                if (el && translations[lang][key]) {
+                    el.setAttribute('aria-label', translations[lang][key]);
+                }
+            }
+
+            const chatInput = document.getElementById('fakeChatInput');
+            if (chatInput && translations[lang]['chat_placeholder']) {
+                chatInput.placeholder = translations[lang]['chat_placeholder'];
+                chatInput.setAttribute('aria-label', translations[lang]['chat_placeholder']);
+            }
 
             // Update Buttons State
             const ids = ['lang-btn-vi', 'lang-btn-en', 'lang-btn-zh', 'lang-btn-kr', 'mob-lang-vi', 'mob-lang-en', 'mob-lang-zh', 'mob-lang-kr', 'mob-header-lang-vi', 'mob-header-lang-en', 'mob-header-lang-zh', 'mob-header-lang-kr'];
