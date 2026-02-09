@@ -1,6 +1,6 @@
 /**
  * Tuyen Truyen Phap Luat - Internationalization (i18n)
- * Translations for Vietnamese, English, and Chinese
+ * Translations for Vietnamese, English, Chinese, and Korean
  */
 
 const translations = {
@@ -37,13 +37,12 @@ const translations = {
         ai_section_desc: "Hệ thống giải đáp tự động thông minh, giúp bạn tra cứu nhanh chóng các quy định về xuất nhập cảnh. Chính xác - Nhanh chóng - Tiện lợi.",
         chat_now: "Trò chuyện ngay",
         ai_name: "Trợ lý AI",
-        ai_welcome: "Xin chào! Tôi là Trợ lý AI pháp luật. Bạn muốn hỏi gì về thủ tục xuất nhập cảnh hôm nay?",
         chat_demo_q: "Thủ tục gia hạn visa du lịch gồm những gì?",
         chat_demo_a: "Theo quy định mới nhất, bạn cần chuẩn bị: Hộ chiếu gốc, tờ khai NA5, và xác nhận tạm trú...",
         footer_slogan: "VÌ NƯỚC QUÊN THÂN - VÌ DÂN PHỤC VỤ",
         designed_by_label: "Thiết kế bởi Đại úy Vi Ngọc Phương",
         designed_by_role: "Bí thư Chi đoàn ghép Phòng PA01-PA08",
-        online_status: "Sẵn sàng hỗ trợ",
+        online_status: "Online",
         bubble_text: "Xin chào ! Tôi là Trợ lý AI, bạn có cần giúp gì không?",
         campaign_peak: "Cao điểm 70 ngày đêm",
         campaign_digital: "Tiên phong chuyển đổi số",
@@ -90,14 +89,13 @@ const translations = {
         ai_section_desc: "Smart automated answering system helping you quickly look up immigration regulations. Accurate - Fast - Convenient.",
         chat_now: "Chat Now",
         ai_name: "AI Assistant",
-        ai_welcome: "Hello! I'm the Legal AI Assistant. What would you like to ask about immigration procedures today?",
         chat_demo_q: "What are the procedures for extending a tourist visa?",
         chat_demo_a: "According to the latest regulations, you need: Original passport, NA5 form, and temporary residence confirmation...",
         footer_slogan: "DEVOTED TO FATHERLAND - SERVING THE PEOPLE",
         designed_by_label: "Designed by Captain Vi Ngoc Phuong",
         designed_by_role: "Secretary of Joint Youth Union PA01-PA08",
-        online_status: "Ready to assist",
-        bubble_text: "Hello! I am AI Assistant, how can I help you?",
+        online_status: "Online",
+        bubble_text: "Hello! I am AI Assistant, surely allow me to help you?",
         campaign_peak: "70-Day Peak Campaign",
         campaign_digital: "Pioneering Digital Transformation",
         anniv_line1: "Youth Work Celebrating",
@@ -143,13 +141,12 @@ const translations = {
         ai_section_desc: "智能自动解答系统，帮助您快速查询出入境规定。准确 - 快速 - 便捷。",
         chat_now: "立即交谈",
         ai_name: "AI 助手",
-        ai_welcome: "你好！我是法律AI助手。今天您想咨询什么出入境手续？",
         chat_demo_q: "旅游签证延期手续包括什么？",
         chat_demo_a: "根据最新规定，您需要准备：护照原件、NA5 申报表和暂住证明...",
         footer_slogan: "忘我为国 - 服务为民",
         designed_by_label: "设计者：韦玉方上尉",
         designed_by_role: "PA01-PA08 联合团支部书记",
-        online_status: "在线服务",
+        online_status: "在线",
         bubble_text: "你好！我是 AI 助手，有什么可以帮您吗？",
         campaign_peak: "70 天巅峰冲刺",
         campaign_digital: "数字化转型先锋",
@@ -162,63 +159,58 @@ const translations = {
         stat_online: "在线",
         stat_today: "今日",
         stat_total: "总访问量"
-    }
-};
-
-const welcomeTranslations = {
-    vi: {
-        title: "CHÀO MỪNG BẠN!",
-        subtitle: "Cổng thông tin tuyên truyền pháp luật",
-        org: "Phòng Quản lý xuất nhập cảnh - Công an tỉnh Phú Thọ",
-        intro: "Khám phá các tính năng chính của chúng tôi:",
-        feat1_title: "Thư Viện Văn Bản Pháp Luật",
-        feat1_desc: "Tra cứu nhanh các nghị định, luật và quy chế về xuất nhập cảnh.",
-        feat2_title: "Xem Nhanh & Tóm Tắt",
-        feat2_desc: "Nắm bắt nội dung chính của văn bản mà không cần mở file PDF.",
-        feat3_title: "Trợ Lý AI Pháp Luật",
-        feat3_desc: "Hỏi đáp thủ tục visa, cư trú với trí tuệ nhân tạo 24/7.",
-        feat4_title: "Hỗ trợ Song ngữ",
-        feat4_desc: "Giao diện và nội dung có sẵn bằng cả Tiếng Việt và Tiếng Anh.",
-        btn: "Bắt đầu khám phá",
-        checkbox: "Không hiển thị lại",
-        campaign_title: "Cao điểm 70 ngày đêm",
-        campaign_desc: "Tiên phong chuyển đổi số - Lập thành tích chào mừng các ngày lễ lớn."
     },
-    en: {
-        title: "WELCOME!",
-        subtitle: "Legal Information Portal",
-        org: "Immigration Department - Phu Tho Provincial Police",
-        intro: "Explore our key features:",
-        feat1_title: "Legal Document Library",
-        feat1_desc: "Quickly search decrees, laws, and regulations on immigration.",
-        feat2_title: "Quick View & Summary",
-        feat2_desc: "Grasp the main content without opening PDF files.",
-        feat3_title: "Legal AI Assistant",
-        feat3_desc: "Ask about visa and residence procedures with 24/7 AI.",
-        feat4_title: "Bilingual Support",
-        feat4_desc: "Interface and content available in both Vietnamese and English.",
-        btn: "Start Exploring",
-        checkbox: "Don't show again",
-        campaign_title: "70-Day Peak Campaign",
-        campaign_desc: "Pioneering Digital Transformation - Celebrating Major Holidays."
-    },
-    zh: {
-        title: "欢迎！",
-        subtitle: "法律宣传信息门户",
-        org: "出入境管理处 - 富寿省公安厅",
-        intro: "探索我们的主要功能：",
-        feat1_title: "法律文件库",
-        feat1_desc: "快速查询关于出入境的议定、法律和规制。",
-        feat2_title: "快速查看和摘要",
-        feat2_desc: "无需打开 PDF 文件即可掌握文件主要内容。",
-        feat3_title: "法律 AI 助手",
-        feat3_desc: "通过 24/7 人工智能咨询签证、居留手续。",
-        feat4_title: "多语言支持",
-        feat4_desc: "界面和内容提供越南语、英语和中文。",
-        btn: "开始探索",
-        checkbox: "不再显示",
-        campaign_title: "70 天巅峰冲刺",
-        campaign_desc: "数字化转型先锋 - 以此成绩庆祝各大节日。"
+    kr: {
+        home: "홈",
+        documents: "법률 문서",
+        ai_assistant: "AI 도우미",
+        language: "언어:",
+        search_docs: "문서 검색",
+        ask_ai: "AI 도우미 질문",
+        docs_title: "법률 문서 보관소",
+        view_quick: "빠른 보기",
+        open_file: "파일 열기",
+        motto_1: "규율은 기초",
+        motto_2: "충성은 핵심",
+        motto_3: "국민 친화는 척도",
+        unit_name_1: "푸토성 공안",
+        unit_name_2: "출입국 관리 처",
+        hero_movement: "경쟁 운동",
+        hero_3best: "3가지 최고",
+        best_discipline: "최고의 규율",
+        best_loyalty: "최고의 충성",
+        best_closeness: "가장 친근한",
+        tag_decree: "시행령",
+        tag_law: "법률",
+        tag_regulation: "규정",
+        doc1_title: "시행령 282/2025/NĐ-CP",
+        doc1_desc: "안보, 질서 및 사회 안전 분야의 행정 위반 처벌 규정.",
+        doc2_title: "베트남 내 외국인의 입국, 출국, 경유, 거주에 관한 법률",
+        doc2_desc: "외국인의 입국, 출국, 경유, 거주 규정에 관한 통합 문서.",
+        doc3_title: "푸토성 내 외국인 거주 및 활동 관리 협력 규정",
+        doc3_desc: "푸토성 내 외국인 관리 협력에 관한 규정.",
+        ai_section_title: "법률 가상 비서",
+        ai_section_desc: "출입국 규정을 신속하게 검색할 수 있도록 도와주는 지능형 자동 응답 시스템. 정확 - 신속 - 편리.",
+        chat_now: "지금 채팅하기",
+        ai_name: "AI 도우미",
+        chat_demo_q: "관광 비자 연장 절차는 어떻게 되나요?",
+        chat_demo_a: "최신 규정에 따르면: 여권 원본, NA5 신고서, 임시 거주 확인서가 필요합니다...",
+        footer_slogan: "조국을 위해 헌신 - 국민을 위해 봉사",
+        designed_by_label: "디자인: Vi Ngoc Phuong 대위",
+        designed_by_role: "PA01-PA08 연합 청년단 서기",
+        online_status: "온라인",
+        bubble_text: "안녕하세요! AI 도우미입니다. 무엇을 도와드릴까요?",
+        campaign_peak: "70일 집중 캠페인",
+        campaign_digital: "디지털 전환 선도",
+        anniv_line1: "청년 공사 축하",
+        anniv_line2: "호치민 공산청년단 창립 95주년",
+        anniv_line3: "공안부 청년단 전통 70주년",
+        footer_action: "푸토 공안 청년: 돌격 - 공로 - 조국 안보를 위하여",
+        close_btn: "닫기",
+        view_details_btn: "자세히 보기",
+        stat_online: "온라인",
+        stat_today: "오늘",
+        stat_total: "총 방문수"
     }
 };
 
@@ -226,6 +218,7 @@ let currentLang = 'vi';
 
 function setLanguage(lang) {
     currentLang = lang;
+    window.currentLang = lang; // Expose globally for app.js
 
     // Update Text Content
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -236,16 +229,17 @@ function setLanguage(lang) {
     });
 
     // Update Buttons State
-    const langIds = [
-        'lang-btn-vi', 'lang-btn-en', 'lang-btn-zh',
-        'mob-lang-vi', 'mob-lang-en', 'mob-lang-zh',
-        'mob-header-lang-vi', 'mob-header-lang-en', 'mob-header-lang-zh'
+    const ids = [
+        'lang-btn-vi', 'lang-btn-en', 'lang-btn-zh', 'lang-btn-kr',
+        'mob-lang-vi', 'mob-lang-en', 'mob-lang-zh', 'mob-lang-kr',
+        'mob-header-lang-vi', 'mob-header-lang-en', 'mob-header-lang-zh', 'mob-header-lang-kr'
     ];
 
-    langIds.forEach(id => {
+    ids.forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
 
+        // Check if this button matches current lang
         const isSelected = id.endsWith(lang);
         if (isSelected) {
             el.classList.add('text-cand-gold', 'font-bold');
@@ -254,37 +248,5 @@ function setLanguage(lang) {
             el.classList.remove('text-cand-gold', 'font-bold');
             el.classList.add('text-white/70');
         }
-    });
-
-    // Update welcome modal if visible
-    updateWelcomeModalLang(lang);
-}
-
-function updateWelcomeModalLang(lang) {
-    const t = welcomeTranslations[lang];
-    if (!t) return;
-
-    const elements = {
-        'welcome-title': t.title,
-        'welcome-subtitle': t.subtitle,
-        'welcome-org': t.org,
-        'welcome-intro': t.intro,
-        'welcome-feat1-title': t.feat1_title,
-        'welcome-feat1-desc': t.feat1_desc,
-        'welcome-feat2-title': t.feat2_title,
-        'welcome-feat2-desc': t.feat2_desc,
-        'welcome-feat3-title': t.feat3_title,
-        'welcome-feat3-desc': t.feat3_desc,
-        'welcome-feat4-title': t.feat4_title,
-        'welcome-feat4-desc': t.feat4_desc,
-        'welcome-btn': t.btn,
-        'welcome-checkbox': t.checkbox,
-        'welcome-campaign-title': t.campaign_title,
-        'welcome-campaign-desc': t.campaign_desc
-    };
-
-    Object.entries(elements).forEach(([id, text]) => {
-        const el = document.getElementById(id);
-        if (el) el.innerText = text;
     });
 }
