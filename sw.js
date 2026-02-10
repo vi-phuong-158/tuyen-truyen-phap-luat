@@ -1,7 +1,8 @@
-const CACHE_NAME = 'tuyen-truyen-v2';
+const CACHE_NAME = 'tuyen-truyen-v3';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
+    './js/doc-data.js',
     './ba-nhat-banner.jpg',
     './logo.png',
     './logo-qlxnc.png',
