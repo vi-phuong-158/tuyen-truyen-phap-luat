@@ -400,7 +400,7 @@
                     </div>
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" aria-label="Menu chính" aria-expanded="false"
+                    <button id="mobileMenuBtn" aria-label="Menu chính" data-i18n-label="menu_label" aria-expanded="false"
                         class="text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
                         <i data-lucide="menu" class="w-7 h-7"></i>
                     </button>
@@ -752,8 +752,10 @@
                                 <div class="relative shrink-0 pt-2 border-t border-gray-100">
                                     <input type="text" id="fakeChatInput"
                                         class="w-full pl-4 pr-12 py-3.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-cand-red focus:ring-2 focus:ring-cand-red/20 transition-all shadow-sm text-sm"
-                                        placeholder="Nhập câu hỏi của bạn..." onkeypress="handleChatEnter(event)">
-                                    <button onclick="handleChatSend()"
+                                        placeholder="Nhập câu hỏi của bạn..." data-i18n-placeholder="chat_placeholder"
+                                        aria-label="Nhập câu hỏi cho trợ lý AI" data-i18n-label="chat_input_label"
+                                        onkeypress="handleChatEnter(event)">
+                                    <button onclick="handleChatSend()" id="chatSendBtn" aria-label="Gửi câu hỏi" data-i18n-label="send_btn_label"
                                         class="absolute right-2 top-1/2 mt-1 -translate-y-1/2 w-9 h-9 bg-cand-red text-white rounded-lg flex items-center justify-center hover:bg-cand-red-dark transition-colors shadow-md hover:shadow-lg transform active:scale-95">
                                         <i data-lucide="send" class="w-4 h-4 ml-0.5"></i>
                                     </button>
@@ -819,7 +821,8 @@
 
     <!-- ========== FLOATING BUTTON ========== -->
     <a id="aiFloatingBtn" href="https://notebooklm.google.com/notebook/03f2338f-f7f7-4adf-aba3-52b93672b484"
-        target="_blank" rel="noopener noreferrer" class="fixed bottom-0 right-4 z-50 flex items-end group">
+        target="_blank" rel="noopener noreferrer" aria-label="Mở trợ lý AI" data-i18n-label="float_btn_label"
+        class="fixed bottom-0 right-4 z-50 flex items-end group">
 
         <!-- Speech Bubble -->
         <div id="aiBubble"
@@ -924,7 +927,12 @@
                 view_details_btn: "Xem chi tiết",
                 stat_online: "Đang Online",
                 stat_today: "Hôm nay",
-                stat_total: "Tổng truy cập"
+                stat_total: "Tổng truy cập",
+                chat_placeholder: "Nhập câu hỏi của bạn...",
+                chat_input_label: "Nhập câu hỏi cho trợ lý AI",
+                send_btn_label: "Gửi câu hỏi",
+                menu_label: "Menu chính",
+                float_btn_label: "Mở trợ lý AI"
             },
             en: {
                 home: "Home",
@@ -978,7 +986,12 @@
                 view_details_btn: "View Details",
                 stat_online: "Online",
                 stat_today: "Today",
-                stat_total: "Total Visits"
+                stat_total: "Total Visits",
+                chat_placeholder: "Type your question...",
+                chat_input_label: "Type question for AI assistant",
+                send_btn_label: "Send question",
+                menu_label: "Main Menu",
+                float_btn_label: "Open AI Assistant"
             },
             zh: {
                 home: "首页",
@@ -1030,7 +1043,12 @@
                 view_details_btn: "查看详情",
                 stat_online: "在线",
                 stat_today: "今日",
-                stat_total: "总访问量"
+                stat_total: "总访问量",
+                chat_placeholder: "输入您的问题...",
+                chat_input_label: "输入AI助手的问题",
+                send_btn_label: "发送问题",
+                menu_label: "主菜单",
+                float_btn_label: "打开AI助手"
             },
             kr: {
                 home: "홈",
@@ -1082,7 +1100,12 @@
                 view_details_btn: "자세히 보기",
                 stat_online: "온라인",
                 stat_today: "오늘",
-                stat_total: "총 방문수"
+                stat_total: "총 방문수",
+                chat_placeholder: "질문을 입력하세요...",
+                chat_input_label: "AI 도우미에게 질문 입력",
+                send_btn_label: "질문 보내기",
+                menu_label: "메인 메뉴",
+                float_btn_label: "AI 도우미 열기"
             }
         };
 
@@ -1096,6 +1119,22 @@
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
                     el.innerText = translations[lang][key];
+                }
+            });
+
+            // Update Placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            // Update Aria Labels
+            document.querySelectorAll('[data-i18n-label]').forEach(el => {
+                const key = el.getAttribute('data-i18n-label');
+                if (translations[lang][key]) {
+                    el.setAttribute('aria-label', translations[lang][key]);
                 }
             });
 
