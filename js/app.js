@@ -121,17 +121,16 @@ function handleChatSend() {
     const history = document.getElementById('chatHistory');
     if (!history) return;
 
-    // SECURITY: Sanitize user input before inserting into DOM
-    const safeQuery = sanitizeHTML(query);
+    // Add user message to UI (Using DOM for XSS prevention)
+    const msgWrapper = document.createElement('div');
+    msgWrapper.className = 'flex justify-end animate-fade-in-up';
 
-    const userMsg = `
-        <div class="flex justify-end animate-fade-in-up">
-            <div class="bg-cand-red text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-md max-w-[90%] text-sm">
-                ${safeQuery}
-            </div>
-        </div>
-    `;
-    history.insertAdjacentHTML('beforeend', userMsg);
+    const msgBubble = document.createElement('div');
+    msgBubble.className = 'bg-cand-red text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-md max-w-[90%] text-sm';
+    msgBubble.textContent = query; // Safe text insertion
+
+    msgWrapper.appendChild(msgBubble);
+    history.appendChild(msgWrapper);
     input.value = '';
     history.scrollTop = history.scrollHeight;
 
