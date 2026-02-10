@@ -2532,40 +2532,24 @@
             });
         }
 
-        // ========== SECURITY: XSS PREVENTION ==========
-        function sanitizeHTML(str) {
-            const escapeMap = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#39;',
-                '/': '&#x2F;',
-                '`': '&#x60;',
-                '=': '&#x3D;'
-            };
-            return String(str).replace(/[&<>"'`=\/]/g, s => escapeMap[s]);
-        }
-
         // ========== FAKE CHAT FUNCTIONALITY ==========
         function handleChatSend() {
             const input = document.getElementById('fakeChatInput');
             const query = input.value.trim();
             if (!query) return;
 
-            // SECURITY: Sanitize user input before inserting into DOM
-            const safeQuery = sanitizeHTML(query);
-
-            // Add user message to UI
+            // Add user message to UI (Using DOM for XSS prevention)
             const history = document.getElementById('chatHistory');
-            const userMsg = `
-                <div class="flex justify-end animate-fade-in-up">
-                    <div class="bg-cand-red text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-md max-w-[90%] text-sm">
-                        ${safeQuery}
-                    </div>
-                </div>
-            `;
-            history.insertAdjacentHTML('beforeend', userMsg);
+
+            const msgWrapper = document.createElement('div');
+            msgWrapper.className = 'flex justify-end animate-fade-in-up';
+
+            const msgBubble = document.createElement('div');
+            msgBubble.className = 'bg-cand-red text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-md max-w-[90%] text-sm';
+            msgBubble.textContent = query; // Safe text insertion
+
+            msgWrapper.appendChild(msgBubble);
+            history.appendChild(msgWrapper);
             input.value = '';
 
             // Scroll to bottom
